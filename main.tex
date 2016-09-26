@@ -54,6 +54,12 @@
 \renewcommand\qedsymbol{$\blacksquare$}
 \newlength{\drop}
 \newtheorem{theorem}{Theorem}
+\newtcbtheorem[number within=section]{prop}{Proposition}%
+{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=section]{lemma}{Lemma}%
+{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{th}
+\newtcbtheorem[number within=section]{koro}{Korollar}%
+{colback=blue!5,colframe=blue!35!black,fonttitle=\bfseries}{th}
 \numberwithin{theorem}{chapter}
 \makeatletter
 \newdimen\errorsize \errorsize=0.2pt
@@ -235,5 +241,10 @@ secondextra={
 \newpage
 \tableofcontents
 \newpage
+\input{Indledning}
+\newpage
 \input{Differentialligninger}
+\input{Laplace}
+\input{Graensevaerdi}
+\input{Kilder.tex}
 \end{document}
