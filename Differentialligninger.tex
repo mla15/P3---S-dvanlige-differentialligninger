@@ -3,59 +3,83 @@
 \section{Sædvanlige differentialligninger}
 Først defineres en sædvanlig differentialligning:
 \begin{definition}[Sædvanlig differentialligning (ODE)]
-En sædvanlig differentialligning er en ligning, der består af følgende bestanddele:
-\begin{enumerate}
-    \item Præcis én uafhængig variabel $t \in I \subseteq \mathbb{R}$, hvor $I$ er et givent interval
-    \item En afhængig variabel $y = y(t), y\in J \subseteq \mathbb{R}$, hvor $J$ er et givent interval
-    \item En funktion $G:\mathbb{R}^{n+1} \rightarrow \mathbb{R}$ \hfill \break 
-    $G(t,y,y', \hdots , y^{(n)})=f(t)$
-\end{enumerate}.
+En sædvanlig differentialligning er en ligning på formen: \hfill \break
+$$G(t,y(t),y'(t), \hdots , y^{(n)}(t))=0,$$
+hvor:
+\begin{itemize}
+    \item $t \in I \subseteq \mathbb{R}$ er en uafhængig variabel.
+    \item $y(t) = y, y\in J \subseteq \mathbb{R}$ er en afhængig variabel.
+    \item $G:\mathbb{R}^{n+2} \rightarrow \mathbb{R}$ er en funktion.
+\end{itemize}.
 \end{definition}
 Ordenen, $n$, af en ODE angiver, at den $n$'te afledte af den afhængige variabel $y(t)$ er den højest afledte. Ved ODE er det væsentligt at skelne mellem lineære og ikke-lineære sædvanlige differentialligninger, da disse har forskellige løsningsmetoder, samt udséende.
 \begin{definition}[Sædvanlig lineær differentialligning (OLDE)]\label{OLDE}En ODE af $n$'te orden kaldes lineær, hvis de mange afledte af $y$ kan skrives som en linearkombination. Altså: \\ 
-$$a_{n}(t)y^{(n)}(t)  + a_{n-1}(t)y^{(n-1)}(t)+ \hdots + a_{1}(t)y'(t) + a_{0}(t)y(t) = f(t)$$. \hfill \break
-Dette kan omskrives til formen:
+$$a_{n}(t)y^{(n)}  + a_{n-1}(t)y^{(n-1)}+ \hdots + a_{1}(t)y' + a_{0}(t)y = f(t)$$
+Hvor $a_n(t)\neq 0$. Dette kan omskrives til formen:
 
-$$y^{(n)}(t)+P_{n-1}(t)y^{(n-1)}(t)+\hdots +P_0(t)y(t)=Q(t)$$ 
+$$y^{(n)}+P_{n-1}(t)y^{(n-1)}+\hdots +P_0(t)y=Q(t)$$ 
 
 Her er: $P_0(t)=\frac{a_0(t)}{a_n(t)} , P_1(t)=\frac{a_1(t)}{a_n(t)}, \hdots, P_{n-1}(t)=\frac{a_{n-1}(t)}{a_n(t)}$ og $Q(t)=\frac{f(t)}{a_n(t)}$
 \end{definition}
 
-Udover lineære og ikke-lineære kan en ODE også beskrives som værende enten homogen eller inhomogen:
+For en OLDE defineres følgende:
 \begin{definition}[Homogenitet]
-En ODE kaldes homogen, hvis 
-$$G(t,y,y', \hdots , y^{(n)})=0$$ 
-Hvis en ODE ikke er homogen kaldes den inhomogen.
+En OLDE kaldes homogen, hvis den kan skrives på formen: 
+$$a_{n}(t)y^{(n)}  + a_{n-1}(t)y^{(n-1)}+ \hdots + a_{1}(t)y' + a_{0}(t)y = 0$$ 
+Hvis en OLDE ikke er homogen kaldes den inhomogen.
 \end{definition}
-Til den inhomogene ODE, $G(t,y,y',...,y^{(n)})=f(t)$, kalder vi ligningen, $G(t,y,y',...,y^{(n)})=0$, den associerede homogene ODE. Sædvanlige differentialligninger kan løses ved at bestemme en løsning til disse:
+Til den inhomogene OLDE, $G(y,y',...,y^{(n)})=f(t)$, kalder vi ligningen, $G(t,y,y',...,y^{(n)})=0$, den associerede homogene ODE. Sædvanlige differentialligninger kan løses ved at bestemme en løsning til disse:
 \begin{definition} [Løsning til ODE]
 En løsning til en ODE af $n$'te orden, er en $n$ gange differentiabel funktion, $\phi (t)$, som opfylder relationen
-$$G(t,\phi (t),\phi '(t), \hdots, \phi^{(n)}(t))=f(t), t\in I \subseteq \mathbb{R}$$
+$$G(t,\phi (t),\phi '(t), \hdots, \phi^{(n)}(t))=0 \enspace ,\enspace t\in I \subseteq \mathbb{R} \enspace , \enspace \phi (t) \in J \subseteq \mathbb{R}$$
 En partikulær løsning er en vilkårlig løsning, mens den fuldstændige løsning er familien af alle løsninger til ODE.
 \end{definition}
 
-\begin{definition} [Den fuldstændige løsning til den lineære ODE]
-En lineær ODE på formen 
-$$G(t,y,y', \hdots , y^{(n)})=a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=f(t), t\in I, y\in J$$
+\begin{mytheo}{Den fuldstændige løsning til en OLDE}{}
+En OLDE på formen 
+$$a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=0, \enspace t\in I, \enspace y\in J$$
 har den fuldstændige løsning:
 $$y(t)=y_p+y_h$$
-Hvor $y_p$ er en partikulær løsning til ligningen og $y_h$ er den fuldstændige løsning til den associerede homogene OLDE.
-\end{definition}
-
+Hvor $y_p$ er en partikulær løsning til ligningen og $y_f$ er den fuldstændige løsning til den associerede homogene OLDE.
+\end{mytheo}
+\begin{proof}\hfill \break
+Mangler.
+\end{proof}
 \section{Førsteordens differentialligninger}
 I afsnittet forinden blev det kort introduceret, hvad en differentialligning er, de afhængige og uafhængige variabler den er opbygget af, de konstanter der indgår deri, samt formen af løsninger dertil. I det følgende vil vi komme nærmere ind på ordenen af differentialligninger mere specifikt første ordens differentialligninger, og hvad de kan benyttes til at beskrive, samt løsningsmetoder dertil.
 Følgende afsnit er baseret på \citep{JAB}, hvis andet ikke er noteret.
 \subsection{Separable differentialligninger}
 
 \begin{definition}[Separabel differentialligning]
-En førsteordens ODE kaldes separabel, hvis den kan skrives på formen, $$y'(t) = f(t,y)$$ og den højre side af ligningen kan udtrykkes som en funktion, $g(t)$, som kun afhænger af $t$ gange en funktion $p(y)$, som kun afhænger af $y$, således:$$y'(t)=g(t)p(y)$$
+En førsteordens ODE kaldes separabel, hvis den kan skrives på formen, $$y'(t)=g(t)p(y)$$ hvor $g(t)$ kun afhænger af $t$, og $P(y)$ kun afhænger af $y$.
 \end{definition}
+
+\begin{mytheo}{Løsning til separable differentialligninger}{}
+Løsningen til en førsteordens separabel ODE:
+$$y'(t)=g(t)p(y)$$
+er også løsning til ligningen: 
+$$\int \frac{1}{p(y)}dy=\int g(t)dt$$
+\end{mytheo}
+
+\begin{proof}\hfill \break
+Vi starter med $$y'(t)=g(t)p(y)\Longleftrightarrow \frac{dy}{dt} = g(t)p(y)$$
+Hvis funktionen $p$ er kontinuert, og $p(y)\neq 0 \forall y$, kan man omskrive formlen på følgende måde:
+\begin{align*}
+    \frac{dy}{dt} &= g(t)p(y)\\
+    \frac{1}{p(y)}\frac{dy}{dt} &= g(t)
+\end{align*}
+Hvis $H(y)$ er en funktion, således at $H'(y)=\frac{1}{p(y)}$, så har vi: $$H'(y) \frac{dy}{dt}=g(t)$$
+Ved at anvende reglen for differentiation af en sammensat funktion, som siger $(f(g(x)))'=f'(g(x))g'(x)$, får vi:
+$$(H(y(t)))'=g(t)$$
+og ved at integrere på begge sider i forhold til $t$ får vi:
+$$H(y)=\int g(t) dt$$
+Her må det gælde at $H(y)=\int \frac{1}{p(y)}dy$, hvilket resultere i: $$\int \frac{1}{p(y)}dy=\int g(t) dt$$
+\end{proof}
 
 \begin{tcolorbox}
 \begin{equation}\label{LSD}
-\textbf{Løsning til separabel differentialligninger}\\
+\textbf{Løsning til separable differentialligninger}\\
 \end{equation}
-\hfill \break
 For at løse ligningen, $$\frac{dy}{dt} = g(t)p(y)$$ skal man gange med $dt$ og med $h(y)=\frac{1}{p(y)}$, hvilket resultere i $$h(y)dy=g(t)dt$$ Derefter integreres der på begge sider: $$\int h(y)dy= \int g(t)dt \Longrightarrow H(y)=G(t)+C$$ Her har man lagt de to konstanter af integrationen sammen til en enkelt konstant, $C$. Den sidste ligning giver en implicit løsning til differentialligningen.
 \end{tcolorbox}
 
@@ -99,25 +123,27 @@ $$y'(t) + P(t)y(t) = Q(t)$$ hvor $y'(t) + P(t)y(t) = Q(t)$ benævnes standard fo
 En funktion $\mu (t)$, der ved multiplikation ændrer en lineær funktion på standard form til en ligning på formen: $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ kaldes en integrationsfaktor.
 \end{definition}
 
-For at vise, hvordan definition \ref{integrationsfaktor} kan benyttes, finder vi en passende integrationsfaktor $\mu$ og ganger denne til standard formen.
+Denne integrationsfaktor kan benyttes til at finde en generel løsning til en OLDE, og det er illustreret ved nedenstående sætning.
+
+\begin{mytheo}{Løsning til OLDE}{}
+For enhver OLDE, der kan skrives på formen: $$\frac{dy}{dt}+P(t)y=Q(t)$$ eksisterer der en integrationsfaktor $\mu(t)$, hvorom der gælder, at: $$y(t)=\frac{1}{\mu (t)}(\int \mu (t)Q(t)dt+K)$$ er den generelle løsning til OLDE.
+\end{mytheo}
+
+\begin{proof}
+Proof will magically appear if we wait long enough \hfill \break
+
+Vi finder en passende integrationsfaktor $\mu(t)$ og ganger denne til standard formen.
 \begin{equation}\label{Intfaktor}
 \mu (t)y'(t) + \mu (t)P(t)y(t) = \mu (t)Q(t) 
 \end{equation}
 Vi betragter venstresiden og indser, at for $\mu ' = \mu P$ kan vi omskrive denne.
 $$\mu (t)y'(t) + \mu (t)P(t)y(t) = \mu (t)y'(t) + \mu '(t)y(t) = \frac{d}{dt}(\mu (t)y(t))$$
 
-Da, $\mu ' = \mu P$, kan vi udlede af \eqref{LSD} at $\frac{1}{\mu}d\mu = P(t)dt$. Ved integration fås: $$\ln(\mu (t))=\int P(t)dt\Leftrightarrow \mu (t) = e^{\int P(t)dt}$$ Ligning \eqref{Intfaktor} omskrives yderligere til $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ og hvis $\mu (t)$ vælges som den ovenstående, findes en generel løsning af $y'(t) + P(t)y(t) = Q(t)$.
+Da, $\mu ' = \mu P$, kan vi udlede af \eqref{LSD} at $\frac{1}{\mu}d\mu = P(t)dt$. Ved integration fås: $$\ln(\mu (t))=\int P(t)dt\Leftrightarrow \mu (t) = e^{\int P(t)dt}$$ Ligning \eqref{Intfaktor} omskrives yderligere til $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ med $\mu (t)$ som den ovenstående, kan vi finde en generel løsning af $y'(t) + P(t)y(t) = Q(t)$.
 \begin{equation}
 y(t)=\frac{1}{\mu (t)}(\int \mu (t)Q(t)dt+K)
 \end{equation}
-
-\begin{tcolorbox}
-\begin{equation}\label{LLD}
-\textbf{Løsning til lineære differentialligninger}\\
-\end{equation}
-\hfill \break
-Skriv ligningen på standard form $$\frac{dy}{dt}+P(t)y=Q(t)$$ Udregn integrationsfaktoren $$\mu (t)=e^{\int P(t)dt}$$ Gang derefter ligningen i standard form med $\mu (t)$ $$\underbrace{\mu (t)\frac{dy}{dt}+P(t)\mu (t)y} = \mu (t)Q(t)$$ $$\frac{d}{dt}(\mu (t)y) = \mu (t)Q(t)$$ Integrer den sidste ligning og løs den i forhold til $y$ ved at dividere med $\mu (t)$ for at opnå den generelle løsning. 
-\end{tcolorbox}
+\end{proof}
 
 \begin{Example}
 \textnormal{Antag at vi har en førsteordens OLDE:}
@@ -245,13 +271,13 @@ hvilket giver $K=L$ ifølge definitionen af Lipschitz-kontinuitet. \qedhere
 \begin{align}
  \frac{1}{1+y^2}\leq 1, \forall(t,y) \in \mathbb{R}^2 \notag
 \end{align}
-\textnormal{Dermed ses, at $L=1$, og $f$ opfylder en Lipschitz-kontinuert på $\mathbb{R}^2$.}
+\textnormal{Dermed ses, at $L=1$, og $f$ er Lipschitz-kontinuert på $\mathbb{R}^2$.}
 \end{Example}
 
 \subsection{Banachs fixpunktssætning}
 
 \begin{definition}[Metrisk rum]
-Et metrisk rum er et ordnet par $(M,d)$, hvor $M$ er en mængde og $d$ er en metrik $d:M\times M \rightarrow \mathbb{R}_+$, $d(x,y)=|x-y|$, hvorom der gælder for ethvert $x,y,z \in M$: \hfill \break
+Et metrisk rum er et ordnet par $(M,d)$, hvor $M$ er en mængde og $d$ er en metrik $d:M\times M \rightarrow \mathbb{R}_+$, $d(x,y)=|x-y|$, hvorom der gælder for ethvert $x,y,z \in M$: 
 \begin{enumerate}
     \item $d(x,y)=0 \Leftrightarrow x=y$ 
     \item $d(x,y)=d(y,x)$
@@ -261,9 +287,8 @@ $d$ kaldes også for afstandsfunktionen.
 \end{definition}
 
 \begin{definition}[Cauchyfølger i Metriske rum]
-En talfølge $\{x_n\}$ i et metrisk rum $(M,d)$ siges at være Cauchyfølge, hvis der for en positiv tolerencegrad $\epsilon >0$ eksisterer $N \in \mathbb{N}$, så der for alle $m,n \geq N$, $m,n \in \mathbb{N}$ gælder, at: 
-$$|x_n-x_m|<\epsilon$$
-Altså hvis $\lim_{n \to \infty} x_n= x_\infty$..
+En talfølge $\{x_n\}$ i et metrisk rum $(M,d)$ siges at være Cauchyfølge, hvis der for enhver positiv tolerencegrad $\varepsilon >0$ eksisterer $N \in \mathbb{N}$, så der for alle $m,n \geq N$, $m,n \in \mathbb{N}$ gælder, at: 
+$$|x_n-x_m|<\varepsilon$$
 \end{definition}
 
 \begin{definition}[Fuldstændigt metrisk rum]
@@ -271,7 +296,7 @@ Et metrisk rum $(M,d)$ siges at være fuldstændigt, hvis alle Cauchyfølger i $
 \end{definition}
 
 \begin{definition}[Kontraktion og Fixpunkt]
-Lad $(M,d)$ være et metrisk rum. En afbildning $F:M\rightarrow M$ kaldes en kontraktion, hvis der eksisterer en Lipschitz-konstant $0 \leq L < 1$, sådan at: \hfill \break
+Lad $(M,d)$ være et metrisk rum. En afbildning $F:M\rightarrow M$ kaldes en kontraktion, hvis der eksisterer en Lipschitz-konstant $0 \leq L < 1$, sådan at:
 $$|F(x_1)-F(x_2)|\leq L|x_1-x_2|$$
 Et punkt $x \in M$ er et fixpunkt for $F$, hvis $F(x)=x$ 
 \end{definition}
