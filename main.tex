@@ -26,12 +26,15 @@
 \usepackage{color,amsmath,amssymb}
 \usepackage{framed}
 \usepackage{graphicx}
+\graphicspath{ {Images/} }
 \usepackage{enumitem}
 \usepackage{blkarray}
 \usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{amsmath}
 \hypersetup{
     pdftitle={Your title here},
     pdfauthor={Your name here},
@@ -235,6 +238,7 @@ secondextra={
 \usetikzlibrary{fit,shapes}
 \usepackage{etoolbox}
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+\pgfplotsset{compat=1.8}
 \begin{document}
 \begin{titlepage}
 \end{titlepage}
@@ -245,6 +249,12 @@ secondextra={
 \newpage
 \input{Differentialligninger}
 \input{Laplace}
-\input{Graensevaerdi}
+\input{BueAmalieSystemer}
+%\input{Systemer}
+%\input{Ekstra-stuff}
+\input{Stabilitet}
+%\input{Graensevaerdi}
+\input{Case}
+%\input{Ekstra-stuff}
 \input{Kilder.tex}
 \end{document}

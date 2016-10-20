@@ -1,0 +1,303 @@
+\chapter{Ekstra-stuff}
+
+\subsection{Mikkel}
+
+\subsection{Lipschitz-kontinuitet}
+Lipcshitz-kontinuitet er første skridt i at bevise eksistens- og entydighedssætningen for løsninger til differentialligninger?
+\begin{definition}[Lipschitz-kontinuitet]
+Givet en funktion, $f: (t,\vec{x})\in R \subseteq \mathbb{R}^{m+1} \rightarrow f(t,\vec{x}) \in \mathbb{R}^m$, kaldes Lipschitz-kontinuert, hvis $\exists L \geq 0$, så:
+$$|f(t,\vec{x_1})-f(t,\vec{x_2})|\leq L|\vec{x_1}-\vec{x_2}|$$
+\end{definition}
+
+\begin{Example}\textbf{Lipschitz-kontinuitet}\hfill \break
+\textnormal{Hvis vi lader $\mathbb{R}^2$ være det réelle plan og betragter funktionen $f(t,x)=t^5+4x$, så kan vi undersøge om $f$ er Lipschitz-kontinuert på $\mathbb{R}^2$:} \hfill \break
+$$|f(t,x_1)-f(t,x_2)|=|(t^5+4x_1)-(t^5+4x_2)|=|4x_1-4x_2|=4|x_1-x_2|$$ \hfill \break
+\textnormal{Det ses nu, at funktionen opfylder en Lipschitz betingelse på $\mathbb{R}^2$ med $L=4$.}
+\end{Example}
+\begin{lemma}{}{}
+Lad $D$ være et lukket rektangel $R=(a,b)\times(c,d)$ eller en uendelig strimmel $S=(a,b)\times(-\infty,\infty)$ på planet $\mathbb{R}^2$. $f$ er Lipschitz-kontinuert på $R$ eller $S$ hvis:
+
+\begin{enumerate}
+    \item $f:D \rightarrow \mathbb{R}$
+    \item $\frac{\partial f}{\partial y}$ eksisterer og er kontinuert
+    \item Der eksisterer en konstant $K\geq 0$ sådan, at $|\frac{\partial f}{\partial y}(t,y)|\leq K$
+\end{enumerate}
+
+Dermed er $K=L$
+\end{lemma}
+\begin{proof} \hfill \break
+Ved brug af fundamental calculus gælder, at for alle $(t,y_1),(t,y_2) \in D$ er
+\begin{align}
+ f(t,y_1)-f(t,y_2)=\int_{y_2}^{y_1}\frac{\partial f}{\partial y} dy \notag
+\end{align}
+og derved
+\begin{align}
+ |f(t,y_1)-f(t,y_2)|&=|\int_{y_2}^{y_1}\frac{\partial f}{\partial y} dy| \notag \\
+&\leq |\int_{y_2}^{y_1}|\frac{\partial f}{\partial y}| dy| \notag\\
+&\leq |\int_{y_2}^{y_1}K| \notag \\
+&=K|y_1-y_2| \notag
+\end{align}
+hvilket giver $K=L$ ifølge definitionen af Lipschitz-kontinuitet. \qedhere
+\end{proof}
+\hfill \break
+
+\begin{Example}\hfill \break
+\textnormal{Betragt funktionen $f(t,y)=t^5+\tan^{-1}(y)$. Hvis vi benytter Lemma 2.3.1 får vi:} \hfill \break
+\begin{align}
+\frac{\partial f}{\partial y}=\frac{1}{1+y^2} \notag
+\end{align}
+\textnormal{Det ses hurtigt, at brøken $\frac{1}{1+y^2}$ altid vil være mindre end eller lig med 1 for alle $(t,y)\in \mathbb{R}^2$, altså:}
+\begin{align}
+ \frac{1}{1+y^2}\leq 1, \forall(t,y) \in \mathbb{R}^2 \notag
+\end{align}
+\textnormal{Dermed ses, at $L=1$, og $f$ er Lipschitz-kontinuert på $\mathbb{R}^2$.}
+\end{Example}
+
+\subsection{Banachs fixpunktssætning}
+
+\begin{definition}[Metrisk rum]
+Et metrisk rum er et ordnet par $(M,d)$, hvor $M$ er en mængde og $d$ er en metrik $d:M\times M \rightarrow \mathbb{R}_+$, $d(x,y)=|x-y|$, hvorom der gælder for ethvert $x,y,z \in M$: 
+\begin{enumerate}
+    \item $d(x,y)=0 \Leftrightarrow x=y$ 
+    \item $d(x,y)=d(y,x)$
+    \item $d(x,z)\leq d(x,y)+d(y,z)$
+\end{enumerate}
+$d$ kaldes også for afstandsfunktionen.
+\end{definition}
+
+\begin{definition}[Cauchyfølger i Metriske rum]
+En talfølge $\{x_n\}$ i et metrisk rum $(M,d)$ siges at være Cauchyfølge, hvis der for enhver positiv tolerencegrad $\varepsilon >0$ eksisterer $N \in \mathbb{N}$, så der for alle $m,n \geq N$, $m,n \in \mathbb{N}$ gælder, at: 
+$$|x_n-x_m|<\varepsilon$$
+\end{definition}
+
+\begin{definition}[Fuldstændigt metrisk rum]
+Et metrisk rum $(M,d)$ siges at være fuldstændigt, hvis alle Cauchyfølger i $M$ har en grænse, der også er i $M$. Altså hvis alle Cauchyfølger i $M$ konvergerer i $M$.
+\end{definition}
+
+\begin{definition}[Kontraktion og Fixpunkt]
+Lad $(M,d)$ være et metrisk rum. En afbildning $F:M\rightarrow M$ kaldes en kontraktion, hvis der eksisterer en Lipschitz-konstant $0 \leq L < 1$, sådan at:
+$$|F(x_1)-F(x_2)|\leq L|x_1-x_2|$$
+Et punkt $x \in M$ er et fixpunkt for $F$, hvis $F(x)=x$ 
+\end{definition}
+
+\begin{mytheo}{Banachs fixpunktssætning}
+LLad $(X,d)$ være et fuldstændigt metrisk rum og $F:X\rightarrow X$ være en kontraktion. Så har $F$ et unikt fixpunkt.
+\end{mytheo}
+
+\begin{proof}
+Først viser vi unikheden af fixpunktet. Antag at der eksisterer $a,b \in M$, så $F(a)=a$ og $F(b)=b$, så antyder Definition 2.12, at \hfill \break
+$$0\leq d(a,b)=d(F(a),F(b))\leq Ld(a,b), (1-L)|y_1-y_2|\leq 0$$
+hvilket betyder at $d(a,b)=0$ og at $a=b$ \hfill \break
+\hfill \break
+Vi konstruerer nu sådan et fixpunkt. Betragt talfølgen ${y_n}$, hvor $y_1$ er arbitrær og $y_n:=F(y_{n-1})$ for ethvert $n\geq 2$. Vi ønsker nu at vise to ting:\hfill \break
+ ($i$) Talfølgen er Cauchyfølge i M og dermed konvergerer mod et $y_\infty$, da vi antog at $M$ var fuldstændigt metrisk rum.\hfill  \break
+($ii$) $y_\infty$ er et fixpunkt for $F$. \hfill \break
+Vi starter med ($i$). For enhver tolerancegrad $\epsilon > 0$ vil vi konstruere et $N > 0$ sådan at for alle $p\geq q \geq N$ har vi $d(y_q,y_p)<\epsilon$. Dette kan også skrives \hfill \break
+\begin{align}
+d(y_q,y_{q+k})<\epsilon,  \forall k \geq 0, \forall q \geq N
+\end{align}
+Hvis $k \geq 1$ antyder trekantsuligheden, at \hfill \break
+\begin{align}
+d(y_q,y_{q+k}) &\leq d(y_{q},y_{q+1})+d(y_{q+1},y_{q+k}) \notag\\
+&\leq d(y_q,y_{q+1})+d(y_{q+1},y_{q+2})+d(y_{q+2},y_{q+k}) \notag\\
+&\leq \sum\limits_{r=0}^{k-1} d(y_{q+r},y_{q+r+1})
+\end{align}
+For ethvert $n\geq 1$ har vi \hfill \break
+$$d(y_n,y_{n+1})=d(F(y_{n-1}),F(y_n)) \leq Ld(y_{n-1},y_n) \leq \hdots \leq L^{n-1}d(y_1,y_2), \forall n \geq 1$$
+Dermed er $d(y_{q+r},y_{q+r+1}) \leq L^{n-1}d(y_1,y_2)$ for alle $q \geq 1$ og $r\geq 0$. Dette og (2.4) giver, at \hfill \break
+$$d(y_q,y_{q+k}) \leq L d(y_1,y_2)(1+\hdots+L^{k-1}) \leq \frac{L^{q-1}}{1-L}d(y_1,y_2), \forall k \geq 1$$
+ved at bruge $(1-L)(1+L^2+\hdots+L^{k-1})=1+L^2+\hdots +L^{k-1}-L-L^2-\hdots -L^k= 1-L^k \leq 1$. \hfill \break
+Da $0 \leq L < 1$ må $\lim_{q\rightarrow\infty} L^q=0$ og (2.3) må gælde. Det kan dermed konkluderes, at der eksisterer $y_\infty \in X$ sådan at \hfill \break
+$$\lim_{n \to \infty} d(y_n,y_\infty)=0$$
+Dermed må $\{y_n\}$ være Cauchyfølge i $M$. \hfill \break
+
+Nu bevises ($ii$). For ethvert $n \geq 1$ gælder:
+$$d(F(y_\infty),y_\infty)\leq d(F(y_\infty),F(y_n))+d(F(y_n),y_\infty)$$
+Da $d(F(y_\infty),F(y_n))\rightarrow 0$ og $\lim_{n \to \infty} d(F(y_n),y_\infty) = \lim_{n \to \infty} d(y_{n+1},y_\infty)=0$, så må $d(F(y_\infty),y_\infty)=0$ og dermed $F(y_\infty)=y_\infty$. Så $y_\infty$ er unikt fixpunkt for $F$.
+\end{proof}
+
+\subsection{Bevis af Picard-Lindelöf sætningen}
+
+\begin{definition}[Normeret vektorrum og Banachrum]
+Hvis et vektorrum $V$ over et legeme $\mathbb{F}$ har normen af alle vektorer i $V$ defineret ved funktionen $||\cdot||:V\to \mathbb{R}_+$, kaldes det ordnede par $(V,||\cdot||)$ et normeret vektorrum.
+Hvis alle Cauchyfølger af vektorer $\{\vec{v}_n\}$ i $V$ konvergerer mod en anden vektor $\vec{v}_\infty$ i $V$, kaldes det normerede vektorrum et fuldstændigt normeret vektorrum eller et Banachrum.
+\end{definition}
+
+\begin{proof}
+Det var beviset.
+\end{proof}
+
+\subsection{Jacobi-matricer}
+
+For at kunne beskrive ikke-lineære systemer omkring et ligevægtspunkt, indføres følgende
+
+\begin{definition}[Jacobi-matrix]
+Lad $$\textbf{f}: \mathbb{R}^n \to \mathbb{R}^m$$ være en funktion der afbilleder en vektor, $$\vec{x} \in \mathbb{R}^n$$ over i $$\textbf{f}(\vec{x}) \in \mathbb{R}^m \text{.}$$ \\ Da defineres en $m \times n$ matrix, $\textbf{J}$, på $\textbf{f}$ til at være den Jacobianske matrix til funktionen og skrives på formen:
+$$\textbf{J}_f(\vec{x}) = \frac{d\textbf{f}}{d\vec{x}} =
+\begin{bmatrix}
+    \frac{\partial \textbf{f}_1}{\partial \vec{x_{1}}} & \frac{\partial \textbf{f}_1}{\partial \vec{x_{2}}} & \dots & \frac{\partial \textbf{f}_1}{\partial \vec{x_{n}}} \\
+    \frac{\partial \textbf{f}_2}{\partial \vec{x_{1}}} & \frac{\partial \textbf{f}_2}{\partial \vec{x_{2}}} & \dots & \frac{\partial \textbf{f}_2}{\partial \vec{x_{n}}} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \frac{\partial \textbf{f}_m}{\partial \vec{x_{1}}} & \frac{\partial \textbf{f}_m}{\partial \vec{x_{2}}} & \dots & \frac{\partial \textbf{f}_m}{\partial \vec{x_{n}}}
+\end{bmatrix},$$
+eller komponentvist:
+$$\textbf{J}_{ij} = \frac{\partial \textbf{f}_i}{\partial \vec{x}_j}$$
+
+Den Jacobianske matrix er en lineær afbildning $\mathbb{R}^n \to \mathbb{R}^m$, der angiver en lineær approksimation af $\textbf{f}$ til et $\vec{x}$.
+\end{definition}
+
+\begin{definition}[]
+Lad $\textbf{f}$ være en funktion og $a \in \mathbb{R}^n$ være et punkt. Er $\textbf{f}$ differentiabel i $a$, er dens afledte givet ved $\textbf{J}_f({a})$. I dette tilfælde siges den lineære afbildning givet den Jacobianske-matrix at være den bedste lineære approksimation af $\textbf{f}$ til $a$.
+
+\hfill \break
+Denne lineære approksimation skrives:
+
+$$\textbf{f}(x)=\textbf{f}(a)+ \textbf{J}_f({a})(x-a)+ o(\left. \Vert \left. x-a \right. \Vert \right.),$$ 
+for $x \to a$.
+
+\end{definition}
+
+\begin{definition}[Hyperbolsk ligevægtspunkt]
+%asfAFASF
+\end{definition}
+
+\begin{Example}
+
+$$\textbf{F(x)} =
+\begin{bmatrix}
+x_1 x_3^2 -e^{x_1 x_2} \\
+x_2 - \frac{1}{x_3} \\
+x_1 x_2 x_3
+\end{bmatrix} \Rightarrow
+J_{f}(x) =
+\begin{bmatrix}
+    x_3^2 - x_2 e^{x_1 x_2} & -x_1 e^{x_1 x_2} & 2x_1 x_3 \\
+    0 & 1 & \frac{1}{x_3^2}\\
+    x_2 x_3 & x_1 x_3 & x_1 x_2
+\end{bmatrix}$$
+
+\end{Example}
+
+
+
+\chapter*{Grænseværdi}
+
+\begin{definition}[Punktfølge]
+En punktfølge består af uendeligt mange nummererede elementer i $\mathbb{R}^2$:
+
+\begin{equation}
+    x^1, x^2, \hdots, x^k, \hdots
+\end{equation}
+\end{definition}
+
+\begin{definition}[Konvergent punktfølge]
+En punktfølge $\{x^k\}^\infty_{k=1}$ i $\mathbb{R}^n$ siges at være konvergent, hvis der eksisterer et punkt $x \in \mathbb{R}^n$ således, at 
+
+\begin{equation}
+    \lim_{k \to \infty} ||x-x^k|| = 0.
+\end{equation}
+
+I så fald kaldes $x$ for følgens grænsepunkt, grænsevektor, eller grænseværdi, vi siger, at punktfølgen konvergerer mod $x$, og vi skriver
+
+\begin{equation}
+    x^k \to x \ for \ k \to \infty \ eller \ \lim_{k \to \infty} x^k = x. 
+\end{equation}
+
+En punktfølge, der ikke er konvergent, siges at være divergent. 
+
+\end{definition}
+
+\begin{definition}[]
+En punktfølge $\{x^k\}^\infty_{k=1}$ siges at være begrænset, hvis der eksisterer et positivt reelt tal $M$, så $||x^k|| \leq M$ for alle $k\in \mathbb{N}$. 
+\end{definition}
+
+\begin{mytheo}{}
+h
+\begin{enumerate}[label=(\alph*)]
+    \item En punktfølge kan højst have et grænsepunkt. 
+    \item Hvis en punktfølge er konvergent, er den begrænset. 
+    \item Lad $\{x^k\}^\infty_{k=1}$ være en punktfølge $x$ et punkt i $\mathbb{R}^n$. Så gælder
+    
+    \begin{equation}
+        x^k \to x \ for \ k \to \infty \Leftrightarrow x^k-x \to 0 \ for \ k \to \infty.
+    \end{equation}
+    
+    \item Lad $\{x^k\}^\infty_{k=1}$ være en punktfølge. Så gælder
+    
+    \begin{equation}
+        x^k \to 0 \ for \ k \to \infty \Leftrightarrow ||x^k|| \to 0 \ for \ k \to \infty.
+    \end{equation}
+    
+\end{enumerate}
+
+\end{mytheo}
+
+
+\begin{mytheo}{Regneregler for grænseværdier}{dd}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Hvis punktfølgen $\{x^k\}^\infty_{k=1}$ er konvergent, så er talfølgen $\{||x^k||\}^\infty_{k=1}$ konvergent, og 
+    \begin{equation}
+        \lim_{k \to \infty} ||x^k|| = || \lim_{k \to \infty} x^k||.
+    \end{equation}
+    
+    \item Hvis punktfølgerne $\{x^k\}^\infty_{k=1}$ og $\{y^k\}^\infty_{k=1}$ er konvergente, så er punktfølgerne \\
+    $\{x^k \pm y^k\}^\infty_{k=1}$ konvergente, og 
+    
+    \begin{equation}
+        \lim_{k \to \infty} (x^k \pm y^k) =  \lim_{k \to \infty} x^k \pm \lim_{k \to \infty} y^k
+    \end{equation}
+    
+    \item Hvis $\{a_k\}^\infty_{k=1}$ er en konvergent talfølge og $\{x^k\}^\infty_{k=1}$ er en konvergent punktfølge, så er punktfølgen $\{a_kx^k\}^\infty_{k=1}$ konvergent, og 
+    
+    \begin{equation}
+        \lim_{k \to \infty} a_k x^k =  \lim_{k \to \infty} a_k \lim_{k \to \infty} x^k
+    \end{equation}
+    
+    \item Hvis punktfølgerne $\{x^k\}^\infty_{k=1}$ og $\{y^k\}^\infty_{k=1}$ er konvergente, så er talfølgen $\{\langle x^k,y^k\rangle\}^\infty_{k=1}$ konvergent, og der gælder 
+    
+    \begin{equation}
+         \lim_{k \to \infty} \langle x^k,y^k\rangle =   \langle \lim_{k \to \infty} x^k, \lim_{k \to \infty} y^k \rangle.
+    \end{equation}
+    
+\end{enumerate}
+
+\end{mytheo}
+
+%TO-DO:
+%Definer at Jacobi-matricens determinant samt egenværdier angiver typen af ligevægtspunkt.
+%Eventuelt definer Egenværdier og egenvektorer.
+
+\section{Diagonaliserbare matricer}
+
+\begin{mytheo}{Diagonalisering ved egenværdier og egenvektorer}{Diagegvd}
+Hvis egenværdierne $\lambda_1, \lambda_2, \hdots, \lambda_n$, i en $n\times n$ matrix $A$, er reelle og forskellige, så vil enhver mængde af egenvektorer \{$\vec v_1, \vec v_2, \hdots, \vec v_n$\}, hørende til $\lambda_1, \lambda_2, \hdots, \lambda_n$, have følgende egenskaber:
+\hfill \break
+\begin{enumerate}
+    \item \{$\vec v_1, \vec v_2, \hdots, \vec v_n$\} former en basis for $\mathbb{R}^n$
+    \item Matricen $P = (\vec v_1, \vec v_2, \hdots, \vec v_n)$ er invertibel
+    \item $P^{-1}AP = \textnormal{diag}[\lambda_1, \hdots, \lambda_n]$
+\end{enumerate}
+
+\end{mytheo}
+
+\begin{koro}{}{}
+Under hypoteserne givet i \ref{th:Diagegvd}, vil løsningen til det lineære system være givet ved funktion $y(t)$, som defineret ved (brødtekst ovenfor)
+\end{koro}
+
+\section{Operatorer}
+
+\begin{definition}[Konvergens af lineære operatorer]
+En følge af lineære operatorer $T_k \in L(\mathbb{R}^n)$ konvergerer mod en anden lineær operator $T \in L(\mathbb{R}^n)$, når $k \to \infty$
+$$\lim_{k\to\infty} T_k = T,$$
+Hvis der $\forall \varepsilon > 0 \exists N \in \mathbb{N}: k \geq N \to ||T - T_k|| < \varepsilon$
+\end{definition}
+
+\begin{lemma}{}{}
+Lad $S,T \in L(\mathbb{R}^n)$ og $x \in \mathbb{R}^n$, så gælder følgende:
+\begin{enumerate}
+    \item $|T(y)| \leq ||T|| |y|$
+    \item $||TS|| \leq ||T|| ||S||$
+    \item $||T^k|| \leq ||T||^k$ for $k = 0,1,2, \hdots$
+\end{enumerate}
+\end{lemma}

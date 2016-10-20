@@ -1,25 +1,36 @@
 \chapter{Indledning}
 
-Det kunne være interessant at undersøge hvordan differentialligninger benyttes til modellering af for eksempel fysiske og biologiske systemer. Intuitivt kunne man forestille sig, at i et isoleret system vil populationerne af rovdyr og byttedyr påvirke hinanden således, at hvis antallet af rovdyr stiger, vil antallet af byttedyr falde. Hvis antallet af byttedyr falder, vil rovdyrene ikke have nok at spise og dermed vil populationen af disse falde. Når populationen af rovdyr er tilstrækkeligt lav, vil antallet af byttedyr stige igen. Denne sammenhæng kunne tænkes at være cyklisk. 
-Dette system kan modelleres matematisk ved brug af differentialligninger. Dette gjorde Vito Volterra og Alfred J. Lotka, da Volterra’s svigersøn, Humberto D'Ancona i 1926 undersøgte forholdet mellem rovfisk og deres bytte i Adriaterhavet. Hertil udarbejdede de Lotka-Volterra-modellen, der modellerer forholdet i antal mellem to arter i et lukket system. 
-Her så Lotka og Volterra at populationen af rovdyr, $r=r(t)$, hvor $r$ er antallet af rovdyr afhængigt af tiden $t$, afhang af populationen af byttedyr, $b=b(t)$, hvor $b$ er antallet af byttedyr afhængigt af tiden. 
+%I dette projekt vil differentialligningssystemer blive bearbejdet, hvor der tages udgangspunkt i en case, hvor disse anvendes. Den udvalgte case for projektet omhandler Lotka-Volterra's rovdyr-byttedyr model.
 
-\hfill \break
-En model for et sådan system er på formen: 
+%Rovdyr-byttedyr modellen er med til at beskrive en udvikling i et isoleret system, hvor man antager, at der ikke forekommer nogle ukendte variable. Der antages altså, at systemet er en akkurat afbildning af sammenhængen mellem rovdyr og byttedyr populationen under optimale forhold. Lotka-Volterra modellen er derfor et system, der kan udvides med flere variable for at gøre systemet mere virkelighedsnært. For eksempel kan man se på det udvidede system, der tager forbehold for, flere forskellige rovdyr, der konkurrerer om det samme byttedyr, eller en begrænset fødemængde til byttedyrene. I dette projekt vil der tages udgangspunkt i sidstnævnte variation af Lotka-Volterra's model, hvor modelleringsproblemet drastisk ændrer form til at være en differentialligningssystem, der inderholder logistisk vækst som en hovedingrediens (hvilken rolle den spiller kan uddybes senere).
 
-\begin{equation*}
+%\textbf{Ovenstående er et alternativt forslag til midlertidig indledning :P (Systemet skal indsættes deroppe et sted)}
+
+
+Dette projekt omhandler hvordan differentialligninger benyttes til modellering af fysiske og biologiske systemer. Intuitivt kunne man forestille sig, at i et isoleret system vil populationerne af rovdyr og byttedyr påvirke hinanden således, at hvis antallet af rovdyr stiger, vil antallet af byttedyr falde. Hvis antallet af byttedyr falder, vil rovdyrene ikke have nok at spise og dermed vil populationen af disse falde. Når populationen af rovdyr er tilstrækkeligt lav, vil antallet af byttedyr stige igen. 
+Dette system kan modelleres matematisk ved brug af differentialligninger. Dette gjorde Vito Volterra og Alfred J. Lotka uafhængigt af hinanden i starten af 1900-tallet \citep{wikiLV}. De udarbejdede følgende model, som senere blev kendt som Lotka-Volterra-modellen:
+
+\begin{equation}\label{byttedyr}
     \dfrac{db}{dt}(t) = (A-Br(t)) b(t), 
-\end{equation*}
+\end{equation}
 
-\begin{equation*}
+\begin{equation}\label{rovdyr}
     \dfrac{dr}{dt}(t) = (Cb(t)-D) r(t),
-\end{equation*}
+\end{equation}
 
 \hfill \break
-hvor $A$, $B$, $C$ og $D$ betegner positive konstanter. Den første ligning beskriver hvordan byttedyrspopulationen udvikler sig og den anden beskriver hvordan rovdyrspopulationen udvikler sig. Disse ligninger ses at være sædvanlige differentialligninger af første orden. 
+hvor $A$, $B$, $C$ og $D$ betegner positive konstanter. Den første ligning beskriver, hvordan byttedyrspopulationen udvikler sig over tid, og den anden beskriver, hvordan rovdyrspopulationen udvikler sig over tid. \hfill \break
+Funktionen $b(t)$ er et udtryk for hvor mange byttedyr, der er til tiden $t$. Ligeledes er $r(t)$ et udtryk for hvor mange rovdyr, der er til tiden $t$. Det ses, at konstanten $A$ ganges på $b(t)$ i ligning \eqref{byttedyr}. Det vil sige at $A$ er et udtryk for hvor hurtigt byttedyrsbestanden vil stige uafhængigt af rovdyrsbestanden. Med andre ord, er det et udtryk for, i hvilken grad byttedyrene reproducerer.
 
-Skriv mere her!!! Muligvis lidt mere om differentialligninger!
 
+%Disse ligninger ses at være sædvanlige differentialligninger af første orden. 
+%der modellerer forholdet i antal mellem to arter i et lukket system.
+%Her så Lotka og Volterra at populationen af rovdyr, $r=r(t)$, hvor $r$ er antallet af rovdyr afhængigt af tiden $t$, afhang af populationen af byttedyr, $b=b(t)$, hvor $b$ er antallet af byttedyr afhængigt af tiden. 
+%\hfill \break
+%En model for et sådan system er på formen: 
 
+%Skriv mere her!!! Muligvis lidt mere om differentialligninger!
+\hfill \break
+\textbf{PF: Hvordan vil en begrænset mængde føde til byttedyrene influere systemets stabilitet?}
 
 

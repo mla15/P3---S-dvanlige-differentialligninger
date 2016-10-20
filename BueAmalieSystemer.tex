@@ -1,0 +1,69 @@
+\chapter{System af differentialligninger}
+
+\section{Differentialligningssystemer}
+For at kunne analysere Lotka-Volterra's model, skal man kende til differentialligningssystemers opbygning og forskellige variationer deraf. Vi har tidligere indført notationen for $\vec y$, og denne vil vi nu videreføre i følgende kapitel, hvor $\vec y$ benyttes i forbindelse med systemer af differentialligninger. 
+
+\begin{definition}[Et differentialligningssystem] \label{ikke-lin.diff}
+Et differentialligningssystem, er et system, der kan skrives på formen
+$$\dot{y}=\vec{f}(t, \vec{y}),$$
+hvor $f: E \to \mathbb{R}^n$ og $E$ er et åbent interval af $\mathbb{R}^n$ og
+$$\dot{y} = \frac{d\dot{y}}{dt} = 
+\begin{bmatrix}
+\frac{dy_1}{dt} \\
+\frac{dy_2}{dt}\\
+\vdots \\
+\frac{dy_n}{dt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+f_1(t, y_1, y_2, \hdots, y_n)\\
+f_2(t, y_1, y_2, \hdots, y_n)\\
+\vdots \\
+f_n(t, y_1, y_2, \hdots, y_n)
+\end{bmatrix}$$
+\end{definition}
+
+Af definition \ref{ikke-lin.diff} fremgår det at $\dot{y}$ afhænger af $t$, hvis det ikke afhænger af $t$ kaldes et sådant system for autonomt:
+\begin{definition}[Autonomt/ikke-autonomt]
+Et system på formen
+$$$$
+\end{definition}
+
+\begin{definition}[Lineært differentialligningssystem]\label{LinSys}
+Et lineært differentialligningssystem, er et system, der kan skrives på formen
+$$\dot{y} = A \vec{y}$$
+hvor $y \in \mathbb{R}^n$ og $A$ er en $n\times n$ matrix og
+$$\dot{y} = \frac{d\dot{y}}{dt} = 
+\begin{bmatrix}
+\frac{dy_1}{dt} \\
+\frac{dy_2}{dt}\\
+\vdots \\
+\frac{dy_n}{dt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+a_{11}(t)y_1+a_{12}(t)y_2+ \hdots + a_{1n}(t)y_n\\
+a_{21}(t)y_1+a_{22}(t)y_2+ \hdots + a_{2n(t)}y_n\\
+\vdots \\
+a_{n1}(t)y_1+a_{n2}(t)y_2+ \hdots + a_{nn}(t)y_n
+\end{bmatrix}$$
+\end{definition}
+\hfill \break
+Givet et IVP: $y(0) = y_0$, kan vi finde en løsning til det lineære ligningssystem, som vist ovenfor, givet ved:
+$$y(t) = e^{At}y_0$$
+Ved at se på definitionen for lineære differentialligningssystemer, kan det udledes, at $e^{AT}$ er en $n\times n$ matrix, som kan findes ved hjælp af taylorpolynomier.%(forklaring? xD Hvordan kommer vi egentlig frem til $e^{AT}$?) Smid en reference til prop: 2.4.4.
+
+\subsection{Den Fundamentale sætning for lineære systemer}
+
+For et lineært systems koefficientmatrix, A, gælder:
+\begin{lemma}{}{}
+Lad $A$ være en kvadratisk matrix, så vil:
+$$\frac{d}{dt}e^{At} = Ae^{At}$$
+\end{lemma}
+
+\begin{mytheo}{Den fundamentale sætning for lineære systemer}{}
+Lad $A$ være en $n$ x $n$ matrix. Så vil der for et givet $y_0 \in \mathbb{R}^n$ eksistere en unik løsning til det associerede IVP ved:
+$$y(t) = e^{At}y_0$$
+\end{mytheo}
+
+Det kan altså konkluderes at Lotka-Volterra's model ikke er et lineært differentialligningssystem.

@@ -1,0 +1,66 @@
+\section{Analyse af Lotka-Volterra's rovdyr-byttedyr model}
+Vi benytter Laplacetransformation, hvis vi har begyndelsesværdier, da problemet kan reduceres til algebra (Se sidst i afsnittet for laplacetransformen af Lotka-Volterra):
+\begin{Example}
+\textnormal{Lad os betragte følgende system af ODEs med begyndelsesværdier, $x(0)=1$ og $y(0)=0$.}
+\begin{align}
+    2x' + y' - y &= t\\
+    x' + y' &= t^2
+\end{align}
+\textnormal{Vi tager laplacetransfomationen af alt}
+\begin{align*}
+    2(s X(s) - x(0)) + sY(s) - y(0) - Y(s) &= \frac{1}{s^2}\\
+    s X(s) - x(0) + sY(s) - y(0) &= \frac{2}{s^3}\\
+    2sX(s) + (s-1)Y(s) &= 2 + \frac{1}{s^2}\\
+    sX(s) + sY(s) &= 1 + \frac{2}{s^3}
+\end{align*}
+\textnormal{Det er klart, at $X(s)$ nemt kan fjernes. Så det gør vi}
+\begin{align*}
+    2sX(s) + (s-1)Y(s) &= 2 + \frac{1}{s^2}\\
+    -2(sX(s) + sY(s) &= 1 + \frac{2}{s^3})\\
+    (s-1-2s)Y(s) &= \frac{1}{s^2} - \frac{4}{s^3}\\
+    (-s-1)Y(s) &= \frac{s-4}{s^3}\\
+    Y(s) &= \frac{4-s}{s^3(s + 1)}
+\end{align*}
+\textnormal{Vi omskriver nu til flere brøker (Ved ikke hvad partial fractions hedder på dansk)}
+$$ \frac{4-2}{s^3(s+1)} = \frac{A}{s} + \frac{B}{s^2} + \frac{C}{s^3} + \frac{D}{s+1}$$
+\textnormal{Der ganges igennem med $s^3(s+1)$}
+$$ 4 - s = A s^2(s+1) + Bs(s+1) + C(s+1) + Ds^3$$
+\textnormal{Kigger nu på ligningen og indser, at}
+\begin{align*}
+    A + D &= 0\\
+    A + B &= 0\\
+    B + C &= -1\\
+    C &= 4
+\end{align*}
+\textnormal{Da får vi: $B = -5$, $A = 5$, $D = -5$}
+$$Y(s) = \frac{5}{s} -\frac{5}{s^2} + \frac{4}{s^3} - \frac{5}{s+1}$$
+\textnormal{Da anvender vi $\mathcal{L}^{-1}$}
+$$ y(t) = 5 - 5t + 2t^2 - 5e^{-t}$$
+\textnormal{vi isolerer nu X(s) og tager $\mathcal{L}^{-1}$ i den laplacetransformerede ligning 3.2}
+\begin{align*}
+    s(X)s - 1 + sY(s) &= \frac{2}{s^3}\\
+    X(s) &= \frac{1}{s} + \frac{s}{s^4} - Y(s)\\
+    x(t) &= 1 + \frac{1}{3}t^3 - (5 - 5t + 2t^2 - 5e^{-t})\\
+    x(t) &= -4 + 5t-2t^2 + \frac{1}{3}t^3 + 5e^{-t}
+\end{align*}
+\textnormal{And we done}
+
+\end{Example}
+
+
+For vores tilfælde kan vi se følgende:
+
+\begin{equation*}
+    \dfrac{db}{dt}(t) = (H-Ir(t)) b(t), 
+\end{equation*}
+
+\begin{equation*}
+    \dfrac{dr}{dt}(t) = (Jb(t)-K) r(t),
+\end{equation*}
+
+$$b' - (H - Ir)b = 0 $$
+$$r' - (Jb - K)r = 0 $$
+Ved at tage laplacetransformen fås:
+$$sB(s) - b(0) - (\frac{H}{s} - \frac{I}{s}R(s))B(s) = 0$$
+$$sR(s) - r(0) - (\frac{J}{s}B(s) - \frac{K}{s})R(s) = 0$$
+Så vi skal bruge nogle begyndelsesværdier ellers er vi fanget :O
