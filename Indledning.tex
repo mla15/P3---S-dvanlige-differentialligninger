@@ -19,18 +19,21 @@ Dette system kan modelleres matematisk ved brug af differentialligninger. Dette 
 \end{equation}
 
 \hfill \break
-hvor $A$, $B$, $C$ og $D$ betegner positive konstanter. Den første ligning beskriver, hvordan byttedyrspopulationen udvikler sig over tid, og den anden beskriver, hvordan rovdyrspopulationen udvikler sig over tid. \hfill \break
-Funktionen $b(t)$ er et udtryk for hvor mange byttedyr, der er til tiden $t$. Ligeledes er $r(t)$ et udtryk for hvor mange rovdyr, der er til tiden $t$. Det ses, at konstanten $A$ ganges på $b(t)$ i ligning \eqref{byttedyr}. Det vil sige at $A$ er et udtryk for hvor hurtigt byttedyrsbestanden vil stige uafhængigt af rovdyrsbestanden. Med andre ord, er det et udtryk for, i hvilken grad byttedyrene reproducerer.
-
-
-%Disse ligninger ses at være sædvanlige differentialligninger af første orden. 
-%der modellerer forholdet i antal mellem to arter i et lukket system.
-%Her så Lotka og Volterra at populationen af rovdyr, $r=r(t)$, hvor $r$ er antallet af rovdyr afhængigt af tiden $t$, afhang af populationen af byttedyr, $b=b(t)$, hvor $b$ er antallet af byttedyr afhængigt af tiden. 
-%\hfill \break
-%En model for et sådan system er på formen: 
-
-%Skriv mere her!!! Muligvis lidt mere om differentialligninger!
+hvor $A$, $B$, $C$ og $D$ betegner positive konstanter. Den første ligning beskriver, hvordan byttedyrspopulationen udvikler sig over tid, og den anden beskriver, hvordan rovdyrspopulationen udvikler sig over tid.\\ \hfill \break
+Funktionen $b(t)$ er et udtryk for hvor mange byttedyr, der er til tiden $t$. Ligeledes er $r(t)$ et udtryk for hvor mange rovdyr, der er til tiden $t$. Det ses, at konstanten $A$ ganges på $b(t)$ i ligning \eqref{byttedyr}. Det vil sige at $A$ er et udtryk for hvor hurtigt byttedyrsbestanden vil stige uafhængigt af rovdyrsbestanden. Med andre ord, er det et udtryk for, i hvilken grad byttedyrene reproducerer. Konstanten $B$ ganges med $b(t)$ og $r(t)$, og er et udtryk for, i hvilken grad byttedyr bliver ædt af rovdyr. Der bliver således ædt flest byttedyr, hvis der både er mange rovdyr og mange byttedyr, hvilket intuitivt giver god mening. Betragtes hele ligning \eqref{byttedyr}, ses det, at ændringen i antallet af byttedyr er lig med antallet af nye byttedyr, $Ab(t)$, minus antallet af byttedyr, som bliver ædt, $Br(t)b(t)$.\\ \hfill \break
+I ligning \eqref{rovdyr} ses det, at leddet som beskriver tilvæksten i rovdyr er $Cb(t)r(t)$. Dermed er $C$ et udtryk for, i hvilken grad rovdyrene reproducerer. I modellen antages det altså, at rovdyrenes reproduktion er proportional med antallet af byttedyr. Konstanten $D$ ganges på $r(t)$ og er et udtryk for hvor mange rovdyr der dør. Antallet af rovdyr, der dør, er således højere jo flere rovdyr, der er. \\ \hfill \break
+I modellen er der taget en række antagelser om systemet, for at kunne modellere det. Disse antagelser er \citep{wikiLV}:
+\begin{enumerate}
+    \item Byttedyrene finder altid rigeligt føde.
+    \item Rovdyrenes forsyning af føde afhænger udelukkende af størrelsen af bytterdyrspopulationen.
+    \item Hastigheden hvormed en populations størrelse ændrer sig er proportional med populationens størrelse.
+    \item Miljøet ændrer sig ikke til fordel for en af populationerne, og genetisk tilpasning har ingen konsekvenser.
+    \item Rovdyr har uendelig appetit.
+\end{enumerate}
+I dette projekt beskæftiger vi os ikke med punkterne 2-5, men vi vil undersøge, hvilken indflydelse det har på systemet, hvis mængden af føde til byttedyrene er begrænset. Derudover vil vi beskrive systemet i ligninger \eqref{byttedyr} og \eqref{rovdyr} i lyset af teorien om differentialligninger.
 \hfill \break
-\textbf{PF: Hvordan vil en begrænset mængde føde til byttedyrene influere systemets stabilitet?}
+\section{Problemformulering} 
+Hvordan bruges et system af differentialligninger til at modellere et byttedyr-rovdyr system, og hvilken indflydelse har det på systemet, hvis mængden af føde til byttedyrene er begrænset?
+%Hvordan vil en begrænset mængde føde til byttedyrene influere systemets stabilitet?
 
 

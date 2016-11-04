@@ -3,11 +3,11 @@
 \section{Differentialligningssystemer}
 For at kunne analysere Lotka-Volterra's model, skal man kende til differentialligningssystemers opbygning og forskellige variationer deraf. Vi har tidligere indført notationen for $\vec y$, og denne vil vi nu videreføre i følgende kapitel, hvor $\vec y$ benyttes i forbindelse med systemer af differentialligninger. 
 
-\begin{definition}[Et differentialligningssystem] \label{ikke-lin.diff}
-Et differentialligningssystem, er et system, der kan skrives på formen
+\begin{definition}[Et førsteordens differentialligningssystem] \label{ikke-lin.diff}
+Et differentialligningssystem af første orden, er et system, der kan skrives på formen
 $$\dot{y}=\vec{f}(t, \vec{y}),$$
 hvor $f: E \to \mathbb{R}^n$ og $E$ er et åbent interval af $\mathbb{R}^n$ og
-$$\dot{y} = \frac{d\dot{y}}{dt} = 
+$$\dot{y} = \frac{d\vec{y}}{dt} = 
 \begin{bmatrix}
 \frac{dy_1}{dt} \\
 \frac{dy_2}{dt}\\
@@ -23,17 +23,100 @@ f_n(t, y_1, y_2, \hdots, y_n)
 \end{bmatrix}$$
 \end{definition}
 
-Af definition \ref{ikke-lin.diff} fremgår det at $\dot{y}$ afhænger af $t$, hvis det ikke afhænger af $t$ kaldes et sådant system for autonomt:
-\begin{definition}[Autonomt/ikke-autonomt]
+Der findes indenfor differentialligningssystemer både ikke-koblede og koblede systemer. Sådanne systemer defineres nu.
+\begin{definition}[Koblet system/Ikke-koblet]
+Et koblet system skrives på formen
+$$\dot{y}=\vec{f}(t,\vec{y}),$$ hvor differentialligningerne afhænger af flere variabler:
+$$\begin{bmatrix}
+\frac{dy_1}{dt} \\
+\frac{dy_2}{dt}\\
+\vdots \\
+\frac{dy_n}{dt}
+\end{bmatrix}
+=
+\begin{bmatrix}
+f_1(t, y_1, y_2, \hdots, y_n)\\
+f_2(t, y_1, y_2, \hdots, y_n)\\
+\vdots \\
+f_n(t, y_1, y_2, \hdots, y_n)
+\end{bmatrix}$$
+Hvis det ikke er et koblet system, kaldes det for et ikke-koblet system.
+\end{definition}
+Koefficientmatricen for et ikke-koblet system, er en diagonal matrix. Bemærk at ikke-koblede lineære systemer kan løses ved hjælp af separation af variable(\ref{th:LSD}).
+
+\begin{Example}
+\textnormal{ \hfill \break
+Betragt det ikke-koblede differentialligningssystem:}
+\hfill \break
+\begin{align*}
+    y_1(t) &= 2y_1\\
+    y_2(t) &= y_2\\
+    y_3(t) &= -y_3
+\end{align*}
+\textnormal{Da kan vi skrive systemet som i \ref{ikke-lin.diff}, hvor}
+\hfill \break
+\[ A =
+\begin{bmatrix}
+2 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & -1\\
+\end{bmatrix},
+\]
+\textnormal{hvormed systemet er ikke-koblet, hvorfor separation af variabler kan benyttes til at finde en løsning}
+\begin{align*}
+    y_1(t) &= c_1e^{2t}\\
+    y_2(t) &= c_2e^t\\
+    y_3(t) &= c_3e^{-t}
+\end{align*}
+
+\end{Example}
+
+\begin{Example}\textnormal{
+\hfill \break
+Betragt det koblede differentialligningssystem:}
+\begin{align*}
+    y_1(t) &= -y_1-y_3\\
+    y_2(t) &= 4y_1-y_2-3y_3\\
+    y_3(t) &= 2y_1-4y_3
+\end{align*}
+\textnormal{Da kan vi skrive systemet som i \ref{ikke-lin.diff}, hvor}
+\hfill \break
+\[ A =
+\begin{bmatrix}
+-1 & 0 & -1\\
+4 & -1 & -3\\
+2 & 0 & -4\\
+\end{bmatrix},
+\]
+\textnormal{Et koblet differentialligninssystem kan løses vha. Laplace transformation?????????????} 
+\end{Example}
+
+Af definition \ref{ikke-lin.diff} fremgår det at $\dot{y}$ afhænger af $t$, et sådant system kaldes for ikke-autonomt:
+\begin{definition}[Autonomitet]
 Et system på formen
-$$$$
+$$\dot{y}=\vec{f}(\vec{y}),$$
+hvor $$\vec{y}=
+\begin{bmatrix}
+y_1(t) \\
+y_2(t) \\
+\vdots \\
+y_n(t)
+\end{bmatrix} \ \textnormal{og} \ \vec{f}(\vec{y})=\begin{bmatrix}
+f_1(\vec{y}) \\
+f_2(\vec{y}) \\
+\vdots \\
+f_n(\vec{y})
+\end{bmatrix},$$ \\
+kaldes for autonomt, og hvis det ikke er autonomt kaldes det for ikke-autonomt.
 \end{definition}
 
-\begin{definition}[Lineært differentialligningssystem]\label{LinSys}
+Et differentialligningssystem, på formen $$\dot{y}=\vec{f}(t, \vec{y}),$$ kaldes som sagt for et ikke-lineært system. Nu defineres lineære differentialligningssystemer.
+
+\begin{definition}[Lineært førsteordens differentialligningssystem]\label{LinSys}
 Et lineært differentialligningssystem, er et system, der kan skrives på formen
 $$\dot{y} = A \vec{y}$$
 hvor $y \in \mathbb{R}^n$ og $A$ er en $n\times n$ matrix og
-$$\dot{y} = \frac{d\dot{y}}{dt} = 
+$$\dot{y} = \frac{d\vec{y}}{dt} = 
 \begin{bmatrix}
 \frac{dy_1}{dt} \\
 \frac{dy_2}{dt}\\
@@ -62,8 +145,13 @@ $$\frac{d}{dt}e^{At} = Ae^{At}$$
 \end{lemma}
 
 \begin{mytheo}{Den fundamentale sætning for lineære systemer}{}
-Lad $A$ være en $n$ x $n$ matrix. Så vil der for et givet $y_0 \in \mathbb{R}^n$ eksistere en unik løsning til det associerede IVP ved:
+Lad $A$ være en $n$ x $n$ matrix. Så vil der for et givet $y_0 \in \mathbb{R}^n$ eksistere en entydig løsning til det associerede IVP ved:
 $$y(t) = e^{At}y_0$$
 \end{mytheo}
 
-Det kan altså konkluderes at Lotka-Volterra's model ikke er et lineært differentialligningssystem.
+Det kan altså konkluderes at Lotka-Volterra's model er et autonomt, ikke-koblet og ikke-lineært differentialligningssystem.
+
+%Hvordan løser man et ikke-lineært system?
+%Hvordan løser man et afkoblet system?
+%Kan man muligvis smide 3.1.1 (den fundamentale sætning for lineære systemer) i bilaget?
+%Første orden

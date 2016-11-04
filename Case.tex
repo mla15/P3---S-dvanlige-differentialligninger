@@ -43,7 +43,6 @@ $$ y(t) = 5 - 5t + 2t^2 - 5e^{-t}$$
     x(t) &= 1 + \frac{1}{3}t^3 - (5 - 5t + 2t^2 - 5e^{-t})\\
     x(t) &= -4 + 5t-2t^2 + \frac{1}{3}t^3 + 5e^{-t}
 \end{align*}
-\textnormal{And we done}
 
 \end{Example}
 
@@ -64,3 +63,27 @@ Ved at tage laplacetransformen fås:
 $$sB(s) - b(0) - (\frac{H}{s} - \frac{I}{s}R(s))B(s) = 0$$
 $$sR(s) - r(0) - (\frac{J}{s}B(s) - \frac{K}{s})R(s) = 0$$
 Så vi skal bruge nogle begyndelsesværdier ellers er vi fanget :O
+
+\subsection{Logistisk vækst af Lotka-Volterra's model}
+
+Hvis vi ser på systemet:
+\begin{align*}
+    b' &= hb - ibr\\
+    r' &= jbr - kr
+\end{align*}
+Dette skal omskrives til et problem med logistisk vækst med hensyn til byttedyrspopulationen, hvor vi ved, at følgende udtryk skal indgå:
+$$b' = pb(1 -  \frac{b}{k}),$$
+hvor $k$ er en konstant, der angiver, hvor meget føde, der er tilgængelig for byttedyrene, og $p$ er en proportionalitetskonstant.
+\hfill \break
+I Lotka-Volterra's model illustrerer første led i øverste ligning byttedyrets population ganget med en fødselsratekonstant. Dette ændres til følgende:
+\begin{align*}
+    b' & = pb(1 -  \frac{b}{k}) - ibr\\
+    &\Updownarrow\\
+    b' &= (p(1 - \frac{b}{k}) - ir)b
+\end{align*}
+Da har vi et nyt system med logistisk vækst:
+\begin{align*}
+    b' &= pb(1 - \frac{b}{k}) - ibr\\
+    r' &= jbr - kr
+\end{align*}
+

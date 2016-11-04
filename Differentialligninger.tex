@@ -1,70 +1,114 @@
 \chapter{Differentialligninger}
-I det følgende kapitel vil teorien for differentialligninger og løsninger dertil blive gennemgået, da en forståelse af denne er nødvendig for at kunne udvide Lotka-Volterra's model og vurdere denne. (eller studieordningen siger det skal med)
+I det følgende kapitel vil teorien for differentialligninger og løsninger dertil blive gennemgået, da en forståelse af denne er nødvendig for at kunne udvide Lotka-Volterra's model og vurdere denne. 
+
 \section{Sædvanlige differentialligninger}
-Først defineres en sædvanlig differentialligning:
+Først defineres en sædvanlig differentialligning, hvori $I$ er et interval i $\mathbb{R}$:
 \begin{definition}[Sædvanlig differentialligning (ODE)]
 En sædvanlig differentialligning er en ligning på formen: \hfill \break
 $$G(t,y(t),y'(t), \hdots , y^{(n)}(t))=0,$$
 hvor:
 \begin{itemize}
     \item $t \in I \subseteq \mathbb{R}$ er en uafhængig variabel.
-    \item $y(t) = y, y\in J \subseteq \mathbb{R}$ er en afhængig variabel.
-    \item $G:\mathbb{R}^{n+2} \rightarrow \mathbb{R}$ er en funktion.
+    \item $y(t) = y, \ y \in \mathbb{R}$ er en afhængig variabel.
+    \item $G:A \to \mathbb{R}$ er en funktion, hvor $A \subseteq \mathbb{R}^{n+2}$ er en åben delmængde af $\mathbb{R}^{n+2}$.
 \end{itemize}.
 \end{definition}
-Ordenen, $n$, af en ODE angiver, at den $n$'te afledte af den afhængige variabel $y(t)$ er den højest afledte. Ved ODE er det væsentligt at skelne mellem lineære og ikke-lineære sædvanlige differentialligninger, da disse har forskellige løsningsmetoder, samt udséende. (De beskriver vel også forskellige situationer? Lineære differentialligningers anvendelighed er vel meget begrænset?)
-\begin{definition}[Sædvanlig lineær differentialligning (OLDE)]\label{OLDE}En ODE af $n$'te orden kaldes lineær, hvis de mange afledte af $y$ kan skrives som en linearkombination. Altså: \\ 
+
+Ordenen, $n$, af en ODE angiver, at den $n$'te afledte af den afhængige variabel $y(t)$ er den højest afledte. 
+Sædvanlige differentialligninger kan løses ved at bestemme en løsning til disse:
+
+\begin{definition} [Løsning til ODE]
+En løsning til en ODE af $n$'te orden, er en funktion, $\phi: I\to \mathbb{R}$ som opfylder
+\begin{itemize}
+    \item $\phi(t)$ er $n$ gange differentiabel
+    \item $\forall t\in I: (t,\phi(t),\phi'(t),\hdots,\phi^n(t))\in A$
+    \item $\forall t\in I: G(\phi(t),\phi'(t),\hdots,\phi^n(t))=0$
+\end{itemize}
+
+En partikulær løsning er en bestemt løsning, mens den fuldstændige løsning er familien af alle løsninger til ODE.
+\end{definition}
+
+Ved en ODE er det væsentligt at skelne mellem lineære og ikke-lineære sædvanlige differentialligninger, da disse har forskellige løsningsmetoder og beskriver forskellige situationer.
+
+\begin{definition}[Sædvanlig lineær differentialligning (OLDE)]\label{OLDE}En ODE af $n$'te orden kaldes lineær, hvis de afledte op til orden $n$ indgår i form af en linearkombination. Altså: \\ 
 $$a_{n}(t)y^{(n)}  + a_{n-1}(t)y^{(n-1)}+ \hdots + a_{1}(t)y' + a_{0}(t)y = f(t)$$
-Hvor $a_n(t)\neq 0$. Dette kan omskrives til formen:
+Da $a_n(t)\neq 0$, fås der ved normering:
 
 $$y^{(n)}+P_{n-1}(t)y^{(n-1)}+\hdots +P_0(t)y=Q(t)$$ 
 
 Her er: $P_0(t)=\frac{a_0(t)}{a_n(t)} , P_1(t)=\frac{a_1(t)}{a_n(t)}, \hdots, P_{n-1}(t)=\frac{a_{n-1}(t)}{a_n(t)}$ og $Q(t)=\frac{f(t)}{a_n(t)}$
 \end{definition}
 
-For en OLDE defineres følgende (OBS! Vi snakkede om at autonomitet var for systemer, ikke? Og hvorfor defineres det? Hvorfor er det vigtigt for enten differentialligninger eller forståelsen af Lotka-Volterra's model? ):
+For en OLDE defineres følgende: 
 \begin{definition}[Homogenitet]
 En ODE kaldes homogen, hvis den kan skrives på formen: 
 $$y^{(n)}(t)=G(y,y', \hdots, y^{(n-1)})$$ 
-Altså hvis den n'te afledede $y^{(n)}$ kan skrives på en form, hvor en eksplicit funktion af udelukkende den uafhængige varibel $t$ ikke indgår. En inhomogen ODE er på formen: 
+Altså hvis den n'te afledede $y^{(n)}$ kan skrives på en form, hvor en eksplicit funktion af udelukkende den uafhængige variabel $t$ ikke indgår. En inhomogen ODE er på formen: 
 $$y^{(n)}(t)=G(y,y',\hdots, y^{(n-1)})+f(t)$$
 I dette tilfælde kaldes $f(t)$ en inhomogenitet. ODE der indeholder en inhomogenitet kaldes inhomogene, mens ODE, der ikke indeholder en inhomogenitet, kaldes homogen.
 \end{definition}
-Til den inhomogene OLDE, $G(y,y',...,y^{(n)})=f(t)$, kalder vi ligningen, $G(t,y,y',...,y^{(n)})=0$, den associerede homogene ODE. Sædvanlige differentialligninger kan løses ved at bestemme en løsning til disse:
-\begin{definition} [Løsning til ODE]
-En løsning til en ODE af $n$'te orden, er en $n$ gange differentiabel funktion, $\phi (t)$, som opfylder relationen
-$$G(t,\phi (t),\phi '(t), \hdots, \phi^{(n)}(t))=0 \enspace ,\enspace t\in I \subseteq \mathbb{R} \enspace , \enspace \phi (t) \in J \subseteq \mathbb{R}$$
-En partikulær løsning er en vilkårlig løsning, mens den fuldstændige løsning er familien af alle løsninger til ODE.
-\end{definition}
+Til den inhomogene OLDE, $G(y,y',...,y^{(n)})=f(t)$, kalder vi ligningen, $G(t,y,y',...,y^{(n)})=0$, den associerede homogene ODE. 
 
-\begin{mytheo}{Den fuldstændige løsning til en OLDE}{}
-En OLDE på formen 
-$$a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=0, \enspace t\in I, \enspace y\in J$$
+%\begin{mytheo}{Generel løsning for homogene OLDE}{}
+%    Lad $y_1,y_2,\hdots,y_n$ være $n$ lineære uafhængige løsninger til den homogene ligning:
+%    \begin{equation}\label{glhomo}
+%        a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=0
+%    \end{equation}
+%    på et åbent interval $I$, hvor $p_i$ er sammenhængende.
+%    Hvis $Y$ er en hvilken som helst løsning til \eqref{glhomo}, da vil der eksistere $c_1,c_2,\hdots %c_n$ således at:
+%    $$Y(t)=c_1y_1(t)+c_2y_2(t)+\hdots+c_ny_n(t)$$
+%    for alle $x\in I$
+%\end{mytheo}
+%Dermed er alle løsninger til en homogen $n$'te orden OLDE en lineær kombination, 
+%$$y=c_1y_1+c_2y_2+\hdots+c_ny_n$$,
+%af enhver $n$ given lineær uafhængig løsning. Baseret på dette kalder vi en sådan lineær kombination %en generel løsning for en homogen OLDE.
+
+\begin{mytheo}{Den fuldstændige løsning til en inhomogen OLDE}{}
+Betragt en inhomogen OLDE på formen: 
+\begin{equation}\label{linhomo}
+a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=F(t), \enspace t\in I
+\end{equation}
+med den associerede homogene OLDE:
+\begin{equation}\label{lhomo}
+a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=0, \enspace t\in I
+\end{equation}
 har den fuldstændige løsning:
-$$y(t)=y_p+y_h$$
-Hvor $y_p$ er en partikulær løsning til ligningen og $y_f$ er den fuldstændige løsning til den associerede homogene OLDE.
+$$y(t)=y_p+y_f$$
+Hvor $y_p$ er en partikulær løsning til ligningen og $y_f$ er en vilkårlig løsning til den associerede homogene OLDE.       
 \end{mytheo}
+
 \begin{proof}\hfill \break
-Mangler.
+Antag at en partikulær løsning $y_p$ til $\eqref{linhomo}$ er kendt og at $Y$ er en vilkårlig anden løsning til $\eqref{linhomo}$. Hvis $y_f=Y-y_p$, så får vi ved at indsætte $y_f$ i differentialligningen:
+\begin{align*}
+    a_n(t)y_f^{(n)}+\hdots +a_1(t)y_f'+a_0(t)y_f&=
+    (a_n(t)Y^{(n)}+\hdots +a_1(t)Y'+a_0(t)Y)\\
+    &-(a_n(t)y_p^{(n)}+\hdots +a_1(t)y_p'+a_0(t)y_p)\\
+    &=F(t)-F(t)=0
+\end{align*}
+Dermed er $y_f=Y-y_p$ en løsning til den associerede homogene ligning \eqref{lhomo}. Den kan omskrives til
+$$Y=y_f+y_p$$
+\textbf{ANDEN VEJ OGSÅ!}
+Dermed er det bevist at en generel løsning til \eqref{linhomo} er summen af en vilkårlige løsning $y_f$ og den partikulære løsning $y_p$ til \eqref{lhomo}.
 \end{proof}
+
 \section{Førsteordens differentialligninger}
 I afsnittet forinden blev det kort introduceret, hvad en differentialligning er, de afhængige og uafhængige variabler den er opbygget af, de konstanter der indgår deri, samt formen af løsninger dertil. I det følgende vil vi se isoleret på første ordens differentialligninger samt løsningsmetoder dertil, da disse er byggesten til Lotka-Volterra's model.
 Følgende afsnit er baseret på \citep{JAB}, hvis andet ikke er noteret.
 \subsection{Separable differentialligninger}
 Følgende beskriver en central metode til omskrivning af differentialligninger og er dermed anvendelig, når en løsning søges.
 \begin{definition}[Separabel differentialligning]
-En førsteordens ODE kaldes separabel, hvis den kan skrives på formen, $$y'(t)=g(t)p(y)$$ hvor $g(t)$ kun afhænger af $t$, og $P(y)$ kun afhænger af $y$.
+En førsteordens ODE kaldes separabel, hvis den kan skrives på formen, $$y'(t)=g(t)p(y(t))$$ hvor $g(t)$ kun afhænger af $t$, og $p(y(t))$ kun afhænger af $y(t)$.
 \end{definition}
 
 \begin{mytheo}{Løsning til separable differentialligninger}{LSD}
-Løsningen til en førsteordens separabel ODE:
-$$y'(t)=g(t)p(y)$$
-er også løsning til ligningen: 
-$$\int \frac{1}{p(y)}dy=\int g(t)dt$$
+Lad en funktion $p$ være kontinuert og $p(y(t)) \neq 0 \ \forall y$. Da vil løsningen til en førsteordens separabel ODE:
+$$y'(t)=g(t)p(y(t))$$
+også være en løsning til ligningen: 
+$$\int \frac{1}{p(y(t))}dy=\int g(t)dt$$
 \end{mytheo}
 
 \begin{proof}\hfill \break
-Vi starter med $$y'(t)=g(t)p(y)\Longleftrightarrow \frac{dy}{dt} = g(t)p(y)$$
+Vi starter med $$y'(t)=g(t)p(y(t))\Longleftrightarrow \frac{dy}{dt} = g(t)p(y(t))$$
 Hvis funktionen $p$ er kontinuert, og $p(y)\neq 0 \forall y$, kan man omskrive formlen på følgende måde:
 \begin{align*}
     \frac{dy}{dt} &= g(t)p(y)\\
@@ -75,7 +119,7 @@ Ved at anvende reglen for differentiation af en sammensat funktion, som siger $(
 $$(H(y(t)))'=g(t)$$
 og ved at integrere på begge sider i forhold til $t$ får vi:
 $$H(y)=\int g(t) dt$$
-Her må det gælde at $H(y)=\int \frac{1}{p(y)}dy$, hvilket resultere i: $$\int \frac{1}{p(y)}dy=\int g(t) dt$$
+Her må det gælde at $H(y)=\int \frac{1}{p(y)}dy$, hvilket resulterer i: $$\int \frac{1}{p(y)}dy=\int g(t) dt$$
 \end{proof}
 
 \begin{Example}\hfill \break
@@ -113,11 +157,10 @@ $$\frac{1}{t}y(t) = \int t^2dt \Leftrightarrow$$ $$ y(t) = t \int t^2dt$$
 \end{Example}
 
 Der eksisterer mange tilfælde, hvor OLDE ikke umiddelbart kan reduceres til en af de to ovenstående former, hvorfor det ses nødvendigt at finde en anden metode til løsning af disse. Derfor omskriver vi OLDE, som vist i definition \ref{OLDE}: $${y'(t) + \frac{a_0(t)}{a_1(t)}y(t) = \frac{b(t)}{a_1(t)}} \Leftrightarrow$$
-$$y'(t) + P(t)y(t) = Q(t)$$ hvor $y'(t) + P(t)y(t) = Q(t)$ benævnes standard formen. Derudover vil vi anvende en integrationsfaktor.
+$$y'(t) + P(t)y(t) = Q(t)$$ hvor $y'(t) + P(t)y(t) = Q(t)$ er den normerede ligning. Derudover vil vi anvende en integrationsfaktor.
 
-\begin{definition}[Integrationsfaktor]
-\label{integrationsfaktor}
-En funktion $\mu (t)$, der ved multiplikation ændrer en lineær funktion på standard form til en ligning på formen: $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ kaldes en integrationsfaktor.
+\begin{definition}[Integrationsfaktor]\label{IntFak}
+En funktion $\mu (t)$, der ved multiplikation ændrer en lineær normeret differentialligning til en ligning på formen: $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ kaldes en integrationsfaktor.  
 \end{definition}
 
 Denne integrationsfaktor kan benyttes til at finde en generel løsning til en OLDE, og det er illustreret ved nedenstående sætning.
@@ -131,11 +174,11 @@ eksisterer der en integrationsfaktor $\mu(t)$, hvorom der gælder, at: $$y(t)=\f
 \end{mytheo}
 
 \begin{proof}
-Vi finder en integrationsfaktor $\mu(t)$ og ganger denne til standard formen.
+Vi anvender en integrationsfaktor $\mu(t)$ ved at gange denne til den normerede ligning.
 \begin{equation}\label{Intfaktor}
 \mu (t)y'(t) + \mu (t)P(t)y(t) = \mu (t)Q(t) 
 \end{equation}
-Vi betragter venstresiden og indser, at $\mu ' = \mu P$ og da kan vi udlede af \ref{th:LSD} at $\frac{1}{\mu}d\mu = P(t)dt$.
+Per definition \ref{IntFak} må $\mu ' = \mu P$ og da kan vi udlede af \ref{th:LSD} at $\frac{1}{\mu}d\mu = P(t)dt$.
 Ligning \eqref{Intfaktor} omskrives til $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ 
 med $\mu (t)$ som den ovenstående, kan vi finde en generel løsning til (\ref{LOLDE}) ved integration på begge sider og derefter isolere $y(t)$:
 \begin{equation}
@@ -149,7 +192,7 @@ $$2ty'(t) + 4y(t) = 6t^2$$
 \textnormal{Hvis vi dividerer igennem med 2t fås:}
 $$y'(t) + \frac{2}{t}y(t) = 3t$$
 $$\int P(t)dt = \int \frac{2}{t}dt = 2ln(t)$$
-\textnormal{Da har vi integrationsfaktoren,} $\mu = e^{2ln|t|} = e^{ln(t^2)} = t^2$. \textnormal{Nu ganges $\mu$ på standard formen:}
+\textnormal{Da har vi integrationsfaktoren,} $\mu = e^{2ln|t|} = e^{ln(t^2)} = t^2$. \textnormal{Nu ganges $\mu$ på den normerede ligning:}
 $$t^2 \frac{dy}{dt} + 2ty = 3t^3\Leftrightarrow$$
 $$\frac{d}{dt}(t^2y) = 3t^3 \Leftrightarrow  t^2y = \int 3t^3dt = \frac{3}{4}t^4 + K$$
 \textnormal{Da får vi:} 
@@ -217,7 +260,7 @@ GGivet et førsteordens IVP, $y'(t)=f(t,y)$, hvor
     \item $(t_0,y_0) \in (a,b) \times (c,d)$
 \end{enumerate}
 
-da findes en unik løsning $\phi(t)$ defineret på $(\alpha,\beta)\subseteq (a,b)$, hvor $(t_0) \in (\alpha, \beta)$ 
+da findes en entydig løsning $\phi(t)$ defineret på $(\alpha,\beta)\subseteq (a,b)$, hvor $t_0 \in (\alpha, \beta)$ 
 \end{mytheo}
 
 Til at bevise denne sætning kan man benytte Lipschitz betingelser samt Banachs fix-punkt sætning, men disse vil ikke blive beskrevet yderligere i denne rapport, da fokus, for projektet, ligger på at undersøge en udvidelse af Lotka-Volterra's model. Samtidigt er beviset og alle forudsætninger dertil tidskrævende og omhandler ikke direkte problemstillingen. 
@@ -291,15 +334,12 @@ $$k_1(a_2y_1''(t)+a_1y_1'(t)+a_0y_1(t))+k_2(a_2y_2''(t)+a_1y_2'(t)+a_0y_2(t))=k_
 Dermed er $k_1y_1(t)+k_2y_2(t)$ en løsning til (\ref{homlinandord}).
 \end{proof}\\
 \hfill \break
-\begin{prop}{Fuldstændig løsning}
+\begin{mytheo}{Fuldstændig løsning}
 JHvis $y_1(t)$ og $y_2(t)$ er lineært uafhængige løsninger til ligning (\ref{homlinandord}), og $k_1 \in \mathbb{C}$ og $k_2\in \mathbb{C}$ er arbitrære konstanter, så er den fuldstændige løsning til ligning (\ref{homlinandord}) givet ved: \hfill \break
 $$y(t)=k_1y_1(t)+k_2y_2(t)$$
-\end{prop}
+\end{mytheo}
 \hfill \break
-\begin{proof}\hfill \break
-(MANGLER BEVIS)\\
-Vi har vist at $y(t)$ er en løsning, men hvordan ved vi, at der ikke findes løsninger, som ikke kan skrives på den form? \\ (MANGLER BEVIS)
-\end{proof}\\
+Vi har vist at $y(t)$ er en løsning, men vi mangler at vise, at enhver løsning kan skrives på den form. Beviset bygger på eksistens og entydighedssætningen. Beviset føres ikke i dette projekt, men bevises i (INDSÆT KILDE HER!(Jeg kan ikke finde nogen kilde, hvor det bevises..))\\
 \hfill \break
 Vi skal altså kende to lineært uafhængige partikulære løsninger for at kunne skrive den fuldstændige løsning op. Proposition \ref{losprop2ordhom} siger, at vi kan finde partikulære løsninger ved at løse den karakteristiske ligning. Som bekendt kan et andengradspolynomium enten have to forskellige reelle rødder, én reel rod eller to forskellige komplekse rødder. Vi viser for hvert tilfælde, hvordan den fuldstændige løsning findes. \\ \hfill \break
 \textbf{Tilfælde 1}\hfill \break
@@ -356,10 +396,8 @@ $$r_2=\frac{-2-\sqrt{2^2-4\cdot 1\cdot 2}}{2\cdot 1}=\frac{-2-\sqrt{-4}}{2}=\fra
 $$y(t)=e^{-t}(c_1\cos(t)+c_2\sin(t))$$
 \end{Example}
 
-\textbf{Indsæt her et eksempel på hvordan andenordens ODEs og et koblet system af ODEs kan skrives om og derved læses på to forskellige måder (vha. ovenstående eller vha. egenværdier og egenvektorer). Brug evt. følgende kilde: http://www.maths.surrey.ac.uk/explore/vithyaspages/coupled.html}
-
-\subsection{Inhomogene lineære andenordens ODE med konstante koefficienter}
-Dette afsnit er baseret på \citep[s. 240-246]{JAB}.\hfill \break
+\subsection{Inhomogene lineære andenordens ODE med konstante koefficienter}\label{ila} 
+For fuldstændighedens skyld opsummeres de ubestemte koefficienters metode. Dette afsnit er baseret på \citep[s. 240-246]{JAB}.\hfill \break
 En inhomogen lineær andenordens ODE med konstante koefficienter skrives på formen:
 
 \begin{equation}
@@ -442,7 +480,7 @@ Når dette sættes ind i $a_2y''(t)+a_1y'(t)+a_0y(t)$ fås:
 \begin{align*}
  a_2y''(t)+ & a_1y'(t)+a_0y(t) \\ 
  & = A_n(a_2r^2+a_1r+a_0)t^ne^{rt} + (A_nn(2a_2r+a_1) +A_{n-1}(a_2r^2+a_1r+a_0))t^{n-1}e^{rt} \\ 
- & +(A_nn(n-1)a_2+A_{n-1}(n-1)(2a_2r+a_1)
+ & +(A_nn(n-1)a_2+A_{n-1}(n-1)(2a_2r+a_1)\\
  &+A_{n-2}(a_2r^2+a_1r+a_0))t^{n-2}e^{rt}+ \hdots + (led\ af\ lavere\ orden)
 \end{align*}
 Da den karakteristiske ligning for $a_2y''(t)+a_1y'(t)+a_0y(t)$ er: \\
@@ -483,4 +521,24 @@ y_p(t)&= (A_{m+2}t^{m+2}+A_{m+1}t^{m+1}  \cdots+ A_2t^2+A_1t+A_0)e^{rt} \\
 
 \end{proof}
 
-\textbf{Kom evt. ind på, hvordan Laplacetransformationer kan benyttes til at løse inhomogene andenordens ODEs}
+Med kendskab til første og andenordens ODEs og løsninger dertil, er man tættere på at kunne løse et system som for eksempel Lotka-Volterra's byttedyr-rovdyr model. Dette ses, da vi kan omskrive en andenordens ODE til et system af førsteordens ODEs. Ligeledes kan man gå den anden vej og omskrive et koblet (jf. afsnit XX) system af førsteordens ODEs til en andenordens ODE.
+
+\begin{Example}
+\textnormal{Betragt følgende andenordens ODE:}
+$$y'' - 7y' - 2y = 0 $$
+\begin{align*}
+    y'' &= 2y + 7y'\\
+\end{align*}
+\textnormal{Vi giver nu variablerne nye navne}
+\begin{align*}
+    y_1 &= y\\
+    y_2 &= y' = y_1'\\
+    y_3 &= y'' = y_2'\\
+    y_2' &= 2y_1 + 7y_2\\
+\end{align*}
+\textnormal{Vi indser da, at vi har et system af differentialligninger på formen:}
+\begin{align*}
+    y_1' &= y_2\\
+    y_2' &= 2y_1 + 7y_2
+\end{align*}
+\end{Example}

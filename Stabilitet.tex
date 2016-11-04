@@ -1,5 +1,5 @@
-\section{Ligevægtspunkter og stabilitet}
-Stabilitet af et differentialligningssystem er med til at forklare, hvordan systemet opfører sig over tid og er særdeles brugbart i forhold til identificering af ligevægtspunkter. 
+\chapter{Ligevægtspunkter og stabilitet}
+Stabilitet af et differentialligningssystem er med til at forklare, hvordan systemet udvikler sig over tid og er særdeles brugbart i forhold til identificering af ligevægtspunkter. 
 \hfill \break
 
 Dette afsnit er baseret på afsnit 7.2 i \citep{EP}. \hfill \break
@@ -8,11 +8,11 @@ Et ligevægtspunkt for et differentialligningssystem er et punkt hvor systemet e
 Lad 
 $$\dot{y} = A\vec{y}$$
 være et autonomt lineært differentialligningssystem.
-Et ligevægtspunkt for systemet er et punkt $(x_1,x_2 \hdots ,x_n)$ der opfylder ligningen:
+Et ligevægtspunkt for systemet er et punkt $(y_1,y_2 \hdots ,y_n)$ der opfylder ligningen:
 $$\dot{y} = A\vec{y}=0$$
 \end{definition}
 
-Fasediagrammer er anvendelige i forhold til at illustrere differentialligningssystemer og dermed skabe overblik over opførslen omkring ligevægtspunkter i systemet.\\
+Fasediagrammer er anvendelige i forhold til at illustrere differentialligningssystemer og dermed skabe overblik over udviklingen omkring ligevægtspunkter i systemet.\\
 
 Der er givet et system af differentialligninger:
 
@@ -42,7 +42,7 @@ $$\frac{dy}{dx}=\frac{y'}{x'}=\frac{G(x,y)}{F(x,y)}$$
 \textnormal{Med ligevægtspunkterne:} $$(-1,-1) \ \textnormal{og} \ (1,1)$$
 \textnormal{}
 
-\textnormal{Ved at kigge på et par tilfældige punkter i $xy$-planet, indsætter deres værdi i (\ref{DLS}) og dermed finde ud af hvad punktets hældning er.} 
+\textnormal{Ved at kigge på et par tilfældige punkter i $xy$-planet, kan vi indsætte deres værdi i (\ref{DLS}) og dermed finde ud af hvad punktets hældning er.} 
 
 \begin{center}
   \begin{tabular}{ | c || c | c | c | c | c |}
@@ -61,44 +61,44 @@ $$\frac{dy}{dx}=\frac{y'}{x'}=\frac{G(x,y)}{F(x,y)}$$
 \captionof{figure}{Et linjeelement(tv.) og et faseportæt(th.) til \eqref{DLS}.\citep{EP}} \label{slope}
 \hfill \break
 
-\textnormal{På Figur \ref{slope} kan man se hvordan løsningskurverne til i faseportrættet følger linjestykkerne i linjeelementet, og dermed også bevæger sig hhv. hen  imod eller væk fra ligevægtpunkterne.}
+\textnormal{På Figur \ref{slope} kan man se hvordan løsningskurverne i faseportrættet følger linjestykkerne i linjeelementet, og dermed også bevæger sig henholdsvis hen  imod eller væk fra ligevægtpunkterne.}
 
 \end{Example}
 
 \hfill \break
-Vi karakteriserer ligevægtspunkter ud fra løsningskurvernes opførsel omkring dem. Givet et ligevægtspunkt $(x_{1,0},x_{2,0})$ i et autonomt system kaldes dette ligevægtspunkt således for en \textbf{node?} såfremt følgende er gældene for løsningskurverne:
+Vi karakteriserer ligevægtspunkter ud fra løsningskurvernes opførsel omkring dem. Givet et ligevægtspunkt $(x_*,y_*)$ i et autonomt system kaldes dette ligevægtspunkt således for en knude såfremt følgende er gældene for løsningskurverne:
 \begin{itemize}
-    \item Enten går enhver løsningskurve mod ligevægtspunktet $(x_{1,0},x_{2,0})$ når $t \Rightarrow + \infty$ eller også går enhver løsningskurve væk fra $(x_1,0,x_2,0)$ når $t \Rightarrow + \infty$, og
-    \item Enhver løsningskurve er tangent i $(x_{1,0},x_{2,0})$ til en vilkårlig lige linje igennem ligevægtspunktet.  
+    \item Enten går enhver løsningskurve mod ligevægtspunktet $(x_*,y_*)$ når $t \Rightarrow + \infty$ eller også går enhver løsningskurve væk fra $(x_*,y_*)$ når $t \Rightarrow + \infty$, og
+    \item Enhver løsningskurve er tangent i $(x_*,y_*)$ til en vilkårlig lige linje igennem ligevægtspunktet.  
 \end{itemize}
-En node kaldes en \textbf{rigtig node} hvis der ikke er to par af modsatliggende løsningskurver, der er tangent til den samme lige linje gennem $(x_{1,0},x_{2,0})$, og kaldes for en \textbf{urigtig node} hvis dette ikke er tilfældet. Dette er illustreret i figur \ref{noder}.
+En node kaldes en egentlig knude hvis der ikke er to par af modsatliggende løsningskurver, der er tangent til den samme lige linje gennem $(x_*,y_*)$, og kaldes for en uegentlig knude hvis dette ikke er tilfældet. Dette er illustreret i figur \ref{noder}.
 \begin{figure} [H]
     \centering
     \includegraphics[scale=0.8]{Images/noder.png}
-    \caption{En \textbf{Passende/rigtig node} (tv.),en \textbf{ikke-passende/urigtig node} (m) og et saddelpunkt (th.) }
+    \caption{En egentlig knude (tv.),en uegentlig knude (m) og et saddelpunkt (th.) }
     \label{noder}
 \end{figure}
 
-De to ligevægtspunkter til venstre i figur \ref{noder} kaldes også for \textbf{sinks} da alle løsningskurverne går ind mod ligevægtspunktet. Hvis alle løsningskurverne går væk fra ligevægtspunktet, kaldes punktet en \textbf{'kilde'}.
+De to ligevægtspunkter til venstre i figur \ref{noder} kaldes også for dræn da alle løsningskurverne går ind mod ligevægtspunktet. Hvis alle løsningskurverne går væk fra ligevægtspunktet, kaldes punktet en kilde.
 
-Ligevægtspunktet yderst til højre i figur \ref{noder} kaldes et saddelpunkt. Et saddelpunkt er karakteriseret ved, at mindst en løsningskurve går mod $(x_{1,0},x_{2,0})$, at mindst en løsningskurve bevæger sig væk fra $(x_{1,0},x_{2,0})$ og, at de løsningskurver, der bevæger sig væk fra punktet, er ubegrænsede af $c$.
+Ligevægtspunktet yderst til højre i figur \ref{noder} kaldes et saddelpunkt. Et saddelpunkt er karakteriseret ved, at mindst en løsningskurve går mod $(x_*,y_*)$, at mindst en løsningskurve bevæger sig væk fra $(x_*,y_*)$ og, at de løsningskurver, der bevæger sig væk fra punktet, er ubegrænsede af $c$.
 \\
 En mere overordnet metode til beskrivelse af løsningskurvernes opførsel omkring et ligevægtspunkt, er ved brug af begrebet stabilitet.
 
 \begin{definition}[Stabilitet af ligevægtspunkt]
 Lad 
-$\vec y = A \vec x$
-være et autonomt differentialligningssystem, $\vec x_l=(x_1,x_2 \cdots ,x_n)$ et ligevægtspunkt og $\vec x_0=(x_{0,1},x_{0,2} \cdots ,x_{0,n})$ et begyndelsespunkt. Ligevægtspunktet siges at være stabilt såfremt der for hvert $\varepsilon >0$ eksisterer et $\delta >0$ så følgende gælder:
-$$|\vec x_0 - \vec x_l|< \delta \Rightarrow |\vec x(t)) - \vec x_l| < \varepsilon $$
+$\dot y = A \vec y$
+være et autonomt differentialligningssystem, $\vec y_*=(y_{*,1},y_{*,2}, \cdots ,y_{*,n})$ et ligevægtspunkt og $\vec y_0=(y_{0,1},y_{0,2} \cdots ,y_{0,n})$ et begyndelsespunkt. Ligevægtspunktet siges at være stabilt såfremt der for ethvert $\varepsilon >0$ eksisterer et $\delta >0$ så følgende gælder:
+$$|\vec y_0 - \vec y_*|< \delta \Rightarrow |\vec y(t) - \vec y_*| < \varepsilon, \\ \forall t > 0$$
 \end{definition}
 Et ligevægtspunkt kaldes ustabilt, hvis det ikke er stabilt.
 Udover at være stabilt kan et ligevægtspunkt også være asymptotisk stabilt, hvilket vil sige, at det udover at være stabilt, også har egenskaben at alle løsningskurver tilstrækkelig tæt på ligevægtspunktet, vil bevæge sig ind mod ligevægtpunktet.
 
 \begin{definition}[Asymptotisk stabilitet af ligevægtspunkt]
 Lad 
-$\vec y = A \vec x$
-være et autonomt differentialligningssystem, $\vec x_l=(x_1,x_2 \cdots ,x_n)$ et ligevægtspunkt og $\vec x_0=(x_{0,1},x_{0,2} \cdots ,x_{0,n})$ et begyndelsespunkt. Ligevægtspunktet siges at være asymptotisk stabilt såfremt der eksisterer et $\delta >0$ så følgende gælder:
-$$|\vec x_0 - \vec x_l|< \delta \Rightarrow \lim_{x\to\infty} \vec x(t)= \vec x_l$$
+$\vec y = A \vec y$
+være et autonomt differentialligningssystem, $\vec y_l=(y_1,y_2 \cdots ,y_n)$ et ligevægtspunkt og $\vec y_0=(y_{0,1},y_{0,2} \cdots ,y_{0,n})$ et begyndelsespunkt. Ligevægtspunktet siges at være asymptotisk stabilt såfremt der eksisterer et $\delta >0$ så følgende gælder:
+$$|\vec y_0 - \vec y_l|< \delta \Rightarrow \lim_{t\to\infty} \vec y(t)= \vec y_l$$
 \end{definition}
 Det ses således at noderne i figur \ref{noder} også kan beskrives som asymptotisk stabile ligevægtspunkter, mens saddelpunktet er ustabilt. \\
 Et såkaldt center(figur \ref{center}), der er defineret ved at alle løsningskurverne former lukkede kurver omkring det, er et eksempel på et stabilt punkt som ikke er asymptotisk stabilt. Mens en spiral (figur \ref{center}) kan være både asymptotisk stabil eller ustabil.

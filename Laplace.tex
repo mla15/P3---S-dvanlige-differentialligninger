@@ -1,24 +1,21 @@
 \section{Laplace transformation}
-Da vi først introducerede differentialligninger definerede vi dem på et interval. Denne ændring blev foretaget, da en funktion ikke altid er kontinuert over hele definitionsmængden, og her findes der andre løsningsmetoder, der er mere anvendelige end dem nævnt i Section/kapitel XX. I dette afsnit ønsker vi at komme ind på laplacetransformationer, da de kan benyttes på funktioner, der kun er kontinuerte over et givent interval. Dette vil således blive det sidste afsnit, der omhandler ODEs før differentialligningssystemer introduceres, der bliver arbejdet mere specifikt med Lotka-Volterra's model. Såfremt andet ikke er anført, er afsnittet baseret på "C.Henry.Edwards".
-
-\textbf{Kan vi også bruge Laplacetransformationer til at løse diff. lign. systemer? Var det ikke det Mikkel påstod til introduktionen af FSA? Indtil videre er laplacetransformationer i hvert fald ikke relevant}
-
+Da vi først introducerede differentialligninger definerede vi dem på et interval. Denne ændring blev foretaget, da en funktion ikke altid er kontinuert over hele definitionsmængden, og her findes der andre løsningsmetoder, der er mere anvendelige end dem nævnt i sektion \ref{ila}. I dette afsnit ønsker vi at komme ind på laplacetransformationer, da de også kan benyttes på stykkevist kontinuerte funktioner, jævnfør \ref{StykKont}. Dette vil således blive det sidste afsnit, der omhandler ODEs før differentialligningssystemer introduceres, der bliver arbejdet mere specifikt med Lotka-Volterra's model. Såfremt andet ikke er anført, er afsnittet baseret på \citep[]{EP}.
 
 \begin{definition}[Laplace Transformation]
-Givet en funktion $f(t)$, hvor $t \geq 0$, findes der en laplace transformation, $F$:
-$$F(s) = \mathcal{L} \{ f(t)\} = \int_{0}^{\infty} e^{-st}f(t)dt $$
+Givet en funktion $f(t)$ defineret på $\forall t \geq 0$, findes der en Laplace transformation, $F$:
+$$F(s) = \mathcal{L} \{ f\} = \int_{0}^{\infty} e^{-st}f(t)dt $$
 
-såfremt  det "improper" integrale konvergerer $\forall s \in \mathbb{R}$ (er det en sætning, hvor vi skal vise eksistens?)
+for alle $s$ for hvilke det uegentlige integral konvergerer.
 
 \end{definition}
 
-Ovenstående definition uddybes ved implementering af en grænse, da ikke-ordentlige integraler ellers vil være abstrakte at arbejde med:
+Ovenstående definition uddybes ved implementering af en grænse, da uegentlige integraler ellers vil være abstrakte at arbejde med:
 
 \begin{equation}\label{BToInf}
     \int_a^\infty f(t) dt = \lim_{b\to\infty} \int_a^b f(t) dt
 \end{equation}
 
-Ud fra $\lim_{b\to\infty}$, på det begrænsede interval fra $a$ til $b$, kan vi vurdere, hvorvidt det ikke-ordentlige integrale konvergerer eller divergerer. Se f.eks. på den velkendte laplacetrasnformation $\mathcal{L}\{1\}$, da får vi ved integration $-\frac{1}{s}e^{-st}$, hvor $\lim_{b\to\infty}$, et udtryk, hvor $e^{-sb}$ går mod $0$, når $\lim_{b\to\infty}$, altså konvergerer udtrykket mod 0. Dette gælder kun, når $s > 0$, da udtrykket ellers vil divergere for $\lim_{b\to\infty}$.
+Ud fra $\lim_{b\to\infty}$, på det begrænsede interval fra $a$ til $b$, kan vi vurdere, hvorvidt det uegentlige integrale konvergerer eller divergerer. Se f.eks. på den velkendte laplacetransformation $\mathcal{L}\{1\}$, da får vi ved integration $-\frac{1}{s}e^{-st}$, hvor $\lim_{b\to\infty}$, et udtryk, hvor $e^{-sb}$ går mod $0$, når $b\to\infty$, altså konvergerer udtrykket mod 0. Dette gælder kun, når $s > 0$, da udtrykket ellers vil divergere for $\lim_{b\to\infty}$.
 \hfill \break
 
 
@@ -55,65 +52,83 @@ $u(t-a)$        & $\frac{e^{-as}}{s}$  & $s > 0$   \\ \hline
 %\end{tabular}
 %\end{table}
 
-For nogle laplacetransformationer er det fordelagtigt at indføre en ny funktion, som denne kan udtrykkes ved. Dette kaldes for en gammafunktion, $\Gamma \left( x \right) = \int_0^\infty {t^{x - 1} e^{ - t}} dt$, hvor $x >0$ skal gælde. (Gammafunktionens relevans?)
 \hfill \break
 
 \begin{mytheo}{Linearitet af Lapacetranformationer}{}
-Hvis $a$ og $b$ er konstanter, gælder der, at:
+Hvis $a$ og $b$ er konstanter og $f \ \textnormal{og} \ h$ er funktioner af $t$, gælder der, at:
 
-$$\mathcal{L}\{af(t) + bh(t)\} = a\mathcal{L}\{f(t)\} + b\mathcal{L}\{h(t)\}$$
+$$\mathcal{L}\{af + bh\} = a\mathcal{L}\{f\} + b\mathcal{L}\{h\}$$
 
-for $s = \{ s \in \mathbb{R}$ | $\mathcal{L}\{f(t)\}$ og $\mathcal{L}\{h(t)\}$ eksisterer$\}$
+for $s = \{ s \in \mathbb{R}$ | $\mathcal{L}\{f\}$ og $\mathcal{L}\{h\}$ eksisterer$\}$
 \end{mytheo}
 
 \begin{proof}
 Med udgangspunkt i lineariteten af grænseoperationer og integraler fås følgende:
 \begin{align*}
-    \mathcal{L}\{af(t) + bh(t)\} &= \int_0^\infty{e^{-st}(af(t) + bh(t)} dt\\
-    &= \lim_{c\to\infty} \int_0^c{e^{-st}(af(t) + bh(t)} dt\\
+    \mathcal{L}\{af + bh\} &= \int_0^\infty{e^{-st}(af(t) + bh(t))} dt\\
+    &= \lim_{c\to\infty} \int_0^c{e^{-st}(af(t) + bh(t))} dt\\
     &= a \left( \lim_{c\to\infty} \int_0^c{e^{-st}f(t)} dt \right) + b \left(\lim_{c\to\infty} \int_0^c{e^{-st}g(t)} dt \right)\\
-    &= \mathcal{L}\{af(t) + bh(t)\}
+    &= \mathcal{L}\{af + bh\}
 \end{align*}
 
 \end{proof}
 
 Denne linearitet af laplacetransformationer, sammen med tabel \ref{TableOne}, gør det lettere at finde laplacetransformationen af funktioner, da man blot kan benytte tabel \ref{TableOne} af kendte transformationer, og derefter addere de forskellige led.
+\hfill \break
+
+En anvendelse af Laplacetransformationer kan være løsningen til en inhomogen lineær andenordens ODE, som beskrevet i et tidligere afsnit. Betragt følgende generelle form af en inhomogen lineær andenordens ODE: 
+\begin{align*}
+    y'' + ay' + by &= f\\
+    y(0) &= c_0\\
+    y'(0) &= c_1
+\end{align*}
+Vi tager nu Laplacetransformationen af hvert enkelt led
+\begin{align*}
+    \mathcal{L}(y') &= sY(s) - y(0)\\
+    \mathcal{L}(y'') &= s\mathcal{L}(y') - y'(0)\\
+    &=s(sY(s) - y(0))- y'(0)\\
+    \mathcal{L}(y'') + a\mathcal{L}(y') + b \mathcal{L}(y) &=s^2Y(s) - sy(0) - y'(0) + asY(s) - ay(0) + bY(s)
+\end{align*}
+
+Da indsættes begyndelsesbetingelserne og vi kan omskrive:
+
+\begin{align*}
+    s^2 Y(s) - sc_0 - c_1 + asY(s) - ac_0 + bY(s) &= F(s)\\
+    s^2 Y(s) + asY(s) + bY(s) &= F(s) + sc_0 + c_1 + ac_0\\
+    (s^2 + as + b)Y(s) &= F(s) + (s + a)c_0 + c_1
+\end{align*}
+\begin{align}\label{UbeKoefLap}
+        Y(s) &= \frac{F(s)}{(s^2 + as + b)} + \frac{(s+a)c_0 + c_1}{(s^2 + as + b)}
+\end{align}
+
+Dermed kan den inverse Laplacetransformation, $\mathcal{L}^{-1}$, til den partikulære løsning, findes og vi har udtrykt en løsning mere generelt. I det følgende vises et taleksempel for at illustrere formlens brugbarhed.
 
 \begin{Example}
 \textnormal{Betragt den inhomogene andenordens ODE på formen:}
 $$ y'' + 5y' + 6y = t,$$
-\textnormal{hvor $y'(0) = c_1$ og $y(0) = c_0$.}
+\textnormal{hvor $y'(0) = 3$ og $y(0) = 1$.}
 \hfill \break
 
-\textnormal{Hvis vi ønsker at finde en løsning til denne ligning, kan vi benytte ubestemte koefficienters metode, eller vi kan benytte laplacetransformation.}
+\textnormal{Vi indsætter det kendte i formel (\ref{UbeKoefLap})}
 \hfill \break
-\textnormal{Tag nu laplacetransformationen af hvert enkelt led:}
+
 \begin{align*}
-    s\mathcal{L}\{y'\} - y'(0)) + 5(sY(s) - y(0)) + 6Y(s) &= \frac{1}{s^2}\\
-    s^2Y(s) - sy(0) - y'(0)) + 5(sY(s) - y(0)) + 6Y(s) &= \frac{1}{s^2}\\
-    s^2Y(s) + 5sY(s) + 6Y(s) - sy(0) - y'(0) - 5y(0) &= \frac{1}{s^2}\\
-    s^2Y(s) + 5sY(s) + 6Y(s) - sc_0 - c_1 - 5c_0 &= \frac{1}{s^2}\\
-    Y(s)(s^2 + 5s + 6) - sc_0 - C &= \frac{1}{s^2}\\
-    Y(s)(s^2 + 5s + 6) &= \frac{1}{s^2} + sc_0 + C\\
-    Y(s) = \frac{1}{(s^2)(s^2 + 5s + 6)} + \frac{sc_0}{(s^2 + 5s + 6)} + \frac{C}{(s^2 + 5s + 6)}
+        Y(s) &= \frac{1}{s^2}\frac{1}{(s^2 + 5s + 6)} + \frac{8 + s}{(s^2 + as + b)}
 \end{align*}
-\textnormal{Da kan vi finde den partikulære løsning ved at finde $\mathcal{L}^{-1}$, men dette vil ikke foretages her, da den indeholder mange udvidede brøker. I stedet illustreres ovenstående resultat, som en løsning på generel form:}
-$$ y'' + ay' + by = f$$
-\begin{align*}
-    Y(s) &= \frac{F(s)}{s^2 + as + b} + \frac{sc_0}{(s^2 +as +b)} + \frac{C}{(s^2 +as +b)}\\
-    \mathcal{L}^{-1}\{Y(s)\} &= y(t)
-\end{align*}
+\textnormal{For at finde den inverse Laplacetransformation til dette kan man med fordel benytte udvidede brøker, men dette vil ikke foretages i eksemplet.}
 \end{Example}
 
-\begin{definition}[Stykvis kontinuerte funktion]
-En funktion, $f(t)$, kaldes stykvis kontinuert på et bundet interval $I = [a,b] | t \in I$, hvis $I$ kan opdeles i endeligt mange delintervaller, hvorom der gælder, at:
-\begin{enumerate}
-    \item $f$ er kontinuert i alle indre punkter af delintervallet
-    \item $f(t)$ har en endelig grænse, når $t$ går imod endepunktet af hvert delinterval
-\end{enumerate}
+\begin{definition}[Stykkevist kontinuerte funktion]\label{StykKont}
+En funktion, $f:[a,b]\to \mathbb{R}$, kaldes stykkevist kontinuert på det begrænsede interval \\ $I = [a,b]$, hvis $I$ har inddeling $[t_{j-1},t_j]$, hvor $j \in \{1,\hdots, N\}$, sådan at $f(t)$ er kontinuert på $]t_{j-1},t_j[\ \forall j\in\{1,\hdots,N\}$, og at
+
+\begin{align*}
+    &\lim_{t \to t_j^{-}}f(t) \textnormal{ eksisterer i }  \mathbb{R} \textnormal{ for } j \in \{1, \hdots, N\}\\
+    &\lim_{t \to t_j^{+}}f(t) \textnormal{ eksisterer i } \mathbb{R} \textnormal{ for } j \in \{0, \hdots, N-1\}
+\end{align*}
+
 \end{definition}
 
-Skal uddybes her ifht. hvordan stykvis kontinuerte funktioner opfattes. Kun simpel diskontinuitet ved isolerede punkter. Se f.eks. på funktionen   \begin{equation}
+Skal uddybes her ifht. hvordan stykkevist kontinuerte funktioner opfattes. Kun simpel diskontinuitet ved isolerede punkter. Se f.eks. på funktionen   \begin{equation}
     f(t)=
     \begin{cases}
       0, & \text{for}\ t < 0 \\
@@ -126,7 +141,7 @@ Et "hop" ved et isoleret punkt $c$, kan defineres ved følgende
 Et diskontinuitets hop ved et punkt $c$, defineres som:
 $$f(c+) - f(c-)$$
 hvor
-$$f(c+) = \lim_{\epsilon\to 0^+} f(c + \epsilon), \text{og} f(c-) = \lim_{\epsilon\to 0^-} f(c - \epsilon)$$
+$$f(c+) = \lim_{\varepsilon\to 0^+} f(c + \varepsilon), \ \text{og} \ f(c-) = \lim_{\varepsilon\to 0^+} f(c - \varepsilon)$$
 \end{definition}
 
 Vi ser nu tilbage på ligning \ref{BToInf}, hvor vi definerede den øvre grænse, $b$. For at denne grænse kan eksistere, er det klart, at vi skal have noget, der begrænser, hvor hurtigt $f(t)$ vokser, når $\lim_{t\to+\infty}$.
@@ -140,7 +155,7 @@ for $t \geq T$
 Implikationen af ovenstående sætning er, at $|f(t)| / e^{ct}$ er begrænset for $t$, der er tilstrækkeligt store, hvormed $|f(t)| / e^{ct}$ vil ligge i intervallet $[-M, M]$.
 
 \begin{mytheo}{Eksistens af laplacetransformationer}{ExistLap}
-Hvis funktionen $f$ er stykvis kontinuert for $t \geq 0$, og har eksponential orden, når $t \to +\infty$, så eksisterer dens laplacetransform, $F(s) = \mathcal{L}\{f(t)\}$. Hvis $f$ er stykvis kontinuert, og følgende gælder:
+Hvis funktionen $f$ er stykkevist kontinuert for $t \geq 0$, og har eksponential orden, når $t \to +\infty$, så eksisterer dens laplacetransform, $F(s) = \mathcal{L}\{f(t)\}$. Hvis $f$ er stykkevist kontinuert, og følgende gælder:
 $$\forall M,c,T \in \mathbb{R}^+ \textnormal{og} t \geq T: |f(t)| \leq Me^{ct}$$
 så eksisterer $F(s), \forall s > c$.
 \end{mytheo}
