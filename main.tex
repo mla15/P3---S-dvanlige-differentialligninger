@@ -197,7 +197,7 @@ secondextra={
 \draw[fill=doc!25,draw=doc!20] (2pt,0) rectangle (6,0.1pt);
 \end{tikzpicture}}%
 \titlecontents{section}[2.4pc]
-{\addvspace{1pt}}
+{\addvspace{0pt}}
 {\contentslabel[\thecontentslabel]{2.4pc}}
 {}
 {\hfill\small \thecontentspage}
@@ -240,11 +240,12 @@ secondextra={
 \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
 \pgfplotsset{compat=1.8}
 \begin{document}
-\begin{titlepage}
-\end{titlepage}
+\input{Titelside}
+\input{Titelblad}
 \newpage
 \tableofcontents
 \newpage
+\input{Forord}
 \input{Indledning}
 \newpage
 \input{Differentialligninger}
@@ -257,6 +258,9 @@ secondextra={
 \input{Liapunov_funktioner}
 %\input{Graensevaerdi}
 \input{Case}
+\input{logistisk}
+\input{Diskussion}
+\input{Konklusion}
 %\input{Ekstra-stuff}
 \input{Kilder.tex}
 \end{document}

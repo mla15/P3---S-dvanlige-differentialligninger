@@ -3,51 +3,50 @@ I det følgende kapitel vil teorien for differentialligninger og løsninger dert
 
 \section{Sædvanlige differentialligninger}
 Først defineres en sædvanlig differentialligning, hvori $I$ er et interval i $\mathbb{R}$:
-\begin{definition}[Sædvanlig differentialligning (ODE)]
-En sædvanlig differentialligning er en ligning på formen: \hfill \break
+\begin{definition}[Sædvanlig differentialligning (ODE)]\label{LoesningODE}
+En \textbf{sædvanlig differentialligning} er en ligning på formen: \hfill \break
 $$G(t,y(t),y'(t), \hdots , y^{(n)}(t))=0,$$
 hvor:
 \begin{itemize}
-    \item $t \in I \subseteq \mathbb{R}$ er en uafhængig variabel.
-    \item $y(t) = y, \ y \in \mathbb{R}$ er en afhængig variabel.
     \item $G:A \to \mathbb{R}$ er en funktion, hvor $A \subseteq \mathbb{R}^{n+2}$ er en åben delmængde af $\mathbb{R}^{n+2}$.
+    \item $y(t)$ er en funktion $y\colon I\to \mathbb{R}$, hvor $I\subseteq \mathbb{R}$ er et interval.
 \end{itemize}.
 \end{definition}
 
-Ordenen, $n$, af en ODE angiver, at den $n$'te afledte af den afhængige variabel $y(t)$ er den højest afledte. 
-Sædvanlige differentialligninger kan løses ved at bestemme en løsning til disse:
+Ordenen, $n$, af en ODE angiver, at den $n$'te afledte af funktionen $y(t)$ er den højest afledte. 
+En ODE kan løses ved at bestemme en funktion, der opfylder følgende:
 
 \begin{definition} [Løsning til ODE]
-En løsning til en ODE af $n$'te orden, er en funktion, $\phi: I\to \mathbb{R}$ som opfylder
+En \textbf{løsning til en ODE} af $n$'te orden, er en funktion, $\phi: I\to \mathbb{R}$, hvor $I\subseteq \mathbb{R}$ er et interval, som opfylder
 \begin{itemize}
     \item $\phi(t)$ er $n$ gange differentiabel
     \item $\forall t\in I: (t,\phi(t),\phi'(t),\hdots,\phi^n(t))\in A$
-    \item $\forall t\in I: G(\phi(t),\phi'(t),\hdots,\phi^n(t))=0$
+    \item $\forall t\in I: G(t, \phi(t),\phi'(t),\hdots,\phi^n(t))=0$
 \end{itemize}
 
-En partikulær løsning er en bestemt løsning, mens den fuldstændige løsning er familien af alle løsninger til ODE.
+En \textbf{partikulær løsning} er en bestemt løsning, mens den \textbf{fuldstændige løsning} er mængden af alle løsninger til ODE.
 \end{definition}
 
-Ved en ODE er det væsentligt at skelne mellem lineære og ikke-lineære sædvanlige differentialligninger, da disse har forskellige løsningsmetoder og beskriver forskellige situationer.
+\begin{definition}[Homogenitet]
+En ODE kaldes \textbf{homogen}, hvis den kan skrives på formen: 
+$$G(y(t),y'(t), \hdots, y^{(n-1)}(t),y^{(n)}(t))=0$$ 
+Altså hvis $G$ ikke afhænger eksplicit af den uafhængige variabel, $t$. En \textbf{inhomogen} ODE er på formen: 
+$$G(y(t),y'(t),\hdots, y^{(n-1)}(t),y^{(n)}(t))+f(t)=0$$
+I dette tilfælde kaldes $f(t)$ en \textbf{inhomogenitet}. En ODE der indeholder en inhomogenitet kaldes \textbf{inhomogen}, mens en ODE, der ikke indeholder en inhomogenitet, kaldes \textbf{homogen}.
+\end{definition}
+Til den inhomogene ODE, $G(y(t),y'(t),...,y^{(n)}(t))=f(t)$, kalder vi ligningen, $G(y(t),y'(t),...,y^{(n)}(t))=0$, den associerede homogene ODE. 
+
+Ved en ODE er det væsentligt at skelne mellem lineære og ikke-lineære ODEs, da disse har forskellige løsningsmetoder og beskriver forskellige situationer.
 
 \begin{definition}[Sædvanlig lineær differentialligning (OLDE)]\label{OLDE}En ODE af $n$'te orden kaldes lineær, hvis de afledte op til orden $n$ indgår i form af en linearkombination. Altså: \\ 
-$$a_{n}(t)y^{(n)}  + a_{n-1}(t)y^{(n-1)}+ \hdots + a_{1}(t)y' + a_{0}(t)y = f(t)$$
-Da $a_n(t)\neq 0$, fås der ved normering:
+$$a_{n}(t)y^{(n)}(t)  + a_{n-1}(t)y^{(n-1)}(t)+ \hdots + a_{1}(t)y'(t) + a_{0}(t)y(t) = f(t)$$
 
-$$y^{(n)}+P_{n-1}(t)y^{(n-1)}+\hdots +P_0(t)y=Q(t)$$ 
+hvis koefficienten $a_n(t)\neq 0 \ \forall t$, kan ligningen normeres til:
+
+$$y^{(n)}(t)+P_{n-1}(t)y^{(n-1)}(t)+\hdots +P_0(t)y(t)=Q(t)$$ 
 
 Her er: $P_0(t)=\frac{a_0(t)}{a_n(t)} , P_1(t)=\frac{a_1(t)}{a_n(t)}, \hdots, P_{n-1}(t)=\frac{a_{n-1}(t)}{a_n(t)}$ og $Q(t)=\frac{f(t)}{a_n(t)}$
 \end{definition}
-
-For en OLDE defineres følgende: 
-\begin{definition}[Homogenitet]
-En ODE kaldes homogen, hvis den kan skrives på formen: 
-$$y^{(n)}(t)=G(y,y', \hdots, y^{(n-1)})$$ 
-Altså hvis den n'te afledede $y^{(n)}$ kan skrives på en form, hvor en eksplicit funktion af udelukkende den uafhængige variabel $t$ ikke indgår. En inhomogen ODE er på formen: 
-$$y^{(n)}(t)=G(y,y',\hdots, y^{(n-1)})+f(t)$$
-I dette tilfælde kaldes $f(t)$ en inhomogenitet. ODE der indeholder en inhomogenitet kaldes inhomogene, mens ODE, der ikke indeholder en inhomogenitet, kaldes homogen.
-\end{definition}
-Til den inhomogene OLDE, $G(y,y',...,y^{(n)})=f(t)$, kalder vi ligningen, $G(t,y,y',...,y^{(n)})=0$, den associerede homogene ODE. 
 
 %\begin{mytheo}{Generel løsning for homogene OLDE}{}
 %    Lad $y_1,y_2,\hdots,y_n$ være $n$ lineære uafhængige løsninger til den homogene ligning:
@@ -63,141 +62,171 @@ Til den inhomogene OLDE, $G(y,y',...,y^{(n)})=f(t)$, kalder vi ligningen, $G(t,y
 %$$y=c_1y_1+c_2y_2+\hdots+c_ny_n$$,
 %af enhver $n$ given lineær uafhængig løsning. Baseret på dette kalder vi en sådan lineær kombination %en generel løsning for en homogen OLDE.
 
-\begin{mytheo}{Den fuldstændige løsning til en inhomogen OLDE}{}
-Betragt en inhomogen OLDE på formen: 
+\begin{mytheo}{Den fuldstændige løsning til en inhomogen OLDE\\ i \citep[Theorem 5, s. 122]{EP}}{}
+En inhomogen OLDE på formen: 
 \begin{equation}\label{linhomo}
-a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=F(t), \enspace t\in I
+a_n(t)y^{(n)}(t)+\hdots +a_1(t)y'(t)+a_0(t)y(t)=f(t), \enspace t\in I
 \end{equation}
 med den associerede homogene OLDE:
 \begin{equation}\label{lhomo}
-a_n(t)y^{(n)}+\hdots +a_1(t)y'+a_0(t)y=0, \enspace t\in I
+a_n(t)y^{(n)}(t)+\hdots +a_1(t)y'(t)+a_0(t)y(t)=0, \enspace t\in I
 \end{equation}
 har den fuldstændige løsning:
-$$y(t)=y_p+y_f$$
-Hvor $y_p$ er en partikulær løsning til ligningen og $y_f$ er en vilkårlig løsning til den associerede homogene OLDE.       
+\begin{equation}
+    L_{inhomo}= \{ y(t) | \exists y_f\colon y(t)=y_f(t)+y_p(t) \forall t \in I \}
+\end{equation}
+hvor $y_p$ er en partikulær løsning til ligningen, og $y_f$ er en vilkårlig løsning til den associerede homogene OLDE. 
 \end{mytheo}
 
-\begin{proof}\hfill \break
-Antag at en partikulær løsning $y_p$ til $\eqref{linhomo}$ er kendt og at $Y$ er en vilkårlig anden løsning til $\eqref{linhomo}$. Hvis $y_f=Y-y_p$, så får vi ved at indsætte $y_f$ i differentialligningen:
+\begin{proof}\\
+Antag at en partikulær løsning $y_p$ til ligning $\eqref{linhomo}$ er kendt og, at $Y$ er en vilkårlig anden løsning til ligning $\eqref{linhomo}$. Hvis $y_f=Y-y_p$, så får vi ved at indsætte $y_f$ i differentialligningen:
 \begin{align*}
     a_n(t)y_f^{(n)}+\hdots +a_1(t)y_f'+a_0(t)y_f&=
     (a_n(t)Y^{(n)}+\hdots +a_1(t)Y'+a_0(t)Y)\\
     &-(a_n(t)y_p^{(n)}+\hdots +a_1(t)y_p'+a_0(t)y_p)\\
     &=F(t)-F(t)=0
 \end{align*}
-Dermed er $y_f=Y-y_p$ en løsning til den associerede homogene ligning \eqref{lhomo}. Den kan omskrives til
+Dermed er $y_f=Y-y_p$ en løsning til den associerede homogene ligning \eqref{lhomo}. Løsningen kan dertil  omskrives til
 $$Y=y_f+y_p$$
-\textbf{ANDEN VEJ OGSÅ!}
-Dermed er det bevist at en generel løsning til \eqref{linhomo} er summen af en vilkårlige løsning $y_f$ og den partikulære løsning $y_p$ til \eqref{lhomo}.
+
+\hfill \break
+Antag at $a_n(t) \neq 0, \forall t \in I$, da kan ligning \eqref{lhomo} normeres til 
+$$y^{(n)} + P_{n-1}(t)y^{(n-1)} + \hdots + P_0(t)y = 0.$$
+Det ses nu, at $y_p+y_f$ altid er en løsning til ligning \eqref{linhomo}, da det følger af \citep[Theorem 4, s. 120]{EP}, at der vil eksiterere tal $c_1, c_2, \hdots, c_n$ sådan, at
+$$y_f=c_1y_1+c_2y_2+ \hdots +c_ny_n,$$
+hvor $y_1, y_2, \hdots, y_n$ er lineært uafhængige løsninger til ligning \eqref{lhomo}. Pér \citep[Theorem 2, s. 114]{EP} vides det, at kontinuerte funktioner på et åbent interval $I$, hvorpå $a$ er en værdi. Givet $n$ tal $b_0, b_1, \hdots, b_{n-1}$, så har ligning \eqref{lhomo} en entydig løsning på intervallet $I$, der opfylder de $n$ mulige begyndelsesværdier:
+$$y(a)=b_0, \ y'(a)=b_1, \ y^{(n-1)}(a)=b_{(n-1)}.$$
+
+
+Dermed er det bevist, at en generel løsning til ligning \eqref{linhomo} er summen af en vilkårlig løsning $y_f$ og den partikulære løsning $y_p$ til ligning \eqref{lhomo}.
 \end{proof}
 
+\section{Begyndelsesværdiproblemer}
+Begyndelsesværdiproblemer omfatter både enkeltstående differentialligninger og systemer af differentialligninger, hvorfor det vil blive beskrevet i det følgende.
+\begin{definition}[Begyndelsesværdiproblem (IVP)]
+Et begyndelsesværdiproblem (IVP) er en ODE med en betingelse, som $y, y',\hdots, y^{(n)}$ skal overholde for en specifik værdi af den uafhængige variabel, altså:
+\begin{align*}
+    y(t_0) &= y_0 \\
+    y'(t_0) &= y_1 \\
+    &\vdots \\
+    y^{(n)}(t_0) &= y_n
+\end{align*}
+\end{definition}
+
+\begin{Example}\textbf{IVP}\hfill \break
+\textnormal{Betragt følgende IVP:}
+\hfill \break
+\begin{equation}\label{IVPODE}
+    y(t)+y''(t)=0, t \in \mathbb{R}
+\end{equation}
+\textnormal{med begyndeslesværdibetingelserne}
+\begin{equation*}
+    \begin{cases}
+    y(0)&=1\\
+    y'(0)&=0
+    \end{cases}
+\end{equation*}
+\hfill \break
+\textnormal{Det ses hurtigt, at $y(t)=\cos(t)$ er en løsning til dette IVP og dette kan efterprøves. Først på ligning \eqref{IVPODE}:}
+\begin{align*}
+    y(t)+y''(t)&=0 \\
+    \cos(t)+(-\cos(t))&=0 \\ 
+\end{align*}
+\textnormal{og derefter på begyndelsesværdibetingelserne:}
+\begin{align*}
+      y(0)=\cos(0)&=1\\
+    y'(0)=-\sin(0)&=0\\
+\end{align*}
+\textnormal{Dermed er dette IVP løst.}
+\end{Example}
+
+\begin{mytheo}{Eksistens- og entydighedssætningen (EES)}{EES}
+Lad 
+\begin{equation*}
+    \begin{cases}
+      y'(t)&=f(t,y(t))\\
+      y(t_0)&=y_0
+    \end{cases}
+\end{equation*}
+være et førsteordens IVP, hvor: 
+
+\begin{enumerate}
+    \item $f: A \rightarrow \mathbb{R}$, hvor $A\subseteq \mathbb{R}^2$ er en åben delmængde af $\mathbb{R}^2$.
+    \item $\frac{\partial f}{\partial y}$ eksisterer og er kontinuert.
+    \item $(t_0,y_0) \in A$.
+\end{enumerate}
+Da findes til hver omegn $]t_0-\delta,t_0+\delta[ \ \times \ ]y_0-\tilde{\delta},y_0+\tilde{\delta}[$ et interval $]\alpha,\beta[ \ \subseteq \ ]t_0-\delta,t_0+\delta[$, hvorpå en entydigt bestemt løsning $\phi\colon \ ]\alpha,\beta[ \ \to \mathbb{R}^n$ er defineret.
+\end{mytheo}
+
+Til at bevise denne sætning kan man benytte Lipschitz betingelser samt Banachs fix-punkt sætning, men disse vil ikke blive beskrevet yderligere i denne rapport, da fokus, for projektet, ligger på at undersøge en udvidelse af Lotka-Volterra's model. Samtidig er beviset og forudsætninger dertil omfattende.
+
 \section{Førsteordens differentialligninger}
-I afsnittet forinden blev det kort introduceret, hvad en differentialligning er, de afhængige og uafhængige variabler den er opbygget af, de konstanter der indgår deri, samt formen af løsninger dertil. I det følgende vil vi se isoleret på første ordens differentialligninger samt løsningsmetoder dertil, da disse er byggesten til Lotka-Volterra's model.
-Følgende afsnit er baseret på \citep{JAB}, hvis andet ikke er noteret.
+I det følgende vil vi se på førsteordens differentialligninger samt løsningsmetoder dertil, da disse er byggesten til Lotka-Volterra's model.
+Følgende afsnit er baseret på \citep[kapitel 2.2]{JAB}, hvis andet ikke er noteret.
 \subsection{Separable differentialligninger}
-Følgende beskriver en central metode til omskrivning af differentialligninger og er dermed anvendelig, når en løsning søges.
+Følgende beskriver en central metode til omskrivning af differentialligninger, som er anvendelig, når en løsning søges.
 \begin{definition}[Separabel differentialligning]
-En førsteordens ODE kaldes separabel, hvis den kan skrives på formen, $$y'(t)=g(t)p(y(t))$$ hvor $g(t)$ kun afhænger af $t$, og $p(y(t))$ kun afhænger af $y(t)$.
+En førsteordens ODE kaldes \textbf{separabel}, hvis den kan skrives på formen, $$y'(t)=g(t)p(y(t))$$ hvor $g(t)$ kun afhænger af $t$, og $p(y(t))$ kun afhænger af $y(t)$.
 \end{definition}
 
 \begin{mytheo}{Løsning til separable differentialligninger}{LSD}
-Lad en funktion $p$ være kontinuert og $p(y(t)) \neq 0 \ \forall y$. Da vil løsningen til en førsteordens separabel ODE:
-$$y'(t)=g(t)p(y(t))$$
-også være en løsning til ligningen: 
-$$\int \frac{1}{p(y(t))}dy=\int g(t)dt$$
+Lad $p$ være en kontinuert funktion og $p(y_0) \neq 0$. Lad følgende være givet:
+\begin{equation}\label{LSD}
+    \begin{aligned}
+    &y'(t)=g(t)p(y(t))\\ 
+    &y(t_0)=y_0,
+    \end{aligned}
+\end{equation}
+så eksisterer der en løsning, $y(t)$:
+$$y(t)=H^{-1} \left ( H(y_0)+\int_{t_0}^tg(s)ds \right ),$$
+hvor $H$ er en stamfunktion til $\frac{1}{p(y(t))}$.
 \end{mytheo}
 
-\begin{proof}\hfill \break
-Vi starter med $$y'(t)=g(t)p(y(t))\Longleftrightarrow \frac{dy}{dt} = g(t)p(y(t))$$
-Hvis funktionen $p$ er kontinuert, og $p(y)\neq 0 \forall y$, kan man omskrive formlen på følgende måde:
-\begin{align*}
-    \frac{dy}{dt} &= g(t)p(y)\\
-    \frac{1}{p(y)}\frac{dy}{dt} &= g(t)
-\end{align*}
-Hvis $H(y)$ er en funktion, således at $H'(y)=\frac{1}{p(y)}$, så har vi: $$H'(y) \frac{dy}{dt}=g(t)$$
-Ved at anvende reglen for differentiation af en sammensat funktion, som siger $(f(g(x)))'=f'(g(x))g'(x)$, får vi:
+\begin{proof}\\
+Antag at $y(t)$ er en løsning til ligning \eqref{LSD}.
+\hfill \break
+Da $p(y_0) \neq 0$, så er $p(y(t)) \neq 0$ for $t$ i en omegn af $t_0$, da $p$ og $y(t)$ er kontinuert. Dvs. at $\frac{1}{p(y(t))}$ er defineret i denne omegn af $t_0$.
+\hfill \break
+Vi starter med at skrive ligning i \eqref{LSD} på formen:
+\begin{equation*}
+    \frac{1}{p(y(t))}y'(t)= g(t)
+\end{equation*}
+Da $\frac{1}{p(y(t))}$ er en kontinuert funktion, så er der en stamfunktion $H(y(t))$ således at $H'(y(t))=\frac{1}{p(y(t))}$, så har vi: 
+$$H'(y(t)) y'(t)=g(t)$$
+Ved at anvende kædereglen, som siger $f'(g(x))g'(x)=(f(g(x)))'$, får vi:
 $$(H(y(t)))'=g(t)$$
-og ved at integrere på begge sider i forhold til $t$ får vi:
-$$H(y)=\int g(t) dt$$
-Her må det gælde at $H(y)=\int \frac{1}{p(y)}dy$, hvilket resulterer i: $$\int \frac{1}{p(y)}dy=\int g(t) dt$$
-\end{proof}
+og ved integration får vi:
+\begin{align*}
+    \int_{t_0}^t(H(y(s)))'ds&=\int_{t_0}^tg(s)ds\\
+    H(y(t))-H(y(t_0))&=\int_{t_0}^tg(s)ds
+\end{align*}
+Da vi ved fra ligning \eqref{LSD} at $y(t_0)=y_0$, får vi:
+$$H(y(t))=H(y_0)+\int_{t_0}^tg(s)ds$$
+Nu er det opgaven at isolere $y(t)$ for at finde vores løsning til ligning \eqref{LSD}.
+Hvis den inverse funktion til $H$ eksisterer, så:
+$$y(t)=H^{-1} \left ( H(y_0)+\int_{t_0}^tg(s)ds \right )$$
 
-\begin{Example}\hfill \break
-\textnormal{Betragt følgende funktion} $$\frac{dy}{dt}=\frac{t^2+3}{y}$$ \textnormal{Ovenstående ligning er separabel, og vi kan derfor separere og omskrive til følgende:} $$(y)dy=(t^2+3)dt$$ \textnormal{Derefter integreres der på begge sider:} $$\int (y)dy=\int (t^2+3)dt\Leftrightarrow$$ $$\frac{y^2}{2}=\frac{t^3}{3}+3t+C$$ \textnormal{Til sidst løses ovenstående ligning i forhold til} $y$:$$y=\sqrt{\frac{2t^3}{3}+6t+2C}$$ \textnormal{Eftersom $C$ er en konstant af enhver størrelse, så er $2C$ dermed også en konstant af enhver størrelse. Derfor kan $2C$ i ligningen erstattes med en konstant $K$, hvilket resultere i:} $$y=\sqrt{\frac{2t^3}{3}+6t+K}$$
-\end{Example}
+Omvendt skal vi også vise at
+$$t,t_0 \mapsto H^{-1} \left ( H(y_0)+\int_{t_0}^tg(s)ds \right ) $$ er en løsning til ligning \eqref{LSD}.
+Vi starter med at indsætte $t_0$ for at se, om den stemmer overens: 
+\begin{align*}
+    y(t_0)&=H^{-1} \left ( H(y_0)+\int_{t_0}^{t_0}g(s)ds \right )\\
+    &=H^{-1} (H(y_0))\\
+    &=y_0
+\end{align*}
+Det passer med ligning \eqref{LSD}. Nu kigger vi så på $t$, hvor vi starter med at tage $H$ af begge sider:
+$$H(y(t))=H(y_0)+\int_{t_0}^tg(s)ds$$
+Nu får vi ved at differentiere leddene:
+$$(H(y(t)))'=g(t)$$
+Her anvender vi igen kædereglen, hvor vi får:
+$$H'(y(t)) y'(t)=g(t)$$
+Vi ved at $H(y(t))$ er en stamfunktion, således at $H'(y(t))=\frac{1}{p(y(t))}$, som vi indsætter:
+$$\frac{1}{p(y(t))}y'(t)=g(t) \ \Rightarrow \ y'(t)=g(t)p(y(t))$$
+Det passer med ligning \eqref{LSD}.
+\end{proof}\\
 
-\subsection{Lineære differentialligninger}
-Følgende er med til at skabe en forståelse for løsninger til lineære differentialligninger og afdækkes, da de første systemer af differentialligninger, der introduceres i projektet, er lineære.
-\hfill \break
+Et eksempel på en løsning til separable differentialligninger ses i afsnit \ref{lovaeg}.  
 
-En førsteordens OLDE er en ligning på formen: \\ 
-$$a_{1}(t) \frac{dy}{dt} + a_{0}(t)y = f(t)$$ Hvor $t$ er den uafhængige variabel. \hfill \break
-
-Vi betragter nu to tilfælde for koefficienten $a_0$, hvor $a_0(t) = 0$ og $a_0(t) = a_1'(t)$. Hvis $a_0(t) = 0$ reduceres ligningen til $a_1(t)\frac{dy}{dt} = f(t)$.  
-\begin{Example}\hfill \break
-\textnormal{Antag at vi har en førsteordens OLDE, som følger, hvor $a_0(t) = 0$.}\\
-\hfill \break
-\centerline{$0y - 6t = -(3t^2) \frac{dy}{dt}$ $\Rightarrow$ $3t^2 \frac{dy}{dt} = 6t$}
-\hfill \break
-\centerline{$y'(t) = \frac{6t}{3t^2}$ $\Rightarrow$ $y(t) = \int \frac{6t}{3t^2}dt$}
-\hfill \break
-\textnormal{Løsningen kan derfor findes ved simpel isolering af variabler og integration.}
-\end{Example}
-
-For det andet tilfælde får vi af produktreglen at $$a_1(t)y'(t) + a_0(t)y(t) = a_1(t)y'(t) + a_1'(t)y(t) = \frac{d}{dt}(a_1(t)y(t))$$Da har vi $$\frac{d}{dt}(a_1(t)y(t)) = f(t)$$ hvoraf løsningen let kan findes.
-
-\begin{Example} \hfill \break
-\textnormal{Antag at vi har en førsteordens OLDE, som følger, hvor $a_0(t) = a_1'(t)$} \\
-\hfill \break
-$$t^2 = \frac{1}{t}y'(t) -\frac{1}{t^2}y(t) = \frac{d}{dt}(\frac{1}{t}y(t))\Leftrightarrow$$
-$$\frac{d}{dt}(\frac{1}{t}y(t)) = t^2\Leftrightarrow$$
-$$\frac{1}{t}y(t) = \int t^2dt \Leftrightarrow$$ $$ y(t) = t \int t^2dt$$
-\hfill \break
-\textnormal{Dermed kan vi igen isolere og integrere for at finde løsningen.}
-\end{Example}
-
-Der eksisterer mange tilfælde, hvor OLDE ikke umiddelbart kan reduceres til en af de to ovenstående former, hvorfor det ses nødvendigt at finde en anden metode til løsning af disse. Derfor omskriver vi OLDE, som vist i definition \ref{OLDE}: $${y'(t) + \frac{a_0(t)}{a_1(t)}y(t) = \frac{b(t)}{a_1(t)}} \Leftrightarrow$$
-$$y'(t) + P(t)y(t) = Q(t)$$ hvor $y'(t) + P(t)y(t) = Q(t)$ er den normerede ligning. Derudover vil vi anvende en integrationsfaktor.
-
-\begin{definition}[Integrationsfaktor]\label{IntFak}
-En funktion $\mu (t)$, der ved multiplikation ændrer en lineær normeret differentialligning til en ligning på formen: $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ kaldes en integrationsfaktor.  
-\end{definition}
-
-Denne integrationsfaktor kan benyttes til at finde en generel løsning til en OLDE, og det er illustreret ved nedenstående sætning.
-
-\begin{mytheo}{Løsning til OLDE}{}
-For enhver OLDE, der kan skrives på formen:
-\begin{equation}\label{LOLDE}
-\frac{dy}{dt}+P(t)y=Q(t)
-\end{equation}
-eksisterer der en integrationsfaktor $\mu(t)$, hvorom der gælder, at: $$y(t)=\frac{1}{\mu (t)}(\int \mu (t)Q(t)dt+K)$$ er den generelle løsning til OLDE.
-\end{mytheo}
-
-\begin{proof}
-Vi anvender en integrationsfaktor $\mu(t)$ ved at gange denne til den normerede ligning.
-\begin{equation}\label{Intfaktor}
-\mu (t)y'(t) + \mu (t)P(t)y(t) = \mu (t)Q(t) 
-\end{equation}
-Per definition \ref{IntFak} må $\mu ' = \mu P$ og da kan vi udlede af \ref{th:LSD} at $\frac{1}{\mu}d\mu = P(t)dt$.
-Ligning \eqref{Intfaktor} omskrives til $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ 
-med $\mu (t)$ som den ovenstående, kan vi finde en generel løsning til (\ref{LOLDE}) ved integration på begge sider og derefter isolere $y(t)$:
-\begin{equation}
-y(t)=\frac{1}{\mu (t)}(\int \mu (t)Q(t)dt+K)
-\end{equation}
-\end{proof}
-
-\begin{Example}
-\textnormal{Antag at vi har en førsteordens OLDE:}
-$$2ty'(t) + 4y(t) = 6t^2$$
-\textnormal{Hvis vi dividerer igennem med 2t fås:}
-$$y'(t) + \frac{2}{t}y(t) = 3t$$
-$$\int P(t)dt = \int \frac{2}{t}dt = 2ln(t)$$
-\textnormal{Da har vi integrationsfaktoren,} $\mu = e^{2ln|t|} = e^{ln(t^2)} = t^2$. \textnormal{Nu ganges $\mu$ på den normerede ligning:}
-$$t^2 \frac{dy}{dt} + 2ty = 3t^3\Leftrightarrow$$
-$$\frac{d}{dt}(t^2y) = 3t^3 \Leftrightarrow  t^2y = \int 3t^3dt = \frac{3}{4}t^4 + K$$
-\textnormal{Da får vi:} 
-$$y = \frac{3}{4}t^4t^{-2} + Kt^{-2} = \frac{3}{4}t^2 + K \frac{1}{t^2}$$
-\end{Example}
 
 %%\begin{Example}
 %%Antag at vi har en førsteordens OLDE:\\
@@ -220,65 +249,22 @@ $$y = \frac{3}{4}t^4t^{-2} + Kt^{-2} = \frac{3}{4}t^2 + K \frac{1}{t^2}$$
 %%\hfill \break
 %%\centerline{$y = \frac{3}{4}t^2t^{-2} = \frac{3}{4} + Kt^{-2}$}
 %%\end{Example}
-%% kilde: http://tutorial.math.lamar.edu/Classes/DE/Linear.aspx
+%% kilde: http://tutorial.math.lamar.edu/Classes/DE/Linear.aspx 
 
-\section{Begyndelsesværdiproblemer}
-Begyndelsesværdiproblemer omfatter både enkeltstående differentialligninger og systemer af differentialligninger, hvorfor det vil blive beskrevet i det følgende.
-\begin{definition}[Begyndelsesværdiproblem (IVP)]
-Et begyndelsesværdiproblem (IVP) er en ODE med en betingelse, som $y, y',\hdots, y^{(n)}$ skal overholde for en specifik værdi af den uafhængige variabel, altså:
-\begin{align*}
-    y(t_0) &= y_0 \\
-    y'(t_0) &= y_1 \\
-    &\vdots \\
-    y^{(n)}(t_0) &= y_n
-\end{align*}
-\end{definition}
-
-\begin{Example}\textbf{IVP}\hfill \break
-\textnormal{Betragt følgende IVP:}\hfill \break
-\centerline{$y+y''=0, t \in I \subseteq \mathbb{R}$}
-\centerline{bbt:}
-\centerline{$y(0)=1$}
-\centerline{$y'(0)=0$} \hfill \break
-\textnormal{Det ses hurtigt, at $y(t)=\cos(t)$ er en løsning til dette IVP. Dette kan efterprøves:}
-\begin{align*}
-    y+y''&=0 \\
-    \cos(t)+(-\cos(t))&=0 \\
-    y(0)=\cos(0)&=1\\
-    y'(0)=-\sin(0)&=0\\ 
-\end{align*}
-\textnormal{Dermed er dette IVP løst.}
-\end{Example}
-
-\begin{mytheo}{Eksistens- og entydighedssætningen}
-GGivet et førsteordens IVP, $y'(t)=f(t,y)$, hvor 
-
-\begin{enumerate}
-    \item $y(t_0)=y_0$
-    \item $f:(a,b) \times (c,d) \rightarrow \mathbb{R}$
-    \item $\frac{\partial}{\partial y}f$ er kontinuert
-    \item $(t_0,y_0) \in (a,b) \times (c,d)$
-\end{enumerate}
-
-da findes en entydig løsning $\phi(t)$ defineret på $(\alpha,\beta)\subseteq (a,b)$, hvor $t_0 \in (\alpha, \beta)$ 
-\end{mytheo}
-
-Til at bevise denne sætning kan man benytte Lipschitz betingelser samt Banachs fix-punkt sætning, men disse vil ikke blive beskrevet yderligere i denne rapport, da fokus, for projektet, ligger på at undersøge en udvidelse af Lotka-Volterra's model. Samtidigt er beviset og alle forudsætninger dertil tidskrævende og omhandler ikke direkte problemstillingen. 
-
-\section{Andenordens differentialligninger}
-Følgende afsnit inkluderes som følge af studieordningen, som sætter projektets rammer, men ligeledes fordi, man kan omskrive andenordens ODEs til koblede systemer af differentialligninger.
+\section{Andenordens differentialligninger}\label{andendiff}
+Følgende afsnit inkluderes som følge af studieordningen, som sætter projektets rammer, men ligeledes fordi, man kan omskrive andenordens ODEs til koblede systemer af differentialligninger. Afsnittet er baseret på \citep[afsnit 4.2]{JAB}.
 \subsection{Homogene lineære andenordens ODE med konstante koefficienter}
-Det følgende er baseret på \citep[s. 221]{JAB}. \\ \hfill \break En homogen lineær andenordens ODE med konstante koefficienter er en ODE på formen: \hfill \break
+En homogen lineær andenordens ODE med konstante koefficienter er en ODE på formen: \hfill \break
 \begin{equation}
 \label{homlinandord}
     a_2y''(t)+a_1y'(t)+a_0y(t)=0
 \end{equation} \hfill \break
-Hvor $a_2,a_1,a_0\in \mathbb{C}$ er de konstante koefficienter, og $a_2\neq 0$. \hfill \break
+Hvor $a_2,a_1,a_0\in \mathbb{R}$ er de konstante koefficienter, og $a_2\neq 0$. \hfill \break
 
 \begin{definition}[Den karakteristiske ligning]
 Ligningen 
 $$a_2r^2+a_1r+a_0=0$$
-hvor $a_2, a_1$ og $a_0$ er koefficienterne fra (\ref{homlinandord}), kaldes den karakteristiske ligning for (\ref{homlinandord}).
+hvor $a_2, a_1$ og $a_0$ er koefficienterne fra ligning \eqref{homlinandord}, kaldes \textbf{den karakteristiske ligning} for ligning \eqref{homlinandord}.
 \end{definition} 
 \hfill \break
 Det bemærkes at for en inhomogen andenordens ODE på formen
@@ -286,10 +272,10 @@ $$a_2r^2+a_1r+a_0=f(t)$$
 kaldes ligningen i ovenstående definition også for den tilhørende karakteristiske ligning.
 Den  karakteristiske ligning er et andengradspolynomium, og de værdier af $r$, som opfylder denne ligning, er vigtige, som det fremgår af følgende proposition: \hfill \break
 \begin{prop}{Løsning af homogen andenordens (ODE)}{losprop2ordhom}\label{losprop2ordhom}
-Funktionen $y(t)=e^{rt}$ er en løsning til (\ref{homlinandord}), hvis og kun hvis $r$ er en løsning til den karakteristiske ligning for (\ref{homlinandord}).
+Funktionen $y(t)=e^{rt}$ er en løsning til ligning \eqref{homlinandord}, hvis og kun hvis $r$ er en løsning til den karakteristiske ligning for ligning \eqref{homlinandord}.
 \end{prop}
 \hfill \break
-\begin{proof} \hfill \break
+\begin{proof}\\
 Vi sætter $y=e^{rt}$ og bemærker, at $y'=re^{rt}$ samt $y''=r^2e^{rt}$. Nu skrives (\ref{homlinandord}): \hfill \break
  $$a_2r^2e^{rt}+a_1re^{rt}+a_0e^{rt}=0 \Leftrightarrow$$ 
  $$e^{rt}(a_2r^2+a_1r+a_0)=0$$
@@ -298,7 +284,7 @@ Vi sætter $y=e^{rt}$ og bemærker, at $y'=re^{rt}$ samt $y''=r^2e^{rt}$. Nu skr
 \end{proof} \\ 
 \hfill \break
 
-Vi har altså en simpel metode til at finde en partikulær løsning til (\ref{homlinandord}):\hfill \break
+Vi har altså en simpel metode til at finde en partikulær løsning til ligning \eqref{homlinandord}:\hfill \break
 
 \begin{Example}\label{ekspartlos} \textbf{Partikulær løsning}\hfill \break
 \textnormal{Betragt følgende ODE:}\\ \hfill \break
@@ -312,15 +298,15 @@ Vi har altså en simpel metode til at finde en partikulær løsning til (\ref{ho
 \textnormal{På samme måde kan det vises at $e^{(-1)t}$ også er en partikulær løsning.}
 \end{Example}\hfill \break
 
-I det følgende, som er baseret på \citep{2ordhom}, ønsker vi en metode til at finde den fuldstændige løsning til (\ref{homlinandord}). Først skal vi vise to propositioner:\hfill \break
+I det følgende, som er baseret på \citep{2ordhom}, ønsker vi en metode til at finde den fuldstændige løsning til ligning \eqref{homlinandord}. Først skal vi vise to propositioner:\hfill \break
 \begin{prop}{Linearkombination af løsninger}
-HHvis $y_1(t)$ og $y_2(t)$ begge er løsninger til ligning (\ref{homlinandord}), og $k_1,k_2\in \mathbb{C}$ er arbitrære konstanter, så er \hfill \break
+HHvis $y_1(t)$ og $y_2(t)$ begge er løsninger til ligning \eqref{homlinandord}, og $k_1,k_2\in \mathbb{R}$ er arbitrære konstanter, så er \hfill \break
 $$y(t)=k_1y_1(t)+k_2y_2(t),$$ \hfill \break
-også en løsning til ligning (\ref{homlinandord}).
+også en løsning til ligning \eqref{homlinandord}.
 \end{prop}
 \hfill \break
-\begin{proof}\hfill \break
-Lad $y_1$ og $y_2$ være løsninger til ligning (\ref{homlinandord}), og lad $k_1,k_2\in \mathbb{C}$ være givet. Nu tjekker vi om $k_1y_1(t)+k_2y_2(t)$ er en løsning til ligning (\ref{homlinandord}):
+\begin{proof}\\
+Lad $y_1$ og $y_2$ være løsninger til ligning \eqref{homlinandord}, og lad $k_1,k_2\in \mathbb{R}$ være givet. Nu tjekker vi om $k_1y_1(t)+k_2y_2(t)$ er en løsning til ligning \eqref{homlinandord}:
 \hfill \break
 \begin{align*}
 a_2y''(t)+a_1y'(t)+a_0y(t)&=a_2(k_1y_1(t)+k_2y_2(t))''+a_1(k_1y_1(t)+k_2y_2(t))'+a_0(k_1y_1(t)+k_2y_2(t)) \\
@@ -331,22 +317,22 @@ a_2y''(t)+a_1y'(t)+a_0y(t)&=a_2(k_1y_1(t)+k_2y_2(t))''+a_1(k_1y_1(t)+k_2y_2(t))'
 \hfill \break
 Da $y_1(t)$ er en løsning, ved vi at $a_2y_1''(t)+a_1y_1'(t)+a_0y_1(t)=0$, og da $y_2(t)$ er en løsning, ved vi at $a_2y_2''(t)+a_1y_2'(t)+a_0y_2(t)=0$. Altså har vi:\hfill \break
 $$k_1(a_2y_1''(t)+a_1y_1'(t)+a_0y_1(t))+k_2(a_2y_2''(t)+a_1y_2'(t)+a_0y_2(t))=k_1\cdot 0+k_2\cdot 0=0$$\hfill \break
-Dermed er $k_1y_1(t)+k_2y_2(t)$ en løsning til (\ref{homlinandord}).
+Dermed er $k_1y_1(t)+k_2y_2(t)$ en løsning til ligning \eqref{homlinandord}.
 \end{proof}\\
 \hfill \break
-\begin{mytheo}{Fuldstændig løsning}
-JHvis $y_1(t)$ og $y_2(t)$ er lineært uafhængige løsninger til ligning (\ref{homlinandord}), og $k_1 \in \mathbb{C}$ og $k_2\in \mathbb{C}$ er arbitrære konstanter, så er den fuldstændige løsning til ligning (\ref{homlinandord}) givet ved: \hfill \break
+\begin{mytheo}{Fuldstændig løsning}{}
+Hvis $y_1(t)$ og $y_2(t)$ er lineært uafhængige partikulære løsninger til ligning \eqref{homlinandord}, og $k_1 \in \mathbb{R}$ og $k_2\in \mathbb{R}$ er arbitrære konstanter, så er den fuldstændige løsning til ligning \eqref{homlinandord} givet ved: \hfill \break
 $$y(t)=k_1y_1(t)+k_2y_2(t)$$
 \end{mytheo}
 \hfill \break
-Vi har vist at $y(t)$ er en løsning, men vi mangler at vise, at enhver løsning kan skrives på den form. Beviset bygger på eksistens og entydighedssætningen. Beviset føres ikke i dette projekt, men bevises i (INDSÆT KILDE HER!(Jeg kan ikke finde nogen kilde, hvor det bevises..))\\
+Vi har vist at $y(t)$ er en løsning, men vi mangler at vise, at enhver løsning kan skrives på den form. Beviset bygger på eksistens og entydighedssætningen. Beviset føres ikke i dette projekt, men findes i \citep[s. 221-225]{JAB}.\\
 \hfill \break
 Vi skal altså kende to lineært uafhængige partikulære løsninger for at kunne skrive den fuldstændige løsning op. Proposition \ref{losprop2ordhom} siger, at vi kan finde partikulære løsninger ved at løse den karakteristiske ligning. Som bekendt kan et andengradspolynomium enten have to forskellige reelle rødder, én reel rod eller to forskellige komplekse rødder. Vi viser for hvert tilfælde, hvordan den fuldstændige løsning findes. \\ \hfill \break
 \textbf{Tilfælde 1}\hfill \break
-Hvis den karakteristiske ligning har to forskellige reelle rødder, $r_1$ og $r_2$, så er løsningerne $e^{r_1t}$ og $e^{r_2t}$ lineært uafhængige. Det ses let, da der ikke findes nogen konstant, $k\in \mathbb{C}$, så $e^{r_1t}=ke^{r_2t}$ for alle $t$. Den fuldstændige løsning kan derfor skrives: \hfill \break
+Hvis den karakteristiske ligning har to forskellige reelle rødder, $r_1$ og $r_2$, så er løsningerne $e^{r_1t}$ og $e^{r_2t}$ lineært uafhængige. Det ses let, da der ikke findes nogen konstant, $k\in \mathbb{R}$, så $e^{r_1t}=ke^{r_2t}$ for alle $t$. Den fuldstændige løsning kan derfor skrives: \hfill \break
 $$y(t)=k_1e^{r_1t}+k_2e^{r_2t}$$\hfill \break
-Hvor $k_1,k_2\in \mathbb{C}$ er arbitrære konstanter.\\ \hfill \break
-\begin{Example}\textbf{To reelle løsninger}\hfill \break
+Hvor $k_1,k_2\in \mathbb{R}$ er arbitrære konstanter.\\ \hfill \break
+\begin{Example}\textbf{To reelle rødder}\hfill \break
 \textnormal{Betragt ligningen:} \hfill \break
 \centerline{$-y''(t)+2y'(t)+3y(t)=0$}\\ \hfill \break
 \textnormal{fra eksempel \ref{ekspartlos}. I eksemplet fandt vi løsningerne: $y_1(t)=e^{-t}$ og $y_2(t)=e^{3t}$. Den fuldstændige løsning kan således skrives:}\hfill \break
@@ -357,16 +343,16 @@ $$y(t)=k_1e^{-t}+k_2e^{3t}$$
 Hvis den karakteristiske løsning har én reel rod, $r$, så er diskriminanten som bekendt 0. Derfor har vi fra den karakteristiske ligning: \hfill \break
 $$r=\frac{-a_1}{2a_2}\Leftrightarrow 2a_2r+a_1=0$$
 \hfill \break
-Det skal vi bruge til at vise, at udover $e^{rt}$, så er $y(t)=te^{rt}$ også en partikulær løsning til ligning (\ref{homlinandord}). Bemærk først at $y'(t)=e^{rt}+tre^{rt}$ og $y''(t)=2re^{rt}+tr^2e^{rt}$. Det sætter vi nu ind i ligning (\ref{homlinandord}): 
+Det skal vi bruge til at vise, at udover $e^{rt}$, så er $y(t)=te^{rt}$ også en partikulær løsning til ligning \eqref{homlinandord}. Bemærk først at $y'(t)=e^{rt}+tre^{rt}$ og $y''(t)=2re^{rt}+tr^2e^{rt}$. Det sætter vi nu ind i ligning \eqref{homlinandord}: 
 \hfill \break
 \begin{align*}
 a_2(2re^{rt}+tr^2e^{rt})+a_1(e^{rt}+tre^{rt})+a_0te^{rt}&=\\
 e^{rt}(2a_2r+a_1)+te^{rt}(a_2r^2+a_1r+a_0)&=e^{rt}\cdot 0+te^{rt}\cdot 0=0
 \end{align*}
 \hfill \break
-Så $te^{rt}$ er altså en løsning. det er nemt at se at $e^{rt}$ og $te^{rt}$ er lineært uafhængige, og vi kan dermed skrive den fuldstændige løsning op:\hfill \break
+Så $te^{rt}$ er altså en løsning. det er nemt at se, at $e^{rt}$ og $te^{rt}$ er lineært uafhængige, og vi kan dermed skrive den fuldstændige løsning op:\hfill \break
 $$y(t)=k_1e^{rt}+k_2te^{rt}$$ \hfill \break
-\begin{Example}\textbf{Én reel løsning}\hfill \break
+\begin{Example}\textbf{Én reel rod}\hfill \break
 \textnormal{Lad følgende ODE være givet:}\hfill \break
 $$y''(t)+2y'(t)+y(t)=0$$\hfill \break
 \textnormal{Den karakteristiske ligning $r^2+2r+1=0$ har kun én løsning, da deskriminanten $d=2^2-4\cdot 1\cdot 1=0$. Løsningen er $r=\frac{-2}{2\cdot 1}=-1$.}\\ \hfill \break
@@ -375,170 +361,46 @@ $$y(t)=k_1e^{-t}+k_2te^{-t}$$
 \end{Example}
 \hfill \break
 \textbf{Tilfælde 3}\hfill \break
-Hvis den karakteristiske ligning har to komplekse rødder, $r_1$ og $r_2$, er diskriminanten negativ, og de to rødder er $r_1=\frac{-a_1}{2a_2}+i\frac{-a_1^2+4a_2a_0}{2a_2}$ og $r_2=\frac{-a_1}{2a_2}-i\frac{-a_1^2+4a_2a_0}{2a_2}$. For nemheds skyld betegner vi dog rødderne på følgende måde: $r_1=\alpha+i\beta$ og $r_2=\alpha-i\beta$. Ifølge proposition \ref{losprop2ordhom} er $e^{r_1t}$ og $e^{r_2t}$ løsninger til ligning (\ref{homlinandord}), og det er dermed nok at vise, at de to løsninger er lineært uafhængige. Det er let at indse, da $\beta \neq 0$. Hvis $c_1\in \mathbb{C}$ og $c_2 \in \mathbb{C}$ er arbitrære konstanter kan den fuldstændige løsning dermed skrives:\hfill \break
-$$y(t)=c_1e^{(\alpha+i\beta)t}+c_2e^{(\alpha-i\beta)t}$$ \hfill \break
-Vi vil imidlertid gerne finde en lettere måde at udtrykke den fuldstændige løsning på. Vi bruger Eulers formel\citep[s. 27]{JAB}, $e^{i\beta}=\cos(\beta)+i\sin(\beta) \enspace \forall \beta \in \mathbb{R}$, og regnereglen, $e^{\alpha+i\beta}=e^{\alpha}e^{i\beta}$, og skriver den fuldstændige løsning:\hfill \break
+Hvis den karakteristiske ligning har to komplekse rødder, $r_1$ og $r_2$, er diskriminanten negativ, og de to rødder er $r_1=\frac{-a_1}{2a_2}+i\frac{-a_1^2+4a_2a_0}{2a_2}$ og $r_2=\frac{-a_1}{2a_2}-i\frac{-a_1^2+4a_2a_0}{2a_2}$. For nemheds skyld betegner vi dog rødderne på følgende måde: $r_1=\alpha+i\beta$ og $r_2=\alpha-i\beta$. Ifølge sætning \ref{losprop2ordhom} er $e^{r_1t}$ og $e^{r_2t}$ løsninger til ligning (\ref{homlinandord}), og det er dermed nok at vise, at de to løsninger er lineært uafhængige. Det er let at indse, da $\beta \neq 0$. Hvis $k_1\in \mathbb{R}$ og $k_2 \in \mathbb{R}$ er arbitrære konstanter kan den fuldstændige løsning dermed skrives:\hfill \break
+$$y(t)=k_1e^{(\alpha+i\beta)t}+k_2e^{(\alpha-i\beta)t}$$ \hfill \break
+Vi vil imidlertid gerne finde en lettere måde at udtrykke den fuldstændige løsning på. Vi bruger Eulers formel \citep[s. 27]{JAB}, $e^{i\beta}=\cos(\beta)+i\sin(\beta) \enspace \forall \beta \in \mathbb{R}$, og regnereglen, $e^{\alpha+i\beta}=e^{\alpha}e^{i\beta}$, og skriver den fuldstændige løsning:\hfill \break
 \begin{align}
-y(t)&=c_1'e^{(\alpha+i\beta)t}+c_2'e^{(\alpha-i\beta)t} \notag \\
-&=c_1'e^{\alpha t}(\cos(\beta t)+i\sin(\beta t))+c_2'e^{\alpha t}(\cos(\beta t)-i\sin(\beta t)) \notag \\
-&={\alpha t}(c_1'\cos(\beta t)+c_1'i\sin(\beta t)+c_2'\cos(\beta t)-c_2'i\sin(\beta t)) \notag \\
-&=e^{\alpha t}((c_1'+c_2')\cos(\beta t)+i(c_1'-c_2')\sin(\beta t)) \notag \\
-&=e^{\alpha t}(c_1\cos(\beta t)+c_2\sin(\beta t)) 
+y(t)&=k_1'e^{(\alpha+i\beta)t}+k_2'e^{(\alpha-i\beta)t} \notag \\
+&=k_1'e^{\alpha t}(\cos(\beta t)+i\sin(\beta t))+k_2'e^{\alpha t}(\cos(\beta t)-i\sin(\beta t)) \notag \\
+&={\alpha t}(k_1'\cos(\beta t)+k_1'i\sin(\beta t)+k_2'\cos(\beta t)-k_2'i\sin(\beta t)) \notag \\
+&=e^{\alpha t}((k_1'+k_2')\cos(\beta t)+i(k_1'-k_2')\sin(\beta t)) \notag \\
+&=e^{\alpha t}(k_1\cos(\beta t)+k_2\sin(\beta t)) 
 \end{align}
-hvor $c_1=c_1'+c_2'$ og $c_2=i(c_1'-c_2')$.\hfill \break
+hvor $k_1=k_1'+k_2'$ og $k_2=i(k_1'-k_2')$.\hfill \break
 \begin{Example}\textbf{To komplekse rødder} \hfill \break
-\textnormal{Betragt følgende (ODE):}\hfill \break
+\textnormal{Betragt følgende ODE:}\hfill \break
 $$y''(t)+2y'(t)+2y(t)=0$$\hfill \break
 \textnormal{Den karakteristiske ligning har følgende løsninger:} \hfill \break
 $$r_1=\frac{-2+\sqrt{2^2-4\cdot 1\cdot 2}}{2\cdot 1}=\frac{-2+\sqrt{-4}}{2}=\frac{-2+2i}{2}=-1+i$$
 $$r_2=\frac{-2-\sqrt{2^2-4\cdot 1\cdot 2}}{2\cdot 1}=\frac{-2-\sqrt{-4}}{2}=\frac{-2-2i}{2}=-1-i$$\hfill \break
 \textnormal{Dermed kan den fuldstændige løsning skrives:}\hfill \break
-$$y(t)=e^{-t}(c_1\cos(t)+c_2\sin(t))$$
+$$y(t)=e^{-t}(k_1\cos(t)+k_2\sin(t))$$
 \end{Example}
 
-\subsection{Inhomogene lineære andenordens ODE med konstante koefficienter}\label{ila} 
-For fuldstændighedens skyld opsummeres de ubestemte koefficienters metode. Dette afsnit er baseret på \citep[s. 240-246]{JAB}.\hfill \break
-En inhomogen lineær andenordens ODE med konstante koefficienter skrives på formen:
 
-\begin{equation}
-\label{inhomlinandord}
-    a_2y''(t)+a_1y'(t)+a_0y(t)=f(t)
-\end{equation} \hfill \break
-Hvor $a_2,a_1,a_0\in \mathbb{C}$ er de konstante koefficienter og $a_2 \neq 0$. I dette afsnit vil de ubestemte koefficienters metode, som er en fremgangsmåde, hvorpå inhomogene andenordens ODE's kan løses, blive gennemgået.
-Metoden går i alt sin enkelthed ud på, at hvis vi har givet en ligning på formen \eqref{inhomlinandord}, så giver vi et kvalificeret gæt på formen af $y_p(t)$. Har vi for eksempel givet en ligning på formen:
-\begin{equation*}
-    a_2y''(t)+a_1y'(t)+a_0y(t)=Ct^m
-\end{equation*} \hfill \break
-antyder formen $f(t)=Ct^m$, at $y_p(t)$ skal være et polynomium af $m'te$ orden:
-\begin{equation*}
-    y_p(t)=A_mt^m+\cdots +A_1t+A_0
-\end{equation*} \hfill \break
-Udregnes $y'_p(t)$ og $y''_p(t)$ kan disse sættes ind i \ref{inhomlinandord}, hvor de ubekendte koefficienter til hver potens af t i $a_2y''(t)+a_1y'(t)+a_0y(t)$ matches med de tilsvarende i $f(t)$. 
-Hvis $f(t)=Ce^{at}$ 'gætter' vi på en løsning på formen $Ae^{at}$
-\begin{Example}\hfill \break
-\textnormal{For at finde en partikulær løsning til:}\hfill \break
-$$3y''+2y'+4y=20e^{4t}$$ \hfill \break
-\textnormal{gætter vi på at $y_p(t)=Ae^{4t}$, dermed bliver $y'=4Ae^{4t}$ og $y''=16Ae^{4t}$ og beholder dermed den samme eksponentielle form. Vi får altså:} \hfill \break
-$$3y_p''+2y_p'+y_p=3(16Ae^{4t})+2(4Ae^{4t})+4Ae^{4t}=60Ae^ {4t}=20e^{4t}$$ \hfill \break
-\textnormal{Hvilket giver $A=\frac{1}{3}$, og dermed} \hfill \break
-$$y_p(t)=\frac{e^{4t}}{3}$$ \textnormal{som løsning.}
 
-\end{Example}
-Generelt gælder det at formen på $f(t)$ antyder formen på den partikulære løsning, som det ses i nedenstående tabel. 
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|}
-    \hline
-       $f(t)$  & $y_p(t)$ \\ \hline
-        $Ct^m$ & $A_mt^m+\cdots +A_1t+A_0$ \\ \hline
-        $Ce^{at}$ & $Ae^{at}$ \\ \hline
-        $C sin(at) , C cos(at)$ & $ A cos(at) + B sin(at)$ \\ \hline
-        $Ct^me^t$ & $(A_mt^m+ \cdots +A_1t+A_0)e^t$ \\ \hline
-        \end{tabular}
-\end{table}
-I tilfælde af at $f(t)$ er en sum af flere led, kan $f(t)$ deles op i disse led, og ligning \ref{inhomlinandord} løses for hvert led, hvorefter disse løsninger adderes, hvilket giver en løsning til $f(t)$. \\
-Hvis $f(t)$ er et produkt af flere funktioner, vil formen på $y_p(t)$ typisk kunne skrives som et produkt af de tilhørende 'gæt' for hver funktion.
-Der er dog tilfælde hvor denne fremgangsmåde ikke kan bruges.
-
-\begin{Example}\hfill \break
-\textnormal{Betragt ligningen} $$y'' -3y'-4y=5e^{4t}$$ \textnormal{Det antages at en løsning er på formen} $$y_p(t)=Ae^{4t}$$ \textnormal{Udregnes $y'_p(t)$ og $y''_p(t)$ og sættes ind får vi dog:}
-$$y'' -3y'-4y=16Ae^{4t}-12Ae^{4t}-4Ae^{4t}=0  \neq 5e^{4t}$$
-\textnormal{Dette skyldes at $e^{4t}$ er en løsning til den tilhørende homogene ligning $y'' -3y'-4y=0$, og enhver konstant multiplikation vil derfor give 0 på højresiden af ligningen. For at løse dette problem er det nok at gange det sædvanlige "gæt" med faktoren $t$.}
-\end{Example}
-
-\hfill \break
-\begin{prop}{De ubestemte koefficienters metode}
-EEn partikulær løsning til differentialligningen $a_2y''(t)+a_1y'(t)+a_0y(t)=Ct^me^{rt}$ kan skrives på formen: 
-$$y_p(t)= t^s(A_nt^n+A_{n-1}t^{n-1}  \cdots +A_1t+A_0)e^{rt}$$ 
-hvor 
-\begin{enumerate}
-    \item $s=0$ hvis $r$ ikke er en rod i den tilhørende karakteristiske ligning
-    \item $s=1$ hvis $r$ er en simpel rod i den tilhørende karakteristiske ligning
-    \item $s=2$ hvis $r$ er en dobbelt rod i den tilhørende karakteristiske ligning
-\end{enumerate}
-\end{prop}
-\hfill \break
-
-\begin{proof}
-Givet en ligning på formen:
-\begin{equation*}
-a_2y''(t)+a_1y'(t)+a_0y(t)=Ct^me^{rt}
-\end{equation*}
-Vi gætter her på at løsningen er på formen:
-\begin{equation*}
-y_p(t)= (A_nt^n+A_{n-1}t^{n-1} + \hdots +A_1t+A_0)e^{rt}
-\end{equation*}
-Hvor potensen $n$ skal bestemmes så den matcher $m$.
-Ledende af højeste orden i $y_p(t)$,$y'_p(t)$ og $y''_p(t)$ ser ud som følger:
-\begin{align*}
-     y_p(t) &=e^{rt}(A_nt^n+A_{n-1}t^{n-1}+A_{n-2}t^{n-2}+\hdots + A_1t+A_0) \\ \break
-    y'_p(t) &=e^{rt}(A_nrt^n+A_nnt^{n-1}+A_{n-1}rt^{n-1}+A_{n-1}(n-1)t^{n-2}+A_{n-2}rt^{n-2}+\hdots + A_1rt+A_1+A_0r) \\
-    y''_p(t) &=e^{rt}(A_nr^2t^n+2A_nnrt^{n-1}+A_nn(n-1)t^{n-2}+A_{n-1}r^2t^{n-1}+2A_{n-1}r(n-1)t^{n-2} \\ 
-    &+A_{n-2}r^2t^{n-2}+\hdots + A_1r^2t+2A_1r+A_0r^2)
-\end{align*}
-Når dette sættes ind i $a_2y''(t)+a_1y'(t)+a_0y(t)$ fås:
-\begin{align*}
- a_2y''(t)+ & a_1y'(t)+a_0y(t) \\ 
- & = A_n(a_2r^2+a_1r+a_0)t^ne^{rt} + (A_nn(2a_2r+a_1) +A_{n-1}(a_2r^2+a_1r+a_0))t^{n-1}e^{rt} \\ 
- & +(A_nn(n-1)a_2+A_{n-1}(n-1)(2a_2r+a_1)\\
- &+A_{n-2}(a_2r^2+a_1r+a_0))t^{n-2}e^{rt}+ \hdots + (led\ af\ lavere\ orden)
-\end{align*}
-Da den karakteristiske ligning for $a_2y''(t)+a_1y'(t)+a_0y(t)$ er: \\
-$$a_2r^2+a_1r+a_0=0$$ \\
-og hvis $r$ er en dobbelt rod\\
-$$2a_2r+a_1=0$$\\ 
-Der er altså tre mulige scenarier: \\
-
-\textbf{1.} \\
-Hvis $r$ er ikke en rod i den karakteristiske ligning, og dermed vil leddet med den største potens være $A_n(a_2r^2+a_1r+a_0)t^ne^rt$. For at matche potensen i $f(t)=Ct^me^{rt}$, må $n=m$ og vi får: \\
-\begin{equation*}
-y_p(t)= (A_mt^m+A_{m-1}t^{m-1}  \cdots +A_1t+A_0)e^rt
-\end{equation*} \\
-
-\textbf{2.} \\
-Hvis $r$ er en simpel rod i den karakteristiske ligning hvilket medfører at $a_2r^2+a_1r+a_0=0$ bliver leddet med den højeste potens $(A_nn(2a_2r+a_1)$. For at matche potensen i $f(t)=Ct^me^{rt}$, må $n=m+1$ og vi får: \\
-\begin{equation*}
-y_p(t)= (A_{m+1}t^{m+1}+A_{m}t^{m}  \cdots +A_1t+A_0)e^{rt}
-\end{equation*} \\
-Men da r  er en simpel rod i den karakteristiske ligning, vil $A_0e^{rt}$ være  en løsning til den karakteristiske ligning, og derfor kan dette led fjernes og $t$ sættes uden for en parentes. \\
-\begin{align*}
-y_p(t)&= (A_{m+1}t^{m+1}+A_{m}t^{m}  \cdots+ A_2t +A_1)e^{rt} \\
-      &= t(A_{m}t^{m}+A_{m-1}t^{m-1}  \cdots +A_1t+A_0)e^{rt}
-\end{align*} \\
-
-\textbf{3.}\\
-Hvis $r$ er en dobbelt rod i den karakteristiske ligning, hvilket medfører, at $2a_2r+a_1=0$, så er leddet med den højeste potens $A_nn(n-1)a_2t^{n-2}e^rt$. For at matche potensen i $f(t)=Ct^me^{rt}$, må $n=m+2$ og vi får: \\
-
-\begin{equation*}
-y_p(t)= (A_{m+2}t^{m+2}+A_{m+2}t^{m+2}  \cdots +A_1t+A_0)e^{rt}
-\end{equation*} \\
-Som før fjernes $(A_1t+A_0)e^{rt}$ da $A_1te^{rt}$ og $A_0e^{rt}$ er løsninger til den tilhørende homogene ligning, og $t^2$ sættes uden for parentes: 
-
-\begin{align*}
-y_p(t)&= (A_{m+2}t^{m+2}+A_{m+1}t^{m+1}  \cdots+ A_2t^2+A_1t+A_0)e^{rt} \\
-      &= t^2(A_{m}t^{m}+A_{m-1}t^{m-1}  \cdots +A_1t+A_0)e^{rt}
-\end{align*} \\
-
-\end{proof}
-
-Med kendskab til første og andenordens ODEs og løsninger dertil, er man tættere på at kunne løse et system som for eksempel Lotka-Volterra's byttedyr-rovdyr model. Dette ses, da vi kan omskrive en andenordens ODE til et system af førsteordens ODEs. Ligeledes kan man gå den anden vej og omskrive et koblet (jf. afsnit XX) system af førsteordens ODEs til en andenordens ODE.
+Med kendskab til første og andenordens ODEs og løsninger dertil er man tættere på at kunne løse et system som for eksempel Lotka-Volterra's byttedyr-rovdyr model. Dette ses, da vi kan omskrive en andenordens ODE til et system af førsteordens ODEs. Ligeledes kan man gå den anden vej og omskrive et koblet (jævnfør afsnit \ref{ikke-lin.diff}) system af førsteordens ODEs til en andenordens ODE.
 
 \begin{Example}
 \textnormal{Betragt følgende andenordens ODE:}
-$$y'' - 7y' - 2y = 0 $$
+$$y''(t) - 7y'(t) - 2y(t) = 0 $$
 \begin{align*}
-    y'' &= 2y + 7y'\\
+    y''(t) &= 2y(t) + 7y'(t)\\
 \end{align*}
-\textnormal{Vi giver nu variablerne nye navne}
+\textnormal{Vi giver nu funktionerne nye navne}
 \begin{align*}
-    y_1 &= y\\
-    y_2 &= y' = y_1'\\
-    y_3 &= y'' = y_2'\\
-    y_2' &= 2y_1 + 7y_2\\
+    y_1(t) &= y(t)\\
+    y_2(t) &= y'(t) = y_1'(t)\\
+    y_3(t) &= y''(t) = y_2'(t)
 \end{align*}
 \textnormal{Vi indser da, at vi har et system af differentialligninger på formen:}
 \begin{align*}
-    y_1' &= y_2\\
-    y_2' &= 2y_1 + 7y_2
+    y_1'(t) &= y_2(t)\\
+    y_2'(t) &= 2y_1(t) + 7y_2(t)
 \end{align*}
 \end{Example}

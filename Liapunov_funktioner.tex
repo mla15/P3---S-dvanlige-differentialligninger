@@ -1,3 +1,270 @@
-\section{Liapunov funktioner}
+\section{Lyapunovs metode}
+Lyapunovs metode kan benyttes til at afgøre, hvilken form for stabilitet et ligevægtspunkt har i et system af differentialligninger. Afsnittet er baseret på \citep[s. 266-277]{Svensk}.\\
+\hfill \break
+Vi lader i det følgende $E(\vec{y})$ være en kontinuert differentiabel funktion af $n$ variable. Denne benyttes til at bestemme en funktion, der afbilleder fra $\mathbb{R}^n \to \mathbb{R}$. Da defineres den retningsafledte med hensyn til vektorfeltet, $\vec{f}(\vec{y})$, til at være 
+\begin{equation}
+\dot{E}_f(\vec{y})=\sum_{k=1}^{n} \frac{\partial E}{\partial y_k}(\vec{y}) f_k(\vec{y}),
+\end{equation}
+som også kan skrives som: $\dot{E}_f(\vec{y})=\nabla E(\vec{y}) \cdot \vec{f}(\vec{y}))$\\
+\hfill \break
+Det ses, at kædereglen giver
+\begin{align}
+\frac{dE(\vec{y}(t))}{dt}=\dot{E}_f(\vec{y}(t))
+\end{align}
+for enhver løsning $\vec{y}(t)$ til systemet $\dot{y}=\vec{f}(\vec{y})$\\
+\hfill \break
+Lad nu $y^*$ være et ligevægtspunkt til det autonome system af differentialligninger $\dot{y}=\vec{f}(\vec{y})$. For overskuelighedens skyld kan man antage, at $\vec{y}_0=\vec{0}$, thi man altid kan indføre $\vec{y}-\vec{y}^*$ som ny variabel. Derfor vil origo i det følgende betragtes som ligevægtspunkt for systemet omend andet er noteret.\\
+\hfill \break
+Dette motiverer definitionen af en Lyapunov funktion
+
+\begin{definition}[Lyapunov funktion]\label{lyafunk}
+Lad $\Omega$ være en åben mængde i $\mathbb{R}^n$, som indeholder origo. Betragt en kontinuert differentiabel skalar funktion $E: \mathbb{R}^n \rightarrow \mathbb{R}$.
+$E(\vec{y})$ kaldes en Lyapunov funktion til systemet $\dot{y}=\vec{f}(\vec{y})$, hvor $\vec{f}(\vec{0})=\vec{0}$, såfremt:
+\begin{enumerate}
+  \item $E(\vec{y})>0 \ \ \text{for} \ \vec{y} \in \Omega \setminus \{\vec{0}\}$
+  \item $\dot{E}_f(\vec{y})\leq 0 \ \ \text{for} \ \vec{y} \in \Omega$
+\end{enumerate}
+Hvis $\dot{E}_f(\vec{y})<0, \ \textnormal{for} \ \vec{y}\neq \vec{0}$, kaldes $E$ en streng Lyapunov funktion i $\Omega$.
+  \end{definition}
+  
+  I det følgende vil vi introducere sætninger, der beskriver stabilitet, asymptotisk stabilitet og ustabilitet ved hjælp af Lyapunov funktioner, og til det formål vil vi indføre $\Omega_c$. Lad $\{\vec{y}\in \Omega | E(\vec{y})<c\}$ være en delmængde af $\Omega$, hvor $c>0$ er et arbitrært tal. Da vil vi betegne $\Omega_c$, som mængden af sammenhængende delmængder af $\Omega$ under restriktionen, at $\Omega_c$ indeholder origo samt, at løsningskurverne for $\dot{y}=\vec{f}(\vec{y})$ ikke kan forlade denne.  
+  Disse mængder krymper imod origo, når $c$ aftager mod $0$. For at gøre dette klart betragter vi en lille kugle omkring origo med radius $\varepsilon>0$, hvor man kan antage, at $\varepsilon$ er så lille, at
+  \begin{equation}
+      B_{2\varepsilon}(0)\subseteq \Omega
+  \end{equation}
+  For et $r>0$ har man $B_r(0)\subseteq\Omega$, og fordi $0$ er et indre punkt i $\Omega$, kan man erstatte $\varepsilon$ med $\min(\varepsilon,\frac{r}{2})$. Da er det klart, at  $\overline{B_\varepsilon(0)}\subseteq\Omega$.\\
+  \hfill \break
+    Til ethvert $\varepsilon > 0$ kan man indføre 
+  \begin{equation}
+    c=\inf\{E(\vec{y}) \ | \ ||\vec{y}||=\varepsilon \} 
+  \end{equation}
+  Der gælder, at $c>0$ grundet vilkår 1 i Definition \ref{lyafunk}, og man kan dertil betragte mængden:
+  \begin{equation}
+      \Omega_c=\{ \vec{y}\in \Omega \ | E(\vec{y})<c, ||\vec{y}||<\varepsilon\}.
+  \end{equation}
+  Det er altså klart, at $\Omega_c$ ikke indeholder randen $||\vec{y}||=\varepsilon$. 
+
+%\begin{definition}[]
+%Lad $E(\vec{y})$ være en kontinuert differentiabel funktion af $n$ variable. Den afledte funktion af $E(\vec{y})$ med hensyn til vektorfeltet, $\dot{y}=\vec{f}(\vec{y})$, defineres som \hfill \break
+%\begin{align*}
+%\dot{E}_f(\vec{y})=\sum_{k=1}^{n} \frac{\partial E}{\partial y_k}(\vec{y}) f_k(\vec{y}).
+%\end{align*}
+%\end{definition}
+
+%Man kan skrive $\dot{E}_f(\vec{y})$ som skalarproduktet mellem to vektorer i $\mathbb{R}^n$ ved
+%\begin{align*}
+%\dot{E}_f(\vec{y})=\nabla E(\vec{y})\cdot \vec{f}(\vec{y})
+%\end{align*}   
+%Den afledte funktion af $E$ med hensyn til det autonome system er dermed også den retningsafledte af $E$ i retningen, $\vec{f}(\vec{y})$. \\
 
 
+%Lad nu $y_*$ være et ligevægtspunkt til det autonome system af differentialligninger $\dot{y}=\vec{f}(\vec{y})$. For overskuelighedens skyld, kan man antage at $\vec{y}_0=\vec{0}$, thi man altid kan indføre $\vec{y}-\vec{y}_*$ som ny variabel. Dermed forudsætter vi derfor fremover, at $\vec{f}(\vec{0})=\vec{0}$, altså, at origo er ligevægtspunkt.
+
+%\begin{definition}[Lyapunov funktion]
+%Lad $\Omega$ være en åben mængde i $\mathbb{R}^n$, som indeholder origo. Betragt en kontinuert differentiabel skalar funktion $E: \mathbb{R}^n \rightarrow \mathbb{R}$.
+%$E(\vec{y})$ kaldes en Lyapunov funktion til systemet $\dot{y}=\vec{f}(\vec{y})$, hvor $\vec{f}(\vec{0})=\vec{0}$, såfremt:
+%\begin{enumerate}
+%  \item $E(\vec{y})>0 \ \forall \vec{y} \in \Omega \setminus \{\vec{0}\}$
+%  \item $\dot{E}_f(\vec{y})\leq 0 \ \forall \vec{y} \in \Omega$
+%\end{enumerate}
+%For et åbent område $\Omega$ i en omegn af $\vec{y}_*=\vec{0}$
+%Hvis $\dot{E}_f(\vec{y})<0, \ \textnormal{for} \ \vec{y}\neq \vec{0}$ kaldes $E$ streng Lyapunov funktion i $\Omega$.
+%  \end{definition}
+
+
+
+%Antag at $E(\vec{y})$ er en Lyapunov funktion i det åbne område $\Omega$. Som optakt til Lyapunovs sætninger for autonome systemer introduceres bestemte delmængder af $\Omega$, der defineres ved hjælp af $E(\vec{y})$.
+%Lad $\{\vec{y}\in \Omega | E(\vec{y})<c\}$ være en delmængde af $\Omega$ for et tal $c$. 
+%\hfill \break
+%Lad $\Omega_c$ betegne den sammenhængskomponent af delmængden, der indeholder origo. løsningskurverne for $\dot{y}=f(y)$ kan ikke forlade $\Omega_c$. 
+%\hfill \break
+%Disse mængder krymper imod origo, når $c$ aftager mod $0$. For at gøre dette klart betragter vi en lille kugle omkring origo med radius $\varepsilon>0$. Sæt $c=\inf_{||\vec{y}||=\varepsilon} E(\vec{y})$. Der gælder, at $c>0$ grundet vilkår 1 i Definition 4.7, og dermed $\Omega_c \subseteq \{ \vec{y}\in \mathbb{R}^n |\ E(\vec{y})<c, \ ||\vec{y}||<\varepsilon \}$, men $\Omega_c$ skærer ikke randen $||\vec{y}||=\varepsilon$. 
+%\hfill \break
+\begin{mytheo}{Lyapunovs sætninger for Autonome systemer}{LyapunovSaet}
+Lad $\vec{y^*} = \vec{0}$ være ligevægtspunkt for det autonome system
+$$\dot{y}(t)=\vec{f}(\vec{y}(t))$$
+og lad 
+$$\dot{E}_f(\vec{y})=\nabla E(\vec{y}) \cdot \vec{f}(\vec{y})$$
+være den retningsafledede af Lyapunov funktionen $E(\vec{y})$ med hensyn til $\vec{f}$.
+\begin{enumerate}
+  \item Hvis $E(\vec{y})$ er en Lyapunov funktion  i en åben mængde $\Omega$ i omegnen af $\vec{0}$, så er ligevægtspunktet stabilt.
+  \item Hvis $E(\vec{y})$ er en streng Lyapunov funktion i en åben mængde $\Omega$ omkring $\vec{0}$, så er ligevægtspunktet asymptotisk stabilt.
+\end{enumerate}
+\end{mytheo}
+\begin{proof}
+
+\begin{enumerate}
+  \item Vilkår 2 i Definition \ref{lyafunk} indebærer, at $E(\vec{y})$ aftager langs løsningskurverne. En løsningskurve, som starter i et punkt $\bar{y}$, hvor $E(\bar{y})<c$, kan derfor aldrig passere niveaukurven $E(\vec{y})=c$. For at kunne bevise dette, skal vi tilpasse disse observationer til definitionen af stabilitet, da der indgår kugler og ikke niveaukurver.\\
+  \hfill \break
+  Lad $\varepsilon>0$ være givet. Da kan vi vælge et $c$, så $\Omega_c \subseteq \{\vec{y}\in \mathbb{R}^n | \ ||\vec{y}||<\varepsilon \}$. Mængden $\Omega_c$ er åben og indeholder origo. Derfor findes et tal $\delta > 0$, hvorom der gælder, at mængden $\{\vec{y} \ |\ ||\vec{y}||<\delta\} \subseteq \Omega_c$.
+  Da $E(\vec{y})$ er aftagende langs løsningskurverne gælder også, at:
+  \begin{align*}
+  \vec{y}(0)\in \Omega_c \Rightarrow \vec{y}(t) \in \Omega_c, \ \forall t\geq 0
+  \end{align*}
+  Det følger derved også, at:
+  \begin{align*}
+  ||\vec{y}(0)||<\delta \Rightarrow ||\vec{y}(t)|| < \varepsilon \ \forall t \geq 0
+  \end{align*}
+  Dette vil sige, at origo er stabilt ligevægtspunkt.
+  
+  \item  Definér $\Omega_c = \{\vec{y}\in \mathbb{R}^n | E(\vec{y}) < c\} \subseteq \mathbb{R}^n$. På grund af dette kan vi, ved at vælge tilstrækkeligt små $c$, antage, at  $\Omega_c$ er begrænset og, at komplementarmængden $\bar{\Omega}_c \subseteq \Omega.$ \hfill \break
+  Betragt en løsning $\vec{y}(t)$ til systemet, hvorom der gælder $\vec{y}(0) \in \Omega_c$. Da $E(\vec{y})$ aftager langs løsningskurverne ved vi, at dette også betyder, at $\vec{y}(t) \in \Omega_c, \ \forall t\geq 0$. Funktionen givet ved $t \mapsto E(\vec{y}(t))$ er aftagende og nedadtil begrænset med $$E_0 := \lim_{t\to \infty} E(\vec{y}(t)) .$$ Den har altså en grænseværdi $E_0 \geq 0$ for $t \to \infty$. \\
+  \hfill \break
+  Da $E$ er positiv, mangler vi bare at vise, at $E_0=0$, for så følger det, at $ \lim_{t \to \infty} \vec{y}(t)=\vec{0}$. 
+  Dette bevises ved modstrid: Antag at $E_0>0$. Da findes en radius $r>0$, hvorom der gælder, at:
+  $$||\vec{y}||<r \Rightarrow E(\vec{y})< E_0.$$ Yderligere kan vi definere en mængde $\Delta=\{\vec{y}\in \bar{\Omega}_c \ | \ ||\vec{y}||\geq r\}$. Da gælder det, at
+  \begin{align*}
+    \vec{y}(t) \in \Delta, \ \forall t \geq 0
+  \end{align*}
+  Det ses da, at mængden $\Delta$ er kompakt. Hvis vi definérer et tal $k$ sådan, at $-k=max_{\Delta}\dot{E}_f(\vec{y})$, så er $-k<0$ og derved
+  \begin{equation}\label{eq48}
+  \frac{dE(\vec{y}(t))}{dt}\leq-k, \ \forall t\geq 0
+  \end{equation}
+  Dette betyder, at $E(\vec{y}(t)) \to -\infty$ for $t\to \infty$. Dette er en modstrid, da vi har antaget at $E_0>0$. Dermed må $E_0=0$, og $E(\vec{y}(t)) \to 0$ for $t \to \infty$, da $E(\vec{y}(t))$ er en aftagende funktion. Deraf gælder også, at $\vec{y}(t) \to \vec{0}$ for $t \to \infty$.
+\end{enumerate}
+\end{proof}
+
+%Det ligger implicit i ovenstående bevis, at $\vec{y}(t) \to \vec{0} \textnormal{for} t \to \infty$, da man ellers ville kunne finde et $\varepsilon > 0$, så $\vec{y}(t)$ for hvilket, $B_{\varepsilon_0}(0)$ vil være falsk for vilkårligt store $t$
+
+\begin{definition}[Asymptotisk stabilt område]
+Et område $A \subseteq \mathbb{R}^n$, hvor 
+\begin{align*}
+    \vec{y}(0) \in A \Rightarrow \lim_{t\to \infty} \vec{y}(t)=\vec{0}
+\end{align*}
+kaldes asymptotisk stabilt. Hvis området er $A=\mathbb{R}^n$ siges origo (ligevægtspunktet) at være globalt asymptotisk stabilt.
+\end{definition}
+
+\begin{koro}{}{lyasaet442} 
+ Lad $\Omega \subseteq \mathbb{R}^n$ være en åben delmængde, der indeholder $\vec{0}$ og antag, at $E$ er en streng Lyapunov funktion til systemet $\dot{y}=\vec{f}(\vec{y})$ i $\Omega$. Hvis $\Omega_c=\{\vec{y}\in \Omega | E(\vec{y})<c\}$ er opadtil begrænset og $\bar{\Omega}_c\subseteq \Omega$, så gælder, at
+\begin{align*}
+\vec{y}(0)\in \Omega_c \Rightarrow \vec{y}(t)\to \vec{0} \ \text{for} \ t \to \infty
+\end{align*}
+\end{koro}
+\begin{proof}\\
+Dette følger af beviset for 2. i Sætning \ref{th:LyapunovSaet}
+\end{proof}
+\begin{koro}{}{}
+Antag at $\Omega=\mathbb{R}^n$ og, at $E$ er en streng Lyapunov funktion til systemet $\dot{y}=\vec{f}(\vec{y})$ med egenskaben, at $E(\vec{y})\to \infty$ for $||\vec{y}|| \to \infty$. Så er
+\begin{align*}
+    \lim_{t \to \infty} \vec{y}(t)=\vec{0}
+\end{align*}
+for enhver løsning til systemet.
+\end{koro}
+\begin{proof}\\
+Da $E(\vec{y})\to \infty$ for $||\vec{y}|| \to \infty$ må mængden $\Omega_c$ være begrænset for ethvert $c$. Derudover gælder, at $\vec{y}(0) \in \Omega_c$ for et tilfældigt $c$. Jævnfør Sætning \ref{th:lyasaet442} konvergerer $\vec{y}(t)$ mod origo for $t \to \infty$
+(Det er kun indirekte vist)
+\end{proof}
+
+\begin{Example}
+\textnormal{Betragt systemet}
+\begin{align*}
+    y_1'(t)&=-3y_1(t)-2y_2(t)^2 \\
+    y_2'(t)&=-2y_1(t)^2-4y_2(t)
+\end{align*}
+\textnormal{med origo som ligevægtspunkt. Funktionen $E(y_1,y_2)=y_1^2+y_2^2$ er streng Lyapunov funktion, da $E>0 \ \forall \vec{y} \in \mathbb{R}^2\setminus \vec{0}$, og}
+\begin{align*}
+    \dot{E}_f(y_1,y_2)&=\nabla E(y_1,y_2)\cdot \vec{f}(y_1,y_2)\\
+    &=2y_1(-3y_1-2y_2^2)+2y_2(-2y_1^2-4y_2)\\
+    &=-2(y_1(3y_1+2y_2^2)+y_2(2y_1^2+4y_2))\\
+    &=-2(3y_1^2+2y_2^2y_1+2y_1^2y_2+4y_2^2)\\
+    &=-2(y_1^2(2y_2+3)+y_2^2(2y_1+4))
+\end{align*}
+\textnormal{Dermed er $\dot{E}_f(y_1,y_2)<0$ for $y_1>-2, \ y_2 > -\frac{3}{2}$ \hfill \break
+Origo er dermed et asymptotisk stabilt ligevægtspunkt.}
+\end{Example}
+
+\begin{Example}\label{fjedereks}
+\textnormal{Betragt differentialligingen}
+\begin{align*}
+    y''(t)+cy'(t)+g(y(t))=0,
+\end{align*}
+\textnormal{hvor $g$ er en kontinuert funktion sådan, at $g(0)=0$, og}
+\begin{align*}
+    yg(y)>0, \ y\neq 0,
+\end{align*}
+\textnormal{samt $c$ er en positiv konstant. Denne ligning beskriver bevægelsen af et legeme, påvirket af en fjeder, langs y-aksen. funktionen $g(y)$ angiver fjederkraften, da denne er proportional med udstrækningen af fjederen, $cy'$ er dæmpningen ved friktion, der antages at være proportional med hastigheden, mens $y''$ er accelerationen af legemet.\\ \hfill \break
+Denne ligning kan omskrives til et system af førsteordens differentialligninger ved at substituere $y_1=y$ og $y_2=y'$:}
+\begin{align*}
+    y_1'&=y_2\\
+    y_2'&=-g(y_1)-cy_2
+\end{align*}
+\textnormal{Man kan forestille sig, at den totale energi i systemet kunne være en Lyapunov funktion. Dermed:}
+\begin{align*}
+    E(\vec{y})=\frac{1}{2}y_2^2+V(y_1), \ \textnormal{hvor}\ V(y)=\int_0^yg(s)ds
+\end{align*}
+\textnormal{Da $yg(y)>0, \ y\neq 0$ må $V(y_1)>0, \ y_1 \neq 0$. Dermed må $E(\vec{y})>0$, og første betingelse er opfyldt. Vi undersøger nu, om anden betingelse er opfyldt:}
+\begin{align*}
+    \dot{E}_f(\vec{y})=g(y_1)y_2+y_2(-g(y_1)-cy_2)=-cy_2^2\leq 0
+\end{align*}
+\textnormal{Dermed er $E$ altså en Lyapunov funktion, og origo er et stabilt ligevægtspunkt. Vi kan se, at $E$ derimod ikke er en streng Lyapunov funktion og kan derfor ikke afgøre, om origo er et asymptotisk stabilt ligevægtspunkt.}
+\end{Example}
+Anden del i Sætning \ref{th:LyapunovSaet} og Sætning \ref{th:lyasaet442} skal altså udvides, så det er muligt at påvise/afvise asymptotisk stabilitet i Eksempel \ref{fjedereks}.
+\begin{mytheo}{Skærpelse af vilkår for asymptotisk stabilitet}{}
+Lad $E(\vec{y})$ være Lyapunov funktion til systemet $\dot{y}=\vec{f}(\vec{y})$ i en åben mængde, $\Omega$, som inderholder origo, og lad $\vec{y^*}=\vec{0}$. Hvis origo er den eneste løsningskurve i $\Omega$, der er indeholdt i mængden $\{\vec{y}\in \Omega | \dot{E}_f(\vec{y})=0\}$, så er origo et asymptotisk stabilt ligevægtspunkt. Hvis $\Omega_c$ er begrænset og $\bar{\Omega}_c\subseteq \Omega$, så gælder, at
+\begin{align*}
+    \vec{y}(0)\in \Omega_c \Rightarrow \lim_{t \to \infty} \vec{y}(t)= \vec{0}
+\end{align*}
+\end{mytheo}
+\begin{proof}\\
+Som i beviset for 2. i Sætning \ref{th:LyapunovSaet} eksisterer en grænse
+\begin{align*}
+    E_0=\lim_{t\to \infty} E(\vec{y}(t)),
+\end{align*}
+fordi $\vec{y}(t)$ er en løsning med $\vec{y}(0)\in \Omega_c$.\\
+\hfill \break
+Antag  for modstrid, at $\vec{y}(t)$ ikke går mod origo for $t\to \infty$. Ifølge Bolzano Weierstrass' sætning \citep[s. 322]{Svensk}  findes en følge $(t_k)_{k=1}^\infty$, så $t_k\to \infty$ for $k\to \infty$, mens $\vec{y}(t_k)$ konvergerer mod et punkt $\bar{y}\neq \vec{0}$ i $\Omega_c$. Dette viser sig at være umuligt.\\
+\hfill \break
+Lad $y(s)$ betegne den løsning til systemet $\dot{y}=\vec{f}(\vec{y})$, der har begyndelsesværdi $\vec{y}(0)=\bar{y}$. Dette vil sige, at $\vec{y}(t_k)$ konvergerer mod $\vec{y}(0)$ for $k \to \infty$. Hvis vi sætter $\vec{y}_k(s)=\vec{y}(t_k+s)$, da tilfredstiller alle funktionerne $\vec{y}_k(s)$, hvor $k=1,2,3,\hdots$, og $\vec{y}(s)$ ligningen $\dot{y}=\vec{f}(\vec{y})$, og der fås 
+\begin{align*}
+    \vec{y}_k(0)\to \vec{y}(0) \ for \ k \to \infty.
+\end{align*}
+Det følger af Sætning 9 i \citep[s. 63]{Svensk}, at
+\begin{align*}
+    \vec{y}_k(s)\to \vec{y}(s) \ for \ k \to \infty \ \forall s \geq 0,
+\end{align*}
+eftersom $E(\vec{y})$ er kontinuert, så gælder, at 
+\begin{align*}
+    E(\vec{y}(s))=\lim_{k\to \infty}E(\vec{y}_k(s))=E_0,
+\end{align*}
+hvis dette differentieres med hensyn til $s$ vil 
+\begin{align*}
+    \dot{E}_f(\vec{y}(s))=0 \ \forall s \geq 0
+\end{align*}
+Dermed må løsningskurven for $\vec{y}(s)$ altså være indeholdt i $\{\vec{y}\in \Omega \ | \ \dot{E}_f(\vec{y})=0 \}$. Dette indebærer, at $\vec{y}(s)\equiv 0$, og dermed er $\bar{y}=\vec{y}(0)=0$. Da må $\vec{y}(t)$ nødvendigvis konvergere imod origo for $t \to \infty$ og ikke mod et andet punkt.
+\end{proof}
+
+\hfill \break
+Det kan nu afgøres, om origo er asymptotisk stabilt ligevægtspunkt i Eksempel \ref{fjedereks}, 
+da 
+\begin{align*}
+    \dot{E}_f(\vec{y})=0 \Leftrightarrow y_2=0.
+\end{align*}
+Men da retningsfeltet $(0,-g(y_1))$ på $y_1$-aksen er parallelt med $y_2$-aksen og dermed ikke er nul udenfor origo, så vil enhver løsningskurve, der starter på $y_1$-aksen også umiddelbart forlade denne. Dermed er origo asymptotisk stabilt ligevægtspunkt.\\
+\hfill \break
+Lige såvel som at undersøge hvorvidt et ligevægtspunkt henholdsvis er asymptotisk stabilt og stabilt, kan man undersøge om ligevægtspunktet er ustabilt.
+\begin{mytheo}{Vilkår for ustabilitet}{}
+Lad $\Omega\subseteq \mathbb{R}^n$ være en åben delmængde, der indeholder origo, og lad $\dot{y}=\vec{f}(\vec{y})$ være et system af differentialligninger, hvor $\vec{f}(\vec{0})=\vec{0}$. Antag nu, at der findes en åben delmængde $\Omega'\subseteq\Omega$ og en kontinuert differentiabel funktion $G(\vec{y})$ på $\Omega$ med følgende egenskaber:
+\begin{enumerate}
+  \item $\vec{0} \in \overline{\Omega'}$ \\
+  \item $G(\vec{y})>0, \ \dot{G}_f(\vec{y})>0$ for $\vec{y}\in \Omega'$\\
+  \item $G(\vec{y})=0$ i $\partial \Omega ' \cap \Omega$, hvor $\partial \Omega'$ betegner mængden af randpunkter for $\Omega'$ \\
+\end{enumerate}
+Så er origo et ustabilt ligevægtspunkt til systemet $\dot{y}=\vec{f}(\vec{y})$
+\end{mytheo}
+\begin{proof}\\
+Fra definitionen af stabilitet af ligevægtspunkter er origo ustabilt ligevægtspunkt, hvis der findes et område $D_{\varepsilon}=\{\vec{y}\in \Omega' \ | \ ||\vec{y}||<\varepsilon\}$, hvorom der gælder, at der findes løsningskurver med begyndelsespunkt i en omegn af origo, der forlader $D_{\varepsilon}$. Der føres et indirekte bevis for at vise dette, og det antages derfor, at $\vec{y}$ ikke forlader $D_{\varepsilon}$.\\
+\hfill \break
+Lad $\vec{y}(t)$ være løsning til systemet $\dot{y}=\vec{f}(\vec{y})$ med $\vec{y}(0)\in \Omega'$. Vælg et $\eta> 0$ så $G(\vec{y}(0))>\eta$ og lad
+\begin{align*}
+    \Delta = \{\vec{y}\in \Omega' \ | \ ||\vec{y}||\leq \varepsilon, \ G(\vec{y})\geq \eta\}
+\end{align*}
+Dette område er kompakt, da det er fællesmængden mellem en kompakt og en lukket mængde. Nu indføres
+\begin{align*}
+    k=\min_{\Delta}\dot{G}_f(\vec{y}),
+\end{align*}
+hvor $k>0$. Da G er kontinuert differentiabel, antager $\dot{G}_f$ et infimum på $\Delta$, og dette vil være et minimum. Fra Ligning \eqref{eq48} gælder der, for $\vec{y} \in \Delta$, at:
+\begin{align*}
+    \frac{dG(\vec{y}(t))}{dt}\geq k
+\end{align*}
+Dermed vil der ved integration gælde, at $G(\vec{y}(t))\geq kt+G(\vec{y}(0))$, når $\vec{y}(t)\in \Delta$. Da $G$ er kontinuert, må den antage sit supremum, og da uligheden siger, at G mindst vokser lineært med $t$, følger det, at $\vec{y}(t)$ må forlade $\Delta$, og dermed også området $D_{\varepsilon}$.
+\end{proof}

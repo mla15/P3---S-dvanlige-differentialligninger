@@ -1,0 +1,93 @@
+
+\newlength{\realparindent}
+\newlength{\realparskip}
+\setlength{\realparindent}{\parindent}
+\setlength{\realparskip}{\parskip}
+
+
+
+\begin{nopagebreak}
+{
+\begin{center}
+    \samepage
+    \begin{tabular*}{\textwidth}{@{} l @{\extracolsep{\fill}}r@{}}
+        \parbox[b]{11cm}{
+            {\LARGE Aalborg Universitet} \\
+            {\large Det Teknisk-Naturvidenskabelige Fakultet}\\
+            {\large Instituttet For Matematiske Fag}
+        }
+        & \includegraphics[width=4cm]{aau_logo} \\
+        \hline
+    \end{tabular*}
+    \vspace{0.4cm}
+
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \multicolumn{2}{@{}l@{}}{
+            \begin{minipage}[t]{1.0\textwidth}
+                \begin{description}
+                    \item[Titel:]~\\
+                    Rovdyr-byttedyr
+                    \vspace{0.5cm}
+                \end{description}
+            \end{minipage}
+        }\\
+        \begin{minipage}[t]{0.49\textwidth}
+            \begin{description}
+                \item[Tema:]~\\
+                Sædvanlige differentialligninger
+                \vspace{0.5cm}
+                \item[Projektperiode:]~\\
+                P3, 2. september - 21. december 2016
+                \vspace{0.5cm}
+
+                \item[Projektgruppe:]~\\
+                Gruppe G4-107
+                \vspace{0.5cm}  
+                \item[Gruppemedlemmer:]~\\
+                Amalie Rhode Høgh Nielsen 
+
+                Bue Juul Poulsgaard
+                
+                Emil Egekvist
+                
+                Mikkel Højlund Larsen
+                
+                Nicklas Søndergaard Pedersen
+                
+                Terkel Haar Jakobsen
+                
+                Thomas Dam Petersen
+             
+                \vspace{0.5cm}
+                \item[Vejledere:]~\\
+                Jon Johnsen
+                \vspace{0.5cm}
+                
+                \item[Sideantal:]
+                ?
+                \item[Bilagsantal:]
+                ?
+                \item[Afsluttet den:]
+                19/12-2016
+            \end{description}
+        \end{minipage}
+        &
+        \fbox{
+            \begin{minipage}[t]{0.45\textwidth}
+                \textbf{Synopsis:}\\
+                % Der skal være normale afsnits-indryk,
+                % selv om teksten står i en minipage:
+                \setlength{\parindent}{\realparindent}
+                \setlength{\parskip}{\realparskip}
+                {\small 
+                    \input{synopsis}
+                }
+            \end{minipage}
+        }
+        \\
+    \end{tabular*}
+\end{center}
+}
+
+\tiny{Rapportens indhold er frit tilgængeligt, men offentliggørelse (med kildeangivelse) må kun ske efter aftale med forfatterne.}
+\end{nopagebreak}

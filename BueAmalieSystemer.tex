@@ -1,59 +1,57 @@
 \chapter{System af differentialligninger}
 
 \section{Differentialligningssystemer}
-For at kunne analysere Lotka-Volterra's model, skal man kende til differentialligningssystemers opbygning og forskellige variationer deraf. Vi har tidligere indført notationen for $\vec y$, og denne vil vi nu videreføre i følgende kapitel, hvor $\vec y$ benyttes i forbindelse med systemer af differentialligninger. 
+For at kunne analysere Lotka-Volterra's model skal man kende til differentialligningssystemers opbygning og forskellige variationer deraf. Afsnittet er baseret på \citep[afsnit 1.1 og 2.1]{Perko}
 
 \begin{definition}[Et førsteordens differentialligningssystem] \label{ikke-lin.diff}
-Et differentialligningssystem af første orden, er et system, der kan skrives på formen
-$$\dot{y}=\vec{f}(t, \vec{y}),$$
-hvor $f: E \to \mathbb{R}^n$ og $E$ er et åbent interval af $\mathbb{R}^n$ og
-$$\dot{y} = \frac{d\vec{y}}{dt} = 
+Et \textbf{differentialligningssystem af første orden}, er et system, der kan skrives på formen
+$$\dot{y}(t)=\vec{f}(t, \vec{y}(t)),$$
+hvor $f: E \to \mathbb{R}^n$ og $E$ er et åbent delinterval af $\mathbb{R}^n$ og
+$$\dot{y}(t) = \frac{d\vec{y(t)}}{dt} = 
 \begin{bmatrix}
-\frac{dy_1}{dt} \\
-\frac{dy_2}{dt}\\
+\frac{dy_1(t)}{dt} \\
+\frac{dy_2(t)}{dt}\\
 \vdots \\
-\frac{dy_n}{dt}
+\frac{dy_n(t)}{dt}
 \end{bmatrix}
 =
 \begin{bmatrix}
-f_1(t, y_1, y_2, \hdots, y_n)\\
-f_2(t, y_1, y_2, \hdots, y_n)\\
+f_1(t, y_1(t), y_2(t), \hdots, y_n(t))\\
+f_2(t, y_1(t), y_2(t), \hdots, y_n(t))\\
 \vdots \\
-f_n(t, y_1, y_2, \hdots, y_n)
+f_n(t, y_1(t), y_2(t), \hdots, y_n(t))
 \end{bmatrix}$$
 \end{definition}
 
-Der findes indenfor differentialligningssystemer både ikke-koblede og koblede systemer. Sådanne systemer defineres nu.
-\begin{definition}[Koblet system/Ikke-koblet]
-Et koblet system skrives på formen
-$$\dot{y}=\vec{f}(t,\vec{y}),$$ hvor differentialligningerne afhænger af flere variabler:
-$$\begin{bmatrix}
-\frac{dy_1}{dt} \\
-\frac{dy_2}{dt}\\
+Der findes indenfor differentialligningssystemer koblede systemer. Sådanne systemer defineres nu.
+
+\begin{definition}[Ikke-koblet/koblet system] \label{ikke-kobletsystem}
+Et differentialligningssystem der skrives på formen
+$$\dot{y}(t)=\begin{bmatrix}
+\frac{dy_1(t)}{dt} \\
+\frac{dy_2(t)}{dt}\\
 \vdots \\
-\frac{dy_n}{dt}
-\end{bmatrix}
-=
-\begin{bmatrix}
-f_1(t, y_1, y_2, \hdots, y_n)\\
-f_2(t, y_1, y_2, \hdots, y_n)\\
+\frac{dy_n(t)}{dt}
+\end{bmatrix}=\begin{bmatrix}
+f_1(t, y_1(t))\\
+f_2(t, y_2(t))\\
 \vdots \\
-f_n(t, y_1, y_2, \hdots, y_n)
-\end{bmatrix}$$
-Hvis det ikke er et koblet system, kaldes det for et ikke-koblet system.
+f_n(t, y_n(t))
+\end{bmatrix},$$
+kaldes for et \textbf{ikke-koblet system}. Et system, der ikke kan skrives på denne form, kaldes for et \textbf{koblet system}.
 \end{definition}
-Koefficientmatricen for et ikke-koblet system, er en diagonal matrix. Bemærk at ikke-koblede lineære systemer kan løses ved hjælp af separation af variable(\ref{th:LSD}).
+Koefficientmatricen for et ikke-koblet system er en diagonal matrix. Bemærk at ikke-koblede lineære systemer kan løses ved hjælp af separation af variable, jævnfør sætning \ref{th:LSD}.
 
 \begin{Example}
 \textnormal{ \hfill \break
 Betragt det ikke-koblede differentialligningssystem:}
 \hfill \break
 \begin{align*}
-    y_1(t) &= 2y_1\\
-    y_2(t) &= y_2\\
-    y_3(t) &= -y_3
+    y_1'(t) &= 2y_1(t)\\
+    y_2'(t) &= y_2(t)\\
+    y_3'(t) &= -y_3(t)
 \end{align*}
-\textnormal{Da kan vi skrive systemet som i \ref{ikke-lin.diff}, hvor}
+\textnormal{Da kan vi skrive systemet som i definition \ref{LinSys}, hvor}
 \hfill \break
 \[ A =
 \begin{bmatrix}
@@ -71,87 +69,202 @@ Betragt det ikke-koblede differentialligningssystem:}
 
 \end{Example}
 
-\begin{Example}\textnormal{
-\hfill \break
-Betragt det koblede differentialligningssystem:}
-\begin{align*}
-    y_1(t) &= -y_1-y_3\\
-    y_2(t) &= 4y_1-y_2-3y_3\\
-    y_3(t) &= 2y_1-4y_3
-\end{align*}
-\textnormal{Da kan vi skrive systemet som i \ref{ikke-lin.diff}, hvor}
-\hfill \break
-\[ A =
-\begin{bmatrix}
--1 & 0 & -1\\
-4 & -1 & -3\\
-2 & 0 & -4\\
-\end{bmatrix},
-\]
-\textnormal{Et koblet differentialligninssystem kan løses vha. Laplace transformation?????????????} 
-\end{Example}
-
-Af definition \ref{ikke-lin.diff} fremgår det at $\dot{y}$ afhænger af $t$, et sådant system kaldes for ikke-autonomt:
-\begin{definition}[Autonomitet]
+Af definition \ref{ikke-lin.diff} fremgår det at $\vec{f}$ kan afhænge eksplicit af $t$. Hvis det ikke er tilfældet, kaldes systemet autonomt:
+\begin{definition}[Autonomitet]\label{autonom}
 Et system på formen
-$$\dot{y}=\vec{f}(\vec{y}),$$
-hvor $$\vec{y}=
+$$\dot{y}(t)=\vec{f}(\vec{y}(t)),$$
+hvor $$\vec{y}(t)=
 \begin{bmatrix}
 y_1(t) \\
 y_2(t) \\
 \vdots \\
 y_n(t)
-\end{bmatrix} \ \textnormal{og} \ \vec{f}(\vec{y})=\begin{bmatrix}
-f_1(\vec{y}) \\
-f_2(\vec{y}) \\
+\end{bmatrix} \ \textnormal{og} \ \vec{f}(\vec{y}(t))=\begin{bmatrix}
+f_1(\vec{y}(t)) \\
+f_2(\vec{y}(t)) \\
 \vdots \\
-f_n(\vec{y})
+f_n(\vec{y}(t))
 \end{bmatrix},$$ \\
-kaldes for autonomt, og hvis det ikke er autonomt kaldes det for ikke-autonomt.
+kaldes for \textbf{autonomt}, og hvis det ikke er autonomt kaldes det for \textbf{ikke-autonomt}.
 \end{definition}
 
-Et differentialligningssystem, på formen $$\dot{y}=\vec{f}(t, \vec{y}),$$ kaldes som sagt for et ikke-lineært system. Nu defineres lineære differentialligningssystemer.
+Nu defineres lineære differentialligningssystemer.
 
-\begin{definition}[Lineært førsteordens differentialligningssystem]\label{LinSys}
-Et lineært differentialligningssystem, er et system, der kan skrives på formen
-$$\dot{y} = A \vec{y}$$
-hvor $y \in \mathbb{R}^n$ og $A$ er en $n\times n$ matrix og
-$$\dot{y} = \frac{d\vec{y}}{dt} = 
+\begin{definition}[Autonomt lineært førsteordens differentialligningssystem]\label{LinSys}
+Et \textbf{autonomt lineært differentialligningssystem} er et system, der kan skrives på formen
+\begin{equation} \label{linsys}
+    \dot{y}(t) = A \vec{y}(t)
+\end{equation}
+hvor $\vec{y(t)} \in \mathbb{R}^n$ og $A$ er en $n\times n$ koefficientmatrix så:
+$$\dot{y}(t)
+=
 \begin{bmatrix}
-\frac{dy_1}{dt} \\
-\frac{dy_2}{dt}\\
+a_{11}(t)y_1(t)+ \hdots + a_{1n}(t)y_n(t)\\
+a_{21}(t)y_1(t)+ \hdots + a_{2n(t)}y_n(t)\\
 \vdots \\
-\frac{dy_n}{dt}
+a_{n1}(t)y_1(t)+ \hdots + a_{nn}(t)y_n(t)
 \end{bmatrix}
 =
 \begin{bmatrix}
-a_{11}(t)y_1+a_{12}(t)y_2+ \hdots + a_{1n}(t)y_n\\
-a_{21}(t)y_1+a_{22}(t)y_2+ \hdots + a_{2n(t)}y_n\\
-\vdots \\
-a_{n1}(t)y_1+a_{n2}(t)y_2+ \hdots + a_{nn}(t)y_n
+a_{11}(t) & \hdots & a_{1n}(t) \\
+a_{21}(t) & \hdots & a_{2n}(t) \\
+\vdots & \vdots & \vdots & \\
+a_{n1}(t) & \hdots & a_{nn}(t) \\
+\end{bmatrix}
+\begin{bmatrix}
+y_1(t)\\
+y_2(t)\\
+\vdots\\
+y_n(t)
 \end{bmatrix}$$
 \end{definition}
 \hfill \break
-Givet et IVP: $y(0) = y_0$, kan vi finde en løsning til det lineære ligningssystem, som vist ovenfor, givet ved:
-$$y(t) = e^{At}y_0$$
-Ved at se på definitionen for lineære differentialligningssystemer, kan det udledes, at $e^{AT}$ er en $n\times n$ matrix, som kan findes ved hjælp af taylorpolynomier.%(forklaring? xD Hvordan kommer vi egentlig frem til $e^{AT}$?) Smid en reference til prop: 2.4.4.
+Givet en begyndelsesbetingelse: $y(0) = y_0$, kan vi finde en løsning til det autonome lineære ligningssystem, som vist ovenfor, ved hjælp af Laplace transformartion. 
 
-\subsection{Den Fundamentale sætning for lineære systemer}
+\begin{Example}\textnormal{
+\hfill \break
+Betragt det autonome lineære koblede førsteordens differentialligningssystem:}
+\begin{align*}
+    y_1'(t) &= 2y_1(t)-y_2(t)\\
+    y_2'(t) &= 4y_1(t)+5y_2(t)
+\end{align*}
 
-For et lineært systems koefficientmatrix, A, gælder:
-\begin{lemma}{}{}
-Lad $A$ være en kvadratisk matrix, så vil:
-$$\frac{d}{dt}e^{At} = Ae^{At}$$
+\textnormal{hvor $y_1(0)=1$ og $y_2(0)=0$}
+\hfill \break
+
+\textnormal{Vi begynder med at bruge Laplacetransformationen på begge ligninger:}
+
+\begin{align*}
+\mathcal{L}(y_1') &=2\mathcal{L}(y_1)+\mathcal{L}(y_2) \\
+\mathcal{L}(y_2') &=4\mathcal{L}(y_1)+5\mathcal{L}(y_2)
+\end{align*}
+
+\textnormal{Da indsættes begyndelsesbetingelserne og vi kan omskrive:}
+
+\begin{align*}
+    sY_1(s)-1 &= 2Y_1(s) + Y_2(s) \\
+    1 &= (s-2)Y_1(s) - Y_2(s) \\
+    Y_1(s) &= \frac{1+Y_2(s)}{s-2}
+\end{align*}
+
+\begin{align*}
+    sY_2(s)-0 &= 4Y_1(s) + 5Y2(s) \\
+    0 &= -4Y_1(s)+(s-5)Y_2(s) \\
+    Y_2(s) &= \frac{4Y_1(s)}{s-5}
+\end{align*}
+
+\textnormal{Vi har nu løsningerne:}
+
+\begin{align*}
+    1 &= (s-2)Y_1(s) - \frac{4Y_1(s)}{s-5} \\
+    Y_1(s) &= \frac{s-5}{(s-6)(s-1)}
+\end{align*}
+
+\begin{align*}
+    0 &= -4 \left( \frac{1+Y_2(s)}{s-2}\right) +(s-5)Y_2(s) \\
+    Y_2(s) &= \frac{4}{(s-6)(s-1)}
+\end{align*}
+
+\textnormal{For at finde den inverse Laplacetransformation til dette kan man med fordel benytte stambrøks dekomposition, men dette vil ikke foretages i eksemplet.}
+
+\end{Example}
+\subsection{Løsning af systemer ved brug af egenværdier}
+Dette afsnit er baseret på \citep[afsnit 5.4]{EP}
+\begin{mytheo}{Egenværdi løsninger af $\dot{y}(t) = A \vec{y}(t)$ }{}
+Lad $\lambda$ være en egenværdi for $A$-matricen i det førsteordens lineære system:
+$$\dot{y}(t) = A \vec{y}(t).$$
+Hvis $\vec{v}$ er en egenvektor tilhørende $\lambda$, så er 
+$$\vec{y}(t)=\vec{v}e^{\lambda t}$$
+en ikke triviel løsning til systemet
+\end{mytheo}
+\begin{proof}\\
+Lad 
+$$\dot{y}(t) = A \vec{y}(t)$$
+være et førsteordens lineært differentialligningssystem. Sættes $\vec{y}(t)=\vec{v}e^{\lambda t}$ med den afledede $\dot{y}(t)=\lambda \vec{v}e^{\lambda t}$ ind i overstående ligning, får vi:
+\begin{equation*}
+\begin{split}
+    \lambda \vec{v}e^{\lambda t}&=A\vec{v}e^{\lambda t} \Leftrightarrow \\
+    A\vec{v}&=\lambda \vec{v}
+   \end{split}
+\end{equation*}
+Altså vil $\vec{y}(t)=\vec{v}e^{\lambda t}$ være en ikke triviel løsning til systemet, hvis $\lambda$ er en egenværdi for $A$ med tilhørende egenvektor $\vec{v}$.
+\end{proof} \\
+
+\begin{lemma}{Lineært uafhængige løsninger}{}
+Lad $\vec{y_1}, \hdots ,\vec{y_k}$ være løsninger til ligning  \eqref{linsys} i et interval $I$ og betegn løsningsrummet med $V$. Da er følgende udsagn ækvivalente:
+\begin{enumerate}
+    \item $\vec{y_1}, \hdots ,\vec{y_k}$ er lineært uafhængige i $V$
+    \item $\vec{y_1}(t), \hdots ,\vec{y_k}(t)$ er lineært uafhængige i $\mathbb{R}^n$ for alle $t \in I$
+    \item Der eksisterer et $t_0$, så $\vec{y_1}(t_0), \hdots ,\vec{y_k}(t_0)$ er lineært uafhængige i $\mathbb{R}^n$ for $t_0 \in I$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Vi vil vise at $1. \Rightarrow 2. \Rightarrow 3. \Rightarrow 1. $ \\ \hfill \break
+$1. \Rightarrow 2.$: \\ Vi vil bevise dette ved kontraposition, altså vil vi vise, at hvis $\vec{y_1}(t), \hdots ,\vec{y_k}(t)$ er lineært afhængige i $\mathbb{R}^n$, så er $\vec{y_1}, \hdots ,\vec{y_k}$ lineært afhængige i $V$. \\
+\hfill \break
+Antag at der eksisterer et $t_0$ således, at $\vec{y_1}(t_0), \hdots ,\vec{y_k}(t_0)$ er lineært afhængige i $\mathbb{R}^n$. Så findes der koefficienter $\lambda_i \in \mathbb{R}$, som ikke alle er nul således, at $\sum_{i=1}^k \lambda_i\vec{y_i}(t_0)=\vec{0}$. Betragtes de to funktioner:
+\begin{equation*}
+    \vec{y}= \sum_{i=1}^k \lambda_i\vec{y_i} \ \ \ \textnormal{og} \ \ \ \vec{y}=\vec{0}
+\end{equation*}
+ses det, at de begge er løsninger til $IVP$'et $\dot{y}=A\vec{y}(t), \ y(t_0)=\vec{0}$, og de er dermed lig hinanden grundet $EESFS$ (se næste side). Dette vil altså sige, at $\sum_{i=1}^k \lambda_i\vec{y_i}= \vec{0}$, og funktionerne $\vec{y_1}, \hdots ,\vec{y_k}$ er dermed lineært afhængige i $V$. \\ 
+\hfill \break
+$2. \Rightarrow 3.$: \\ Trivielt \\ 
+\hfill \break
+$3. \Rightarrow 1.$: \\
+Antag at $\sum_{i=1}^k \lambda_i\vec{y_i}=\vec{0}$, det vil sige, at $\sum_{i=1}^k \lambda_i\vec{y_i}(t)=\vec{0}$ for alle $t \in I$. Sæt $t=t_0$. Så får vi, at $\sum_{i=1}^k \lambda_i\vec{y_i}(t_0)=\vec{0}$, og da $\vec{y_1}(t_0), \hdots ,\vec{y_k}(t_0)$ er lineært uafhængige, følger det, at $ \lambda_1 = \hdots = \lambda_k = 0$.
+\end{proof}
+
+Som afsluttende bemærkning på teorien om differentialligningssystemer bemærkes det, at EES kan formuleres for systemer, jævnfør \citep[s. 144]{Hirsch}.\\
+
+\begin{mytheo}{Eksistens- og entydighedssætningen for systemer (EESFS)}{EESFS}
+Lad 
+\begin{equation*}
+    \begin{cases}
+      \dot{y}(t)&=\vec{f}(t,\vec{y}(t))\\
+      \vec{y}(t_0)&=\vec{y_0}
+    \end{cases}
+\end{equation*}
+være et førsteordens IVP, hvor: 
+
+\begin{enumerate}
+    \item $\vec{f}\colon A \to   \mathbb{R}^n$, hvor $A\subseteq\mathbb{R}^{n+1}$ er en åben delmængde af $\mathbb{R}^{n+1}$.
+    \item $\frac{\partial\vec{f}}{\partial \vec{y}}$ eksisterer og er kontinuert på A.
+    \item $(t_0,\vec{y_0}) \in A$.
+\end{enumerate}
+
+Da findes til hver omegn $]t_0-\delta,t_0+\delta[ \ \times B_r(y_0)$ et interval $]\alpha,\beta[ \ \subseteq \ ]t_0-\delta,t_0+\delta[$, hvorpå en entydigt bestemt løsning $\phi\colon \ ]\alpha,\beta[ \ \to \mathbb{R}^n$ er defineret.
+\end{mytheo}
+Det bemærkes, at ovenstående sætning betyder, at løsningsmængden\\
+$M=\{\phi| \ \phi \text{ er en løsning til det givne IVP}\}$ ikke er tom.
+\begin{definition}[Maksimalt definitionsinterval]
+Lad et IVP som i sætningen ovenfor være givet, hvortil der findes en entydigt bestemt løsning, $\phi(t)$, på intervallet $\ ]\alpha,\beta [\ \subseteq \ ]t_0-\delta,t_0+\delta[\ $, hvor $t_0\in \ ]\alpha,\beta[\ $.\\
+Sæt nu $$a_1=\inf\{\tau|\text{der eksisterer en løsning}, y(t)\in M, \text{på} \ ]\tau , t_0] \}$$
+$$a_2=\sup\{\tau|\text{der eksisterer en løsning}, y(t)\in M, \text{på } [t_0 , \tau[ \}$$
+Da kaldes $]a_1,a_2[$ det maksimale definitionsinterval.
+\end{definition}
+I ovenstående definition er $y(t)$ nødvendigvis defineret på et større interval, $I\supseteq\ ]\tau , t_0]$ for $a_1$ og $J\supseteq [t_0 , \tau[$ for $a_2$, men resten af definitionsintervallet er uden betydning for definitionen.
+\begin{lemma}{Maksimal løsning}{LMD}
+Lad $]a_1,a_2[$ være det maksimale definitionsinterval for et givet IVP. Der findes en entydigt bestemt løsning, $\phi(t)$, defineret på intervallet $]a_1,a_2[$.
 \end{lemma}
 
-\begin{mytheo}{Den fundamentale sætning for lineære systemer}{}
-Lad $A$ være en $n$ x $n$ matrix. Så vil der for et givet $y_0 \in \mathbb{R}^n$ eksistere en entydig løsning til det associerede IVP ved:
-$$y(t) = e^{At}y_0$$
+\begin{proof}\\
+Beviset føres som et konstruktivt bevis, hvor vi konstruerer $\phi(t)$ og viser, at denne løsning er entydig.\\ \hfill \break
+   Lad $\tau_0\in \ ]a_1,a_2[$ være givet. Antag, at $a_1<\tau_0\leq t_0$. Fordi $a_1<\tau_0$, så findes en løsning $\phi_0(t)$ defineret på $\left]\tau_1,t_0\right]$ for et passende $\tau_1\in \ \left]a_1,\tau_0\right[$. Sæt nu $\phi(\tau_0) = \phi_0(\tau_0)$. Dette er tilladeligt, da man med en tilsvarende anden løsning $\tilde{\phi}_0$ defineret på $ \left]\tilde{\tau}_1, t_0\right]$, hvor $\tilde{\tau}_1\in \left]a_1,\tau_0\right[$,  har, at $\tilde{\phi}_0(\tau_0)=\phi_0(\tau_0)$. Pér sætning \ref{th:EES} ved vi nemlig, at der eksisterer en omegn af $t_0$, hvor $\phi_0(t) = \tilde{\phi}_0(t)$. Derfor er $T = \{\tau | \phi_0(t) = \tilde{\phi}_0(t) \ \forall t \in \ ]\tau, t_0] \}$ ikke tom. Pér konstruktion er $T$ nedadtil begrænset af $\max\{\tau_1,\tilde{\tau}_1\}$, så vi kan sætte $\tau_2 = \inf T$. Da $\phi_0$ og $ \tilde{\phi}_0$ begge er kontinuerte, så er $\tau_2 \in T$. Det er klart, at $\tau_2 \geq \max\{\tau_1,\tilde{\tau}_1\}$. Hvis $\tau_2 = \max\{\tau_1,\tilde{\tau}_1\}$, så er $\phi_0(\tau_0) = \tilde{\phi}_0(\tau_0)$ som ønsket. \\ \hfill \break
+   Antag derfor, at $\tau_2>\max\{\tau_1,\tilde{\tau}_1\}$. Nu anvendes EES på følgende IVP: $y' = f(t,y)$, $y(\tau_2) = \phi(\tau_2)$. Pér EES findes der et interval $]\alpha, \beta[\ni\tau_2$, hvorpå der eksisterer en entydigt bestemt løsning. Specielt findes der et interval $]\tilde{\alpha},\tau_2]$ med $\tilde{\alpha}=\max\{\tau_1,\tilde{\tau_1}\}$, hvor $\phi_0(t) = \tilde{\phi}_0(t)$, i modstrid med at $\tau_2=\inf T$. Dermed findes der ingen værdier af $t\in \ ]\max\{\tau_1,\tilde{\tau}_1\},t_0]$ sådan at $\phi_0(t) \neq \tilde{\phi}_0(t)$.\\ \hfill \break Således er $\phi(\tau_0)$ entydigt bestemt, og da $\tau_0\in \ ]a_1,t_0]$ var arbitrær, er $\phi(t)$ veldefineret for alle $t\in  \ ]a_1,t_0]$. Vi kan konstruere $\phi(t)$ på intervallet $[t_0,a_2[$ helt analogt. Nu mangler vi blot at vise, at den således konstruerede funktion, $\phi(t)$, er en løsning til det givne IVP. Lad som før $\tau_0\in  \ ]a_1,a_2[$ være givet. Som vist tidligere i beviset findes en løsning $\tilde{\phi}(t)$ defineret på en omegn, $]\tau_0-\delta,\tau_0+\delta[$, af $\tau_0$. I denne omegn stemmer $\phi(t)$ overens med $\tilde{\phi}(t)$. Da $\tilde{\phi}(t)$ er en løsning, er den differentiabel på $]\tau_0-\delta,\tau_0+\delta[$, og dermed er $\phi(t)$ differentiabel på samme interval. Da $\tau_0$ var arbitrær, er $\phi(t)$ differentiabel på hele $]a_1,a_2[$. Det er klart, at $\phi(t_0)=\vec{y}_0$, fordi $\phi(t)$ er konstrueret, så den stemmer overens med løsninger i en omegn af $t_0$. Dermed er $\phi(t)$ en løsning. 
+\end{proof}\\ \hfill \break
+Løsningen $\phi(t)$ kaldes den maksimale løsning. Det bemærkes, at Pér konstruktion af $\phi(t)$ er alle andre løsninger restriktioner af $\phi(t)$: Hvis $\tilde{\phi}\colon\ ]\alpha,\beta[ \ \to \mathbb{R}^n$ er en løsning, så er $]\alpha,\beta[ \ \subseteq \ ]a_1,a_2[$ og $\tilde{\phi}(t)=\phi(t) \ \forall t\in \ ]\alpha,\beta[$, jævnfør beviset.
+\begin{Example}
+\textnormal{\hfill \break Betragt følgende IVP:}
+$$\begin{cases}
+      y'(t)&=1+y(t)^2\\
+      y(0)&=0
+    \end{cases}$$
+\textnormal{Dette IVP har maksimal løsning $y(t)=\tan(t)$ defineret på $]-\frac{\pi}{2},\frac{\pi}{2}[$.}
+\end{Example}
+%Givet et IVP: $y(0) = y_0$, kan vi finde en løsning til det lineære ligningssystem, som vist ovenfor, givet ved:
+%$$y(t) = e^{At}y_0$$
+%Ved at se på definitionen for lineære differentialligningssystemer, kan det udledes, at $e^{AT}$ er en $n\times n$ matrix, som kan findes ved hjælp af taylorpolynomier.%(forklaring? xD Hvordan kommer vi egentlig frem til $e^{AT}$?) Smid en reference til prop: 2.4.4.
+\begin{mytheo}{Løsningskurverne forlader enhver kompakt delmængde. \citep[Sætning 3 s. 42]{Svensk}}{}\label{forladkompakt}
+Lad et IVP være givet som i EESFS. Lad $]a_1,a_2[$ være det maksimale definitionsinterval, og lad $K\subset A$ være en kompakt delmængde af definitionsmængden for $\vec{f}$. For den maksimale løsning, $\phi(t)$, til det givne IVP, vil punktet $(t,\phi(t))$ ligge udenfor $K$, hvis $t$ er tilstrækkelig tæt på $a_1$ eller $a_2$.
 \end{mytheo}
-
-Det kan altså konkluderes at Lotka-Volterra's model er et autonomt, ikke-koblet og ikke-lineært differentialligningssystem.
-
-%Hvordan løser man et ikke-lineært system?
-%Hvordan løser man et afkoblet system?
-%Kan man muligvis smide 3.1.1 (den fundamentale sætning for lineære systemer) i bilaget?
-%Første orden
+Sætningen bevises ikke her i projektet, men et bevis findes i \citep[s. 43-44]{Svensk}. \\ \hfill \break

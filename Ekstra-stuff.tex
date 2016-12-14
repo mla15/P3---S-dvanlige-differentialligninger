@@ -1,5 +1,35 @@
 \chapter{Ekstra-stuff}
+\begin{definition}[]
+Lad $\textbf{f}$ være en funktion og $a \in \mathbb{R}^n$ være et punkt. Er $\textbf{f}$ differentiabel i $a$, er dens afledte givet ved $\textbf{J}_f({a})$. I dette tilfælde siges den lineære afbildning givet den Jacobianske-matrix at være den bedste lineære approksimation af $\textbf{f}$ til $a$.
 
+\hfill \break
+Denne lineære approksimation skrives:
+
+$$\textbf{f}(x)=\textbf{f}(a)+ \textbf{J}_f({a})(x-a)+ o(\left. \Vert \left. x-a \right. \Vert \right.),$$ 
+for $x \to a$.
+
+\end{definition}
+
+\begin{definition}[Hyperbolsk ligevægtspunkt]
+%asfAFASF
+\end{definition}
+
+\begin{Example}
+
+$$\textbf{F(x)} =
+\begin{bmatrix}
+x_1 x_3^2 -e^{x_1 x_2} \\
+x_2 - \frac{1}{x_3} \\
+x_1 x_2 x_3
+\end{bmatrix} \Rightarrow
+J_{f}(x) =
+\begin{bmatrix}
+    x_3^2 - x_2 e^{x_1 x_2} & -x_1 e^{x_1 x_2} & 2x_1 x_3 \\
+    0 & 1 & \frac{1}{x_3^2}\\
+    x_2 x_3 & x_1 x_3 & x_1 x_2
+\end{bmatrix}$$
+
+\end{Example}
 \subsection{Mikkel}
 
 \subsection{Lipschitz-kontinuitet}
@@ -301,3 +331,318 @@ Lad $S,T \in L(\mathbb{R}^n)$ og $x \in \mathbb{R}^n$, så gælder følgende:
     \item $||T^k|| \leq ||T||^k$ for $k = 0,1,2, \hdots$
 \end{enumerate}
 \end{lemma}
+\subsection{Den Fundamentale sætning for lineære systemer}
+
+For et lineært systems koefficientmatrix, A, gælder:
+\begin{lemma}{}{}
+Lad $A$ være en kvadratisk matrix, så vil:
+$$\frac{d}{dt}e^{At} = Ae^{At}$$
+\end{lemma}
+
+\begin{mytheo}{Den fundamentale sætning for lineære systemer}{}
+Lad $A$ være en $n$ x $n$ matrix. Så vil der for et givet $y_0 \in \mathbb{R}^n$ eksistere en entydig løsning til det associerede IVP ved:
+$$y(t) = e^{At}y_0$$
+\end{mytheo}
+
+Det kan altså konkluderes at Lotka-Volterra's model er et autonomt, ikke-koblet og ikke-lineært differentialligningssystem.
+
+%Hvordan løser man et ikke-lineært system?
+%Hvordan løser man et afkoblet system?
+%Kan man muligvis smide 3.1.1 (den fundamentale sætning for lineære systemer) i bilaget?
+%Første orden
+
+Vi benytter Laplacetransformation, hvis vi har begyndelsesværdier, da problemet kan reduceres til algebra (Se sidst i afsnittet for laplacetransformen af Lotka-Volterra):
+\begin{Example}
+\textnormal{Lad os betragte følgende system af ODEs med begyndelsesværdier, $x(0)=1$ og $y(0)=0$.}
+\begin{align}
+    2x' + y' - y &= t\\
+    x' + y' &= t^2
+\end{align}
+\textnormal{Vi tager laplacetransfomationen af alt}
+\begin{align*}
+    2(s X(s) - x(0)) + sY(s) - y(0) - Y(s) &= \frac{1}{s^2}\\
+    s X(s) - x(0) + sY(s) - y(0) &= \frac{2}{s^3}\\
+    2sX(s) + (s-1)Y(s) &= 2 + \frac{1}{s^2}\\
+    sX(s) + sY(s) &= 1 + \frac{2}{s^3}
+\end{align*}
+\textnormal{Det er klart, at $X(s)$ nemt kan fjernes. Så det gør vi}
+\begin{align*}
+    2sX(s) + (s-1)Y(s) &= 2 + \frac{1}{s^2}\\
+    -2(sX(s) + sY(s) &= 1 + \frac{2}{s^3})\\
+    (s-1-2s)Y(s) &= \frac{1}{s^2} - \frac{4}{s^3}\\
+    (-s-1)Y(s) &= \frac{s-4}{s^3}\\
+    Y(s) &= \frac{4-s}{s^3(s + 1)}
+\end{align*}
+\textnormal{Vi omskriver nu til flere brøker (Ved ikke hvad partial fractions hedder på dansk)}
+$$ \frac{4-2}{s^3(s+1)} = \frac{A}{s} + \frac{B}{s^2} + \frac{C}{s^3} + \frac{D}{s+1}$$
+\textnormal{Der ganges igennem med $s^3(s+1)$}
+$$ 4 - s = A s^2(s+1) + Bs(s+1) + C(s+1) + Ds^3$$
+\textnormal{Kigger nu på ligningen og indser, at}
+\begin{align*}
+    A + D &= 0\\
+    A + B &= 0\\
+    B + C &= -1\\
+    C &= 4
+\end{align*}
+\textnormal{Da får vi: $B = -5$, $A = 5$, $D = -5$}
+$$Y(s) = \frac{5}{s} -\frac{5}{s^2} + \frac{4}{s^3} - \frac{5}{s+1}$$
+\textnormal{Da anvender vi $\mathcal{L}^{-1}$}
+$$ y(t) = 5 - 5t + 2t^2 - 5e^{-t}$$
+\textnormal{vi isolerer nu X(s) og tager $\mathcal{L}^{-1}$ i den laplacetransformerede ligning 3.2}
+\begin{align*}
+    s(X)s - 1 + sY(s) &= \frac{2}{s^3}\\
+    X(s) &= \frac{1}{s} + \frac{s}{s^4} - Y(s)\\
+    x(t) &= 1 + \frac{1}{3}t^3 - (5 - 5t + 2t^2 - 5e^{-t})\\
+    x(t) &= -4 + 5t-2t^2 + \frac{1}{3}t^3 + 5e^{-t}
+\end{align*}
+
+\end{Example}
+
+
+For vores tilfælde kan vi se følgende:
+
+\begin{equation*}
+    \dfrac{db}{dt}(t) = (H-Ir(t)) b(t), 
+\end{equation*}
+
+\begin{equation*}
+    \dfrac{dr}{dt}(t) = (Jb(t)-K) r(t),
+\end{equation*}
+
+$$b' - (H - Ir)b = 0 $$
+$$r' - (Jb - K)r = 0 $$
+Ved at tage laplacetransformen fås:
+$$sB(s) - b(0) - (\frac{H}{s} - \frac{I}{s}R(s))B(s) = 0$$
+$$sR(s) - r(0) - (\frac{J}{s}B(s) - \frac{K}{s})R(s) = 0$$
+Så vi skal bruge nogle begyndelsesværdier ellers er vi fanget :O
+
+
+
+\subsection{Inhomogene lineære andenordens ODE med konstante koefficienter}\label{ila} 
+For fuldstændighedens skyld opsummeres de ubestemte koefficienters metode. Dette afsnit er baseret på \citep[s. 240-246]{JAB}.\hfill \break
+En inhomogen lineær andenordens ODE med konstante koefficienter skrives på formen:
+
+\begin{equation}
+\label{inhomlinandord}
+    a_2y''(t)+a_1y'(t)+a_0y(t)=f(t)
+\end{equation} \hfill \break
+Hvor $a_2,a_1,a_0\in \mathbb{R}$ er de konstante koefficienter og $a_2 \neq 0$. I dette afsnit vil de ubestemte koefficienters metode, som er en fremgangsmåde, hvorpå inhomogene andenordens ODE's kan løses, blive gennemgået.
+Metoden går i alt sin enkelthed ud på, at hvis vi har givet en ligning på formen \eqref{inhomlinandord}, så giver vi et kvalificeret gæt på formen af $y_p(t)$. Har vi for eksempel givet en ligning på formen:
+\begin{equation*}
+    a_2y''(t)+a_1y'(t)+a_0y(t)=Ct^m
+\end{equation*} \hfill \break
+antyder formen $f(t)=Ct^m$, at $y_p(t)$ skal være et polynomium af $m'te$ orden:
+\begin{equation*}
+    y_p(t)=A_mt^m+\cdots +A_1t+A_0
+\end{equation*} \hfill \break
+Udregnes $y'_p(t)$ og $y''_p(t)$ kan disse sættes ind i \ref{inhomlinandord}, hvor de ubekendte koefficienter til hver potens af t i $a_2y''(t)+a_1y'(t)+a_0y(t)$ matches med de tilsvarende i $f(t)$. 
+Hvis $f(t)=Ce^{at}$ 'gætter' vi på en løsning på formen $Ae^{at}$
+\begin{Example}\hfill \break
+\textnormal{For at finde en partikulær løsning til:}\hfill \break
+$$3y''+2y'+4y=20e^{4t}$$ \hfill \break
+\textnormal{gætter vi på at $y_p(t)=Ae^{4t}$, dermed bliver $y'=4Ae^{4t}$ og $y''=16Ae^{4t}$ og beholder dermed den samme eksponentielle form. Vi får altså:} \hfill \break
+$$3y_p''+2y_p'+y_p=3(16Ae^{4t})+2(4Ae^{4t})+4Ae^{4t}=60Ae^ {4t}=20e^{4t}$$ \hfill \break
+\textnormal{Hvilket giver $A=\frac{1}{3}$, og dermed} \hfill \break
+$$y_p(t)=\frac{e^{4t}}{3}$$ \textnormal{som løsning.}
+
+\end{Example}
+Generelt gælder det at formen på $f(t)$ antyder formen på den partikulære løsning, som det ses i nedenstående tabel. 
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+       $f(t)$  & $y_p(t)$ \\ \hline
+        $Ct^m$ & $A_mt^m+\cdots +A_1t+A_0$ \\ \hline
+        $Ce^{at}$ & $Ae^{at}$ \\ \hline
+        $C sin(at) , C cos(at)$ & $ A cos(at) + B sin(at)$ \\ \hline
+        $Ct^me^t$ & $(A_mt^m+ \cdots +A_1t+A_0)e^t$ \\ \hline
+        \end{tabular}
+\end{table}
+I tilfælde af at $f(t)$ er en sum af flere led, kan $f(t)$ deles op i disse led, og ligning \ref{inhomlinandord} løses for hvert led, hvorefter disse løsninger adderes, hvilket giver en løsning til $f(t)$. \\
+Hvis $f(t)$ er et produkt af flere funktioner, vil formen på $y_p(t)$ typisk kunne skrives som et produkt af de tilhørende 'gæt' for hver funktion.
+Der er dog tilfælde hvor denne fremgangsmåde ikke kan bruges.
+
+\begin{Example}\hfill \break
+\textnormal{Betragt ligningen} $$y'' -3y'-4y=5e^{4t}$$ \textnormal{Det antages at en løsning er på formen} $$y_p(t)=Ae^{4t}$$ \textnormal{Udregnes $y'_p(t)$ og $y''_p(t)$ og sættes ind får vi dog:}
+$$y'' -3y'-4y=16Ae^{4t}-12Ae^{4t}-4Ae^{4t}=0  \neq 5e^{4t}$$
+\textnormal{Dette skyldes at $e^{4t}$ er en løsning til den tilhørende homogene ligning $y'' -3y'-4y=0$, og enhver konstant multiplikation vil derfor give 0 på højresiden af ligningen. For at løse dette problem er det nok at gange det sædvanlige 'gæt' med faktoren $t$.}
+\end{Example}
+
+\hfill \break
+\begin{prop}{De ubestemte koefficienters metode}
+EEn partikulær løsning til differentialligningen $a_2y''(t)+a_1y'(t)+a_0y(t)=Ct^me^{rt}$ kan skrives på formen: 
+$$y_p(t)= t^s(A_nt^n+A_{n-1}t^{n-1}  \cdots +A_1t+A_0)e^{rt}$$ 
+hvor 
+\begin{enumerate}
+    \item $s=0$ hvis $r$ ikke er en rod i den tilhørende karakteristiske ligning
+    \item $s=1$ hvis $r$ er en simpel rod i den tilhørende karakteristiske ligning
+    \item $s=2$ hvis $r$ er en dobbelt rod i den tilhørende karakteristiske ligning
+\end{enumerate}
+\end{prop}
+\hfill \break
+
+\begin{proof}\\
+Lad en ligning på formen:
+\begin{equation*}
+a_2y''(t)+a_1y'(t)+a_0y(t)=Ct^me^{rt}
+\end{equation*}
+være givet. Vi gætter her på at løsningen er på formen:
+\begin{equation*}
+y_p(t)= (A_nt^n+A_{n-1}t^{n-1} + \hdots +A_1t+A_0)e^{rt}
+\end{equation*}
+Hvor potensen $n$ skal bestemmes så den matcher $m$.
+Ledende af højeste orden i $y_p(t)$,$y'_p(t)$ og $y''_p(t)$ ser ud som følger:
+\begin{align*}
+     y_p(t) &=e^{rt}(A_nt^n+A_{n-1}t^{n-1}+A_{n-2}t^{n-2}+\hdots + A_1t+A_0) \\ \break
+    y'_p(t) &=e^{rt}(A_nrt^n+A_nnt^{n-1}+A_{n-1}rt^{n-1}+A_{n-1}(n-1)t^{n-2}+A_{n-2}rt^{n-2}+\hdots + A_1rt+A_1+A_0r) \\
+    y''_p(t) &=e^{rt}(A_nr^2t^n+2A_nnrt^{n-1}+A_nn(n-1)t^{n-2}+A_{n-1}r^2t^{n-1}+2A_{n-1}r(n-1)t^{n-2} \\ 
+    &+A_{n-2}r^2t^{n-2}+\hdots + A_1r^2t+2A_1r+A_0r^2)
+\end{align*}
+Når dette sættes ind i $a_2y''(t)+a_1y'(t)+a_0y(t)$ fås:
+\begin{align*}
+ a_2y''(t)+ & a_1y'(t)+a_0y(t) \\ 
+ & = A_n(a_2r^2+a_1r+a_0)t^ne^{rt} + (A_nn(2a_2r+a_1) +A_{n-1}(a_2r^2+a_1r+a_0))t^{n-1}e^{rt} \\ 
+ & +(A_nn(n-1)a_2+A_{n-1}(n-1)(2a_2r+a_1)\\
+ &+A_{n-2}(a_2r^2+a_1r+a_0))t^{n-2}e^{rt}+ \hdots + (led\ af\ lavere\ orden)
+\end{align*}
+Da den karakteristiske ligning for $a_2y''(t)+a_1y'(t)+a_0y(t)$ er: \\
+$$a_2r^2+a_1r+a_0=0$$ \\
+og hvis $r$ er en dobbelt rod\\
+$$2a_2r+a_1=0$$\\ 
+Der er altså tre mulige scenarier: \\
+
+\textbf{1.} \\
+Hvis $r$ er ikke en rod i den karakteristiske ligning, og dermed vil leddet med den største potens være $A_n(a_2r^2+a_1r+a_0)t^ne^rt$. For at matche potensen i $f(t)=Ct^me^{rt}$, må $n=m$ og vi får: \\
+\begin{equation*}
+y_p(t)= (A_mt^m+A_{m-1}t^{m-1}  \cdots +A_1t+A_0)e^rt
+\end{equation*} \\
+
+\textbf{2.} \\
+Hvis $r$ er en simpel rod i den karakteristiske ligning hvilket medfører at $a_2r^2+a_1r+a_0=0$ bliver leddet med den højeste potens $(A_nn(2a_2r+a_1)$. For at matche potensen i $f(t)=Ct^me^{rt}$, må $n=m+1$ og vi får: \\
+\begin{equation*}
+y_p(t)= (A_{m+1}t^{m+1}+A_{m}t^{m}  \cdots +A_1t+A_0)e^{rt}
+\end{equation*} \\
+Men da r  er en simpel rod i den karakteristiske ligning, vil $A_0e^{rt}$ være  en løsning til den karakteristiske ligning, og derfor kan dette led fjernes og $t$ sættes uden for en parentes. \\
+\begin{align*}
+y_p(t)&= (A_{m+1}t^{m+1}+A_{m}t^{m}  \cdots+ A_2t +A_1)e^{rt} \\
+      &= t(A_{m}t^{m}+A_{m-1}t^{m-1}  \cdots +A_1t+A_0)e^{rt}
+\end{align*} \\
+
+\textbf{3.}\\
+Hvis $r$ er en dobbelt rod i den karakteristiske ligning, hvilket medfører, at $2a_2r+a_1=0$, så er leddet med den højeste potens $A_nn(n-1)a_2t^{n-2}e^rt$. For at matche potensen i $f(t)=Ct^me^{rt}$, må $n=m+2$ og vi får: \\
+
+\begin{equation*}
+y_p(t)= (A_{m+2}t^{m+2}+A_{m+2}t^{m+2}  \cdots +A_1t+A_0)e^{rt}
+\end{equation*} \\
+Som før fjernes $(A_1t+A_0)e^{rt}$ da $A_1te^{rt}$ og $A_0e^{rt}$ er løsninger til den tilhørende homogene ligning, og $t^2$ sættes uden for parentes: 
+
+\begin{align*}
+y_p(t)&= (A_{m+2}t^{m+2}+A_{m+1}t^{m+1}  \cdots+ A_2t^2+A_1t+A_0)e^{rt} \\
+      &= t^2(A_{m}t^{m}+A_{m-1}t^{m-1}  \cdots +A_1t+A_0)e^{rt}
+\end{align*} \\
+
+\end{proof}
+
+\subsection{Lineære differentialligninger}
+Følgende er med til at skabe en forståelse for løsninger til lineære differentialligninger og afdækkes, da de første systemer af differentialligninger, der introduceres i projektet, er lineære.
+\hfill \break
+
+En førsteordens OLDE er en ligning på formen: \\ 
+$$a_{1}(t) \frac{dy}{dt} + a_{0}(t)y = f(t)$$ Hvor $t$ er den uafhængige variabel. \hfill \break
+
+Vi betragter nu to tilfælde for koefficienten $a_0$, hvor $a_0(t) = 0$ og $a_0(t) = a_1'(t)$. Hvis $a_0(t) = 0$ reduceres ligningen til $a_1(t)\frac{dy}{dt} = f(t)$.  
+\begin{Example}\hfill \break
+\textnormal{Antag at vi har en førsteordens OLDE, som følger, hvor $a_0(t) = 0$.}\\
+\hfill \break
+\centerline{$0y - 6t = -(3t^2) \frac{dy}{dt}$ $\Rightarrow$ $3t^2 \frac{dy}{dt} = 6t$}
+\hfill \break
+\centerline{$y'(t) = \frac{6t}{3t^2}$ $\Rightarrow$ $y(t) = \int \frac{6t}{3t^2}dt$}
+\hfill \break
+\textnormal{Løsningen kan derfor findes ved simpel isolering af variable og integration.}
+\end{Example}
+
+For det andet tilfælde får vi af produktreglen at $$a_1(t)y'(t) + a_0(t)y(t) = a_1(t)y'(t) + a_1'(t)y(t) = \frac{d}{dt}(a_1(t)y(t))$$Da har vi $$\frac{d}{dt}(a_1(t)y(t)) = f(t)$$ hvoraf løsningen let kan findes.
+
+\begin{Example} \hfill \break
+\textnormal{Antag at vi har en førsteordens OLDE, som følger, hvor $a_0(t) = a_1'(t)$} \\
+\hfill \break
+$$t^2 = \frac{1}{t}y'(t) -\frac{1}{t^2}y(t) = \frac{d}{dt}(\frac{1}{t}y(t))\Leftrightarrow$$
+$$\frac{d}{dt}(\frac{1}{t}y(t)) = t^2\Leftrightarrow$$
+$$\frac{1}{t}y(t) = \int t^2dt \Leftrightarrow$$ $$ y(t) = t \int t^2dt$$
+\hfill \break
+\textnormal{Dermed kan vi igen isolere og integrere for at finde løsningen.}
+\end{Example}
+
+Der eksisterer mange tilfælde, hvor OLDE ikke umiddelbart kan reduceres til en af de to ovenstående former, hvorfor det ses nødvendigt at finde en anden metode til løsning af disse. Derfor omskriver vi OLDE, som vist i definition \ref{OLDE}: $${y'(t) + \frac{a_0(t)}{a_1(t)}y(t) = \frac{b(t)}{a_1(t)}} \Leftrightarrow$$
+$$y'(t) + P(t)y(t) = Q(t)$$ hvor $y'(t) + P(t)y(t) = Q(t)$ er den normerede ligning. Derudover vil vi anvende en integrationsfaktor.
+
+\begin{definition}[Integrationsfaktor]\label{IntFak}
+En funktion $\mu (t)$, der ved multiplikation ændrer en lineær normeret differentialligning til en ligning på formen: $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ kaldes en integrationsfaktor.  
+\end{definition}
+
+Denne integrationsfaktor kan benyttes til at finde en generel løsning til en OLDE, og det er illustreret ved nedenstående sætning.
+
+\begin{mytheo}{Løsning til OLDE}{}
+For enhver OLDE, der kan skrives på formen:
+\begin{equation}\label{LOLDE}
+\frac{dy}{dt}+P(t)y=Q(t)
+\end{equation}
+eksisterer der en integrationsfaktor $\mu(t)$, hvorom der gælder, at: $$y(t)=\frac{1}{\mu (t)}(\int \mu (t)Q(t)dt+K)$$ er den generelle løsning til OLDE.
+\end{mytheo}
+
+\begin{proof}
+Vi anvender en integrationsfaktor $\mu(t)$ ved at gange denne til den normerede ligning.
+\begin{equation}\label{Intfaktor}
+\mu (t)y'(t) + \mu (t)P(t)y(t) = \mu (t)Q(t) 
+\end{equation}
+Per definition \ref{IntFak} må $\mu ' = \mu P$ og da kan vi udlede af \ref{th:LSD} at $\frac{1}{\mu}d\mu = P(t)dt$.
+Ligning \eqref{Intfaktor} omskrives til $$\frac{d}{dt}(\mu (t)y(t)) = \mu (t)Q(t)$$ 
+med $\mu (t)$ som den ovenstående, kan vi finde en generel løsning til (\ref{LOLDE}) ved integration på begge sider og derefter isolere $y(t)$:
+\begin{equation}
+y(t)=\frac{1}{\mu (t)}(\int \mu (t)Q(t)dt+K)
+\end{equation}
+\end{proof}
+
+\begin{Example}
+\textnormal{Antag at vi har en førsteordens OLDE:}
+$$2ty'(t) + 4y(t) = 6t^2$$
+\textnormal{Hvis vi dividerer igennem med 2t fås:}
+$$y'(t) + \frac{2}{t}y(t) = 3t$$
+$$\int P(t)dt = \int \frac{2}{t}dt = 2ln(t)$$
+\textnormal{Da har vi integrationsfaktoren,} $\mu = e^{2ln|t|} = e^{ln(t^2)} = t^2$. \textnormal{Nu ganges $\mu$ på den normerede ligning:}
+$$t^2 \frac{dy}{dt} + 2ty = 3t^3\Leftrightarrow$$
+$$\frac{d}{dt}(t^2y) = 3t^3 \Leftrightarrow  t^2y = \int 3t^3dt = \frac{3}{4}t^4 + K$$
+\textnormal{Da får vi:} 
+$$y = \frac{3}{4}t^4t^{-2} + Kt^{-2} = \frac{3}{4}t^2 + K \frac{1}{t^2}$$
+\end{Example}
+
+\begin{Example}\textbf{Pendul med friktion}\label{friktion}
+\hfill \break
+\textnormal{Betragt differentialligningen for et pendul med friktion}\hfill \break
+\begin{align*}
+y''+cy'+a\cdot sin(y)=0, \ c,a > 0
+\end{align*}
+
+\textnormal{Denne differentialligning af anden orden kan omskrives til et system af første orden ved substitution:}
+\begin{align*}
+y_1&=y \\
+y_2&=y'
+\end{align*}
+\textnormal{Dermed:}
+\begin{align*}
+y_1'&=y_2 \\
+y_2'&=-cy_2-a\cdot sin(y_1)
+\end{align*}
+\textnormal{Den mekaniske energi i systemet er givet ved:}
+\begin{align}
+E(y_1,y_2)=\frac{1}{2}y_2^2+a(1-cos(y_1))
+\end{align}
+\textnormal{Man kunne forestille sig, at den mekaniske energi ikke er konstant i dette system på grund af friktion. Dette bør kontrolleres ved at bestemme differentialkvotienten til den mekaniske energi i systemet. Ved kædereglen kan denne bestemmes:}
+\begin{align*}
+\frac{d}{dt}E(y_1(t),y_2(t))&=\frac{\partial E}{\partial y_1}(y_1,y_2)y_1'(t)+\frac{\partial E}{\partial y_2}(y_1,y_2)y_2'(t)\\
+&=a\cdot sin(y_1)y_2+y_2(-cy_2-a\cdot sin(y_1))\\
+&=-cy_2^2\\
+&\leq 0
+\end{align*}
+\textnormal{Den mekaniske energi er dermed en aftagende funktion med hensyn til $t$. Når en løsningskurve skærer en niveaukurve $E(y_1,y_2)=k$, har denne kurve retning mod aftagende $k$ og dermed imod origo, da $E(0,0)=0$. Dermed bør origo være et asymptotisk stabilt ligevægtspunkt. Dette vil også vise sig at være tilfældet senere.}
+\end{Example}
